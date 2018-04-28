@@ -23,8 +23,13 @@
  */
 package com.mkdika.jeneric.function;
 
+import com.mkdika.jeneric.types.DateFormat;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.ZoneId;
+import java.util.Date;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
@@ -79,10 +84,59 @@ public class StringFunTest {
         System.out.println("test_StringFun_lpad_unsuccess");
 
         String a = StringFun.lpad("", 0, 'X');
-        assertThat(a, not(equalTo(("XXXX"))));
+        assertThat(a, not(equalTo(("XXX"))));
 
         String b = StringFun.lpad("", 5, ' ');
-        assertThat(b, not(equalTo((" "))));
+        assertThat(b, not(equalTo((" "))));                
     }
-
+    
+    @Test(expected = java.lang.NullPointerException.class)
+    public void test_lpad_exception() {
+        System.out.println("test_StringFun_lpad_exception");
+        
+        String a = StringFun.lpad(null, 5, ' ');
+        assertThat(a, not(equalTo((" "))));
+    }
+    
+    @Test
+    public void test_fromDate_success() {
+        System.out.println("test_StringFun_fromDate_success");
+                
+        LocalDateTime dt = LocalDateTime.of(2018, Month.DECEMBER, 10, 15, 15, 30); // 10 Dec 2018 15:15:30        
+        long epoch = dt.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        Date date = new Date(epoch);
+        
+        String a = StringFun.fromDate(date);        
+        assertThat(a, equalTo("2018-12-10.15:15:30"));       
+        
+        String b = StringFun.fromDate(date, DateFormat.BASIC_ISO_DATE_TIME);
+        assertThat(b, equalTo("20181210151530"));
+        
+        String c = StringFun.fromDate(date, "MMM yy");
+        assertThat(c, equalTo("Dec 18"));                
+    }
+    
+    @Test
+    public void test_fromDate_unsuccess() {
+        System.out.println("test_StringFun_fromDate_unsuccess");
+        
+        LocalDateTime dt = LocalDateTime.of(2018, Month.DECEMBER, 10, 15, 15, 30); // 10 Dec 2018 15:15:30        
+        long epoch = dt.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        Date date = new Date(epoch);
+        
+        String a = StringFun.fromDate(date, "");
+        assertThat(a, not(equalTo("Dec 18")));
+    }
+    
+    @Test(expected = java.lang.NullPointerException.class)
+    public void test_fromDate_exception() {
+        System.out.println("test_StringFun_fromDate_exception");
+        
+        LocalDateTime dt = LocalDateTime.of(2018, Month.DECEMBER, 10, 15, 15, 30); // 10 Dec 2018 15:15:30        
+        long epoch = dt.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        Date date = new Date(epoch);
+        
+        String a = StringFun.fromDate(null, DateFormat.DEFAULT);
+        assertThat(a, not(equalTo("Dec 18")));
+    }
 }

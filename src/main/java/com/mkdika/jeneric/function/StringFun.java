@@ -23,39 +23,95 @@
  */
 package com.mkdika.jeneric.function;
 
+import com.mkdika.jeneric.types.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * This class is collection of all java.lang.String return functions.
- * 
+ *
  * @author Maikel Chandika <mkdika@gmail.com>
  * @since 2018-04-28
  */
-public final class StringFun {
-    
+public final class StringFun {    
+        
     /*
         To prevent class from instanate from outside.
-    */
+     */
     private StringFun() {        
     }
-    
+
     /**
-     * Function to return string with given length of left padded character.<br>
+     * Function to return string with given length of left padded character.
+     * <p>
+     * If padding length less than String length, then return the orginal Str.<br>
+     * If Str is empty and padding length greater than 0, then return padding character.<br><br>
+     * 
      * Example: <br>
      * - lpad("12",5,'0') will return "00012"<br>
      * - lpad("345,4,'X') will return "X345"<br>
      * - lpad("XY",0,'0') will return "XY"
-     * 
+     *
      * @param str Current String to be padded.
-     * @param paddingLen Total String length to be return. If padding length < Str length,
-     *                   then Str is the return.
-     * @param paddingChar Character to be used for left padding.
+     * @param paddingLen Total String length to be return. If padding length less than Str length, then Str is the return. 
+     * @param paddingChar Character to be used for left padding.     
      * @return java.lang.String
-    */
+     * 
+     */
     public static String lpad(String str, int paddingLen, char paddingChar) {
-        StringBuilder spad = new StringBuilder();        
-        for (int i = (str.length()+1); i <= paddingLen; i++) {
+        StringBuilder spad = new StringBuilder();
+        for (int i = (str.length() + 1); i <= paddingLen; i++) {
             spad.append(paddingChar);
         }
-        spad.append(str);
+        spad.append(str);        
         return spad.toString();
-    }   
+    }
+
+    /**
+     * Function to return string with given java.util.Date and with(out) format pattern
+     * <p>
+     * Work just like {@link com.mkdika.jeneric.function.StringFun#fromDate(Date,String)}
+     * with default date format pattern {@link com.mkdika.jeneric.types.DateFormat#DEFAULT}
+     *      
+     * @param date given date to format     
+     * @return java.lang.String     
+     *      
+     * @see com.mkdika.jeneric.types.DateFormat#DEFAULT Default Patttern
+     * 
+     */
+    public static String fromDate(Date date) {
+        return fromDate(date, DateFormat.DEFAULT);
+    }
+    
+    /**
+     * Function to return string with given java.util.Date and with(out) format pattern
+     * <p>
+     * Work just like {@link com.mkdika.jeneric.function.StringFun#fromDate(Date,String)}
+     *      
+     * @param date given date to format
+     * @param pattern pattern for formatting the date from {@link com.mkdika.jeneric.types.DateFormat}
+     * @return java.lang.String     
+     *      
+     * @see com.mkdika.jeneric.types.DateFormat#DEFAULT Default Patttern
+     * 
+     */
+    public static String fromDate(Date date, DateFormat pattern) {
+        return fromDate(date, pattern.getFormat());
+    }
+        
+    /**
+     * Function to return string with given java.util.Date and with(out) format pattern
+     * <p>
+     * Example: <br>
+     * - fromDate(date,"dd MMM yyy") will return "22 May 2018"     
+     *      
+     * @param date given date to format
+     * @param pattern pattern for formatting the date
+     * @return java.lang.String     
+     *      
+     */
+    public static String fromDate(Date date, String pattern) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);        
+        return dateFormat.format(date);
+    }
 }
