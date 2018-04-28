@@ -27,6 +27,11 @@ package com.mkdika.jeneric.function;
  *
  * @author Maikel Chandika <mkdika@gmail.com>
  */
-public class BooleanFun {
+public final class BooleanFun {
     
+    /*
+        To prevent class from instanate from outside.
+    */
+    private BooleanFun(){        
+    }
 }

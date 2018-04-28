@@ -24,9 +24,38 @@
 package com.mkdika.jeneric.function;
 
 /**
- *
+ * This class is collection of all java.lang.String return functions.
+ * 
  * @author Maikel Chandika <mkdika@gmail.com>
+ * @since 2018-04-28
  */
-public class StringFun {
+public final class StringFun {
     
+    /*
+        To prevent class from instanate from outside.
+    */
+    private StringFun() {        
+    }
+    
+    /**
+     * Function to return string with given length of left padded character.<br>
+     * Example: <br>
+     * - lpad("12",5,'0') will return "00012"<br>
+     * - lpad("345,4,'X') will return "X345"<br>
+     * - lpad("XY",0,'0') will return "XY"<br>
+     * 
+     * @param str Current String to be padded.
+     * @param paddingLen Total String length to be return. If padding length < Str length,
+     *                   then Str is the return.
+     * @param paddingChar Character to be used for left padding.
+     * @return java.lang.String
+    */
+    public static String lpad(String str, int paddingLen, char paddingChar) {
+        StringBuilder spad = new StringBuilder();        
+        for (int i = (str.length()+1); i <= paddingLen; i++) {
+            spad.append(paddingChar);
+        }
+        spad.append(str);
+        return spad.toString();
+    }   
 }

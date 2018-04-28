@@ -23,10 +23,34 @@
  */
 package com.mkdika.jeneric.function;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
+
 /**
  *
  * @author Maikel Chandika <mkdika@gmail.com>
  */
+@RunWith(MockitoJUnitRunner.class)
 public class IntegerFunTest {
-    
+
+    @Before
+    public void setup() {
+    }
+
+    @Test
+    public void test_class_instance() {
+        System.out.println("test_IntegerFun_class_instance");
+        
+        try {
+            Constructor<IntegerFun> c = IntegerFun.class.getDeclaredConstructor();
+            c.setAccessible(true);
+            IntegerFun sf = c.newInstance();
+        } catch (NoSuchMethodException | SecurityException | InstantiationException
+                | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+        }
+    }
 }

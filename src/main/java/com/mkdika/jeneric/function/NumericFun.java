@@ -27,6 +27,11 @@ package com.mkdika.jeneric.function;
  *
  * @author Maikel Chandika <mkdika@gmail.com>
  */
-public class NumericFun {
+public final class NumericFun {
     
+    /*
+        To prevent class from instanate from outside.
+    */
+    private NumericFun() {        
+    }
 }

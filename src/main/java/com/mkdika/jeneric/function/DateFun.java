@@ -27,6 +27,11 @@ package com.mkdika.jeneric.function;
  *
  * @author Maikel Chandika <mkdika@gmail.com>
  */
-public class DateFun {
+public final class DateFun {
     
+    /*
+        To prevent class from instanate from outside.
+    */
+    private DateFun(){        
+    }
 }
