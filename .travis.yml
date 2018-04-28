@@ -1,0 +1,28 @@
+language: java
+
+sudo: false
+
+dist: trusty
+
+jdk:
+  - openjdk8
+  
+#before_install:
+# - chmod +x mvnw
+ 
+before_script:
+  - pip install --user codecov
+  
+script: mvn clean install
+  
+after_success:
+  - codecov
+  
+branches:
+  only:
+  - master
+  
+cache:
+  directories:
+  - .autoconf
+  - $HOME/.m2
