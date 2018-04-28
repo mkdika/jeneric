@@ -42,7 +42,7 @@ public final class StringFun {
      * Example: <br>
      * - lpad("12",5,'0') will return "00012"<br>
      * - lpad("345,4,'X') will return "X345"<br>
-     * - lpad("XY",0,'0') will return "XY"<br>
+     * - lpad("XY",0,'0') will return "XY"
      * 
      * @param str Current String to be padded.
      * @param paddingLen Total String length to be return. If padding length < Str length,
