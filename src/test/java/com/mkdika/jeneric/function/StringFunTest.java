@@ -129,11 +129,7 @@ public class StringFunTest {
     
     @Test(expected = java.lang.NullPointerException.class)
     public void test_fromDate_exception() {
-        System.out.println("test_StringFun_fromDate_exception");
-        
-        LocalDateTime dt = LocalDateTime.of(2018, Month.DECEMBER, 10, 15, 15, 30); // 10 Dec 2018 15:15:30        
-        long epoch = dt.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        Date date = new Date(epoch);
+        System.out.println("test_StringFun_fromDate_exception");        
         
         String a = StringFun.fromDate(null, DateFormat.DEFAULT);
         assertThat(a, not(equalTo("Dec 18")));

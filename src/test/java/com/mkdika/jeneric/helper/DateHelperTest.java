@@ -23,7 +23,6 @@
  */
 package com.mkdika.jeneric.helper;
 
-import com.mkdika.jeneric.function.BooleanFun;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import org.junit.Before;
