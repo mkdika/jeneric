@@ -136,4 +136,15 @@ public class BooleanFunTest {
         boolean a = BooleanFun.isDateOverlap(dtA1, dtA2, dtA3, dtA4);
         assertTrue(a);
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void test_isDateOverlap_exception3() {
+        System.out.println("test_BooleanFun_isDateOverlap_exception3");
+        Date dtA1 = DateHelper.of(2018, 1, 1, 10, 30, 45);  // 1 Jan 2018 10:30:45
+        Date dtA2 = DateHelper.of(2018, 1, 9, 10, 30, 45);   // 9  Jan 2018 10:30:45
+        Date dtA3 = DateHelper.of(2018, 1, 11, 10, 30, 45);  // 11 Jan 2018 10:30:45
+        Date dtA4 = DateHelper.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
+        boolean a = BooleanFun.isDateOverlap(dtA1, dtA2, dtA3, dtA4);
+        assertTrue(a);
+    }
 }

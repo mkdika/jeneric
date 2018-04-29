@@ -25,6 +25,9 @@ package com.mkdika.jeneric.helper;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Date;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -49,6 +52,14 @@ public class DateHelperTest {
         } catch (NoSuchMethodException | SecurityException | InstantiationException
                 | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
         }
+    }
+    
+    @Test
+    public void test_now_success() {
+        System.out.println("test_DateHelper_now_success");
+        
+        Date date = DateHelper.now();
+        assertThat(date,notNullValue());
     }
     
 }
