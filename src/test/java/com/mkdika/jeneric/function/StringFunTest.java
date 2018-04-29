@@ -23,6 +23,7 @@
  */
 package com.mkdika.jeneric.function;
 
+import com.mkdika.jeneric.helper.DateHelper;
 import com.mkdika.jeneric.types.DateFormat;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -101,10 +102,9 @@ public class StringFunTest {
     @Test
     public void test_fromDate_success() {
         System.out.println("test_StringFun_fromDate_success");
-                
-        LocalDateTime dt = LocalDateTime.of(2018, Month.DECEMBER, 10, 15, 15, 30); // 10 Dec 2018 15:15:30        
-        long epoch = dt.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        Date date = new Date(epoch);
+        
+        // 10 Dec 2018 15:15:30
+        Date date = DateHelper.of(2018, 12, 10, 15, 15, 30);
         
         String a = StringFun.fromDate(date);        
         assertThat(a, equalTo("2018-12-10.15:15:30"));       
@@ -120,9 +120,8 @@ public class StringFunTest {
     public void test_fromDate_unsuccess() {
         System.out.println("test_StringFun_fromDate_unsuccess");
         
-        LocalDateTime dt = LocalDateTime.of(2018, Month.DECEMBER, 10, 15, 15, 30); // 10 Dec 2018 15:15:30        
-        long epoch = dt.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        Date date = new Date(epoch);                
+        // 10 Dec 2018 15:15:30
+        Date date = DateHelper.of(2018, 12, 10, 15, 15, 30);
         
         String a = StringFun.fromDate(date, "");
         assertThat(a, not(equalTo("Dec 18")));
