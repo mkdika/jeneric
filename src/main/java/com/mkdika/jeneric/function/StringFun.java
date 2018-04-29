@@ -29,8 +29,10 @@ import java.util.Date;
 
 /**
  * This class is collection of all java.lang.String return functions.
+ * 
+ * All of this class static method will return {@link java.lang.String}
  *
- * @author Maikel Chandika <mkdika@gmail.com>
+ * @author Maikel Chandika (mkdika@gmail.com)
  * @since 2018-04-28
  */
 public final class StringFun {    
@@ -55,7 +57,7 @@ public final class StringFun {
      * @param str Current String to be padded.
      * @param paddingLen Total String length to be return. If padding length less than Str length, then Str is the return. 
      * @param paddingChar Character to be used for left padding.     
-     * @return java.lang.String
+     * @return {@link java.lang.String}
      * 
      */
     public static String lpad(String str, int paddingLen, char paddingChar) {
@@ -74,7 +76,7 @@ public final class StringFun {
      * with default date format pattern {@link com.mkdika.jeneric.types.DateFormat#DEFAULT}
      *      
      * @param date given date to format     
-     * @return java.lang.String     
+     * @return {@link java.lang.String}
      *      
      * @see com.mkdika.jeneric.types.DateFormat#DEFAULT Default Patttern
      * 
@@ -90,7 +92,7 @@ public final class StringFun {
      *      
      * @param date given date to format
      * @param pattern pattern for formatting the date from {@link com.mkdika.jeneric.types.DateFormat}
-     * @return java.lang.String     
+     * @return {@link java.lang.String}
      *      
      * @see com.mkdika.jeneric.types.DateFormat#DEFAULT Default Patttern
      * 
@@ -107,7 +109,7 @@ public final class StringFun {
      *      
      * @param date given date to format
      * @param pattern pattern for formatting the date
-     * @return java.lang.String     
+     * @return {@link java.lang.String}
      *      
      */
     public static String fromDate(Date date, String pattern) {

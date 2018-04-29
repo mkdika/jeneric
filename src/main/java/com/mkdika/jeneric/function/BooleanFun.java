@@ -25,7 +25,7 @@ package com.mkdika.jeneric.function;
 
 /**
  *
- * @author Maikel Chandika <mkdika@gmail.com>
+ * @author Maikel Chandika (mkdika@gmail.com)
  */
 public final class BooleanFun {
     

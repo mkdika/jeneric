@@ -32,7 +32,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 /**
  *
- * @author Maikel Chandika <mkdika@gmail.com>
+ * @author Maikel Chandika (mkdika@gmail.com)
  */
 @RunWith(MockitoJUnitRunner.class)
 public class NumericFunTest {

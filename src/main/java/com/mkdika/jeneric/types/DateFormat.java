@@ -25,7 +25,7 @@ package com.mkdika.jeneric.types;
 
 /**
  *
- * @author Maikel Chandika <mkdika@gmail.com>
+ * @author Maikel Chandika (mkdika@gmail.com)
  */
 public enum DateFormat {
     /**
