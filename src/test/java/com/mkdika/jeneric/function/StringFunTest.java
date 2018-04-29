@@ -122,7 +122,7 @@ public class StringFunTest {
         
         LocalDateTime dt = LocalDateTime.of(2018, Month.DECEMBER, 10, 15, 15, 30); // 10 Dec 2018 15:15:30        
         long epoch = dt.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        Date date = new Date(epoch);
+        Date date = new Date(epoch);                
         
         String a = StringFun.fromDate(date, "");
         assertThat(a, not(equalTo("Dec 18")));
