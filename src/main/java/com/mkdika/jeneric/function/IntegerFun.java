@@ -28,10 +28,15 @@ package com.mkdika.jeneric.function;
  * @author Maikel Chandika (mkdika@gmail.com)
  */
 public final class IntegerFun {
-    
+
     /*
         To prevent class from instanate from outside.
-    */
+     */
     private IntegerFun() {
-    }    
+    }
+
+    //TODO: finish IntegerFun.nvl javadoc
+    public static Integer nvl(Integer i) {
+        return (i == null ? 0 : i);
+    }
 }

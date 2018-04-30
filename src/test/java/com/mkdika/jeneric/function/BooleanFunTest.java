@@ -26,7 +26,9 @@ package com.mkdika.jeneric.function;
 import com.mkdika.jeneric.helper.DateHelper;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -146,5 +148,99 @@ public class BooleanFunTest {
         Date dtA4 = DateHelper.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
         boolean a = BooleanFun.isDateOverlap(dtA1, dtA2, dtA3, dtA4);
         assertTrue(a);
+    }
+    
+    @Test
+    public void test_isStringContains_success() {
+        System.out.println("test_BooleanFun_isStringContains_success");
+        
+        List<String> list = new ArrayList<>();
+        list.add("apple");
+        list.add("banana");
+        boolean a = BooleanFun.isStringContains("banana", list);
+        assertTrue(a);
+        
+        boolean b = BooleanFun.isStringContains("grape", "apple","banana","coconut");
+        assertFalse(b);
+    }
+    
+    @Test
+    public void test_isStringContains_unsuccess() {
+        System.out.println("test_BooleanFun_isStringContains_unsuccess");
+        
+        boolean a = BooleanFun.isStringContains(null, "apple");
+        assertFalse(a);
+        
+        boolean b = BooleanFun.isStringContains("", "apple");
+        assertFalse(b);
+        
+        List<String> listA = null;
+        boolean c = BooleanFun.isStringContains("grape", listA);
+        assertFalse(c);
+        
+        List<String> listB = new ArrayList<>();
+        boolean d = BooleanFun.isStringContains("grape", listB);
+        assertFalse(d);        
+    }
+    
+    @Test
+    public void test_nvl_success() {
+        System.out.println("test_BooleanFun_nvl_success");
+        
+        boolean a = BooleanFun.nvl(Boolean.TRUE);
+        assertTrue(a);
+        
+        boolean b = BooleanFun.nvl(null);
+        assertFalse(b);
+    }
+    
+    @Test
+    public void test_isStringContainNumeric_success() {
+        System.out.println("test_BooleanFun_isStringContainNumeric_success");
+        
+        boolean a = BooleanFun.isStringContainNumeric("maikel");
+        assertFalse(a);
+        
+        boolean b = BooleanFun.isStringContainNumeric("app1e");
+        assertTrue(b);
+        
+        boolean c = BooleanFun.isStringContainNumeric("G0O6LE");
+        assertTrue(c);
+    }
+    
+    @Test
+    public void test_isStringContainNumeric_unsuccess() {
+        System.out.println("test_BooleanFun_isStringContainNumber_unsuccess");
+        
+        boolean a = BooleanFun.isStringContainNumeric(null);
+        assertFalse(a);
+
+        boolean b = BooleanFun.isStringContainNumeric("+-*/");
+        assertFalse(b);
+    }
+    
+    @Test
+    public void test_isStringContainAlphabet_success() {
+        System.out.println("test_BooleanFun_isStringContainAlphabet_success");
+        
+        boolean a = BooleanFun.isStringContainAlphabet("123456");
+        assertFalse(a);
+        
+        boolean b = BooleanFun.isStringContainAlphabet("125O00");
+        assertTrue(b);
+        
+        boolean c = BooleanFun.isStringContainAlphabet("maikel7369");
+        assertTrue(c);
+    }
+    
+    @Test
+    public void test_isStringContainAlphabet_unsuccess() {
+        System.out.println("test_BooleanFun_isStringContainAlphabet_unsuccess");
+        
+        boolean a = BooleanFun.isStringContainAlphabet(null);
+        assertFalse(a);
+
+        boolean b = BooleanFun.isStringContainAlphabet("+-*/");
+        assertFalse(b);
     }
 }

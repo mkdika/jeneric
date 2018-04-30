@@ -25,6 +25,8 @@ package com.mkdika.jeneric.function;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,7 +46,7 @@ public class IntegerFunTest {
     @Test
     public void test_class_instance() {
         System.out.println("test_IntegerFun_class_instance");
-        
+
         try {
             Constructor<IntegerFun> c = IntegerFun.class.getDeclaredConstructor();
             c.setAccessible(true);
@@ -52,5 +54,16 @@ public class IntegerFunTest {
         } catch (NoSuchMethodException | SecurityException | InstantiationException
                 | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
         }
+    }
+
+    @Test
+    public void test_nvl_success() {
+        System.out.println("test_IntegerFun_nvl_success");
+
+        Integer a = IntegerFun.nvl(125);
+        assertThat(a, equalTo(125));
+        
+        Integer b = IntegerFun.nvl(null);
+        assertThat(b, equalTo(0));
     }
 }

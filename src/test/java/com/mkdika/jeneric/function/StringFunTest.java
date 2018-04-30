@@ -131,4 +131,15 @@ public class StringFunTest {
         String a = StringFun.fromDate(null, DateFormat.DEFAULT);
         assertThat(a, not(equalTo("Dec 18")));
     }
+    
+    @Test
+    public void test_nvl_success() {
+        System.out.println("test_StringFun_nvl_success");
+        
+        String a = StringFun.nvl(null);
+        assertThat(a,equalTo(""));
+        
+        String b = StringFun.nvl("abc");
+        assertThat(b, equalTo("abc"));
+    }
 }

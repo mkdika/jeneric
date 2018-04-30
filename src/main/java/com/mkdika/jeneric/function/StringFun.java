@@ -36,7 +36,8 @@ import java.util.Date;
  * @since 2018-04-28
  */
 public final class StringFun {    
-        
+
+           
     /*
         To prevent class from instanate from outside.
      */
@@ -115,5 +116,16 @@ public final class StringFun {
     public static String fromDate(Date date, String pattern) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);        
         return dateFormat.format(date);
+    }
+    
+    //TODO: finish StringFun.nvl javadoc
+    /**
+     * Null Value Logic (NVL)
+     * 
+     * @param str
+     * @return {@link java.lang.String}
+    */
+    public static String nvl(String str) {
+        return (str == null?"":str);
     }
 }

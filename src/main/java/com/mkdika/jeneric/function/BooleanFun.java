@@ -23,7 +23,13 @@
  */
 package com.mkdika.jeneric.function;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This class is collection of all boolean return functions.
@@ -33,8 +39,8 @@ import java.util.Date;
  * @author Maikel Chandika (mkdika@gmail.com)
  * @since 2018-04-28
  */
-public final class BooleanFun {
-    
+public final class BooleanFun {      
+        
     /*
         To prevent class from instanate from outside.
      */
@@ -62,4 +68,40 @@ public final class BooleanFun {
         }                
         return ((startDate1.compareTo(endDate2) == 0 || startDate1.compareTo(endDate2) < 0)) && ((startDate2.compareTo(endDate1) == 0) || (startDate2.compareTo(endDate1) < 0));        
     }
+    
+    // TODO: finish BooleanFun.isStringContains javadoc
+    public static boolean isStringContains(String str,String ... strToCheck) {
+        return isStringContains(str, Arrays.asList(strToCheck));
+    }
+    
+    // TODO: finish BooleanFun.isStringContains javadoc
+    public static boolean isStringContains(String str,Collection<String> strToCheck) {
+        if (str == null || str.trim().isEmpty() || strToCheck == null ||  strToCheck.size() < 1) {
+            return false;
+        }
+        Set<String> sets = new HashSet<>();
+        sets.addAll(strToCheck);        
+        return sets.contains(str);
+    }       
+    
+    // TODO: finish BooleanFun.nvl javadoc
+    static boolean nvl(Boolean bool) {
+        return (bool == null? Boolean.FALSE:bool);
+    }
+    
+    //TODO: finish BooleanFun.isStringContainNumeric javadoc
+    public static boolean isStringContainNumeric(String str) {
+        if (str == null) return false;
+        Pattern pattern = Pattern.compile("\\d");
+        Matcher matcher = pattern.matcher(str);
+        return matcher.find();
+    }
+    
+    //TODO: finish BooleanFun.isStringContainAlphabet javadoc
+    public static boolean isStringContainAlphabet(String str) {
+        if (str == null) return false;
+        Pattern pattern = Pattern.compile("[a-zA-Z]");
+        Matcher matcher = pattern.matcher(str);
+        return matcher.find();
+    }    
 }

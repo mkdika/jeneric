@@ -25,6 +25,9 @@ package com.mkdika.jeneric.function;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,7 +47,7 @@ public class NumericFunTest {
     @Test
     public void test_class_instance() {
         System.out.println("test_NumericFun_class_instance");
-        
+
         try {
             Constructor<NumericFun> c = NumericFun.class.getDeclaredConstructor();
             c.setAccessible(true);
@@ -54,4 +57,14 @@ public class NumericFunTest {
         }
     }
 
+    @Test
+    public void test_nvl_bigDecimal_success() {
+        System.out.println("test_NumericFun_bigDecimal_nvl_success");
+
+        BigDecimal a = NumericFun.nvl(null);
+        assertThat(a, equalTo(BigDecimal.ZERO));
+
+        BigDecimal b = NumericFun.nvl(BigDecimal.TEN);
+        assertThat(b, equalTo(BigDecimal.TEN));               
+    }   
 }

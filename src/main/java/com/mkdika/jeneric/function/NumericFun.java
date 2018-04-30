@@ -23,15 +23,22 @@
  */
 package com.mkdika.jeneric.function;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Maikel Chandika (mkdika@gmail.com)
  */
 public final class NumericFun {
-    
+
     /*
         To prevent class from instanate from outside.
-    */
-    private NumericFun() {        
+     */
+    private NumericFun() {
     }
+
+    //TODO: finish NumericFun.nvl BigDecimal javadoc
+    public static BigDecimal nvl(BigDecimal n) {
+        return (n == null ? BigDecimal.ZERO : n);
+    }   
 }
