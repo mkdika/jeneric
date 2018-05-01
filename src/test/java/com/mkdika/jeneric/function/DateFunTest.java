@@ -25,6 +25,13 @@ package com.mkdika.jeneric.function;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.ZoneId;
+import java.util.Date;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,6 +59,29 @@ public class DateFunTest {
         } catch (NoSuchMethodException | SecurityException | InstantiationException
                 | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
         }
+    }
+
+    @Test
+    public void test_lastDay_success() {
+        System.out.println("test_DateFun_lastDay_success");
+        LocalDate localDate = LocalDate.of(2018, Month.MAY, 1);
+        Date date = DateFun.lastDay(Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+
+        LocalDate localDateCompare = LocalDate.of(2018, Month.MAY, 31);
+        Date dateCompare = Date.from(localDateCompare.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        assertThat(date, equalTo(dateCompare));
+    }
+
+    @Test(expected = java.lang.NullPointerException.class)
+    public void test_lastDay_exception() {
+        System.out.println("test_DateFun_lastDay_exception");
+
+        Date date = DateFun.lastDay(null);
+        LocalDate localDateCompare = LocalDate.of(2018, Month.MAY, 31);
+        Date dateCompare = Date.from(localDateCompare.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        assertThat(date, not(equalTo((dateCompare))));
     }
 
 }
