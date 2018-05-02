@@ -31,6 +31,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
@@ -82,6 +83,14 @@ public class DateFunTest {
         Date dateCompare = Date.from(localDateCompare.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
         assertThat(date, not(equalTo((dateCompare))));
+    }
+
+    @Test
+    public void test_now_success() {
+        System.out.println("test_DateFun_now_success");
+
+        Date date = DateFun.now();
+        assertThat(date, notNullValue());
     }
 
 }

@@ -91,17 +91,19 @@ public final class BooleanFun {
     
     //TODO: finish BooleanFun.isStringContainNumeric javadoc
     public static boolean isStringContainNumeric(String str) {
-        if (str == null) return false;
-        Pattern pattern = Pattern.compile("\\d");
-        Matcher matcher = pattern.matcher(str);
-        return matcher.find();
+        return isStringMatch(str, "\\d");        
     }
     
     //TODO: finish BooleanFun.isStringContainAlphabet javadoc
     public static boolean isStringContainAlphabet(String str) {
+        return isStringMatch(str, "[a-zA-Z]");        
+    }   
+    
+    //TODO: finish BooleanFun.isStringMatch javadoc
+    public static boolean isStringMatch(String str,String strPattern) {
         if (str == null) return false;
-        Pattern pattern = Pattern.compile("[a-zA-Z]");
+        Pattern pattern = Pattern.compile(strPattern);
         Matcher matcher = pattern.matcher(str);
         return matcher.find();
-    }    
+    }
 }

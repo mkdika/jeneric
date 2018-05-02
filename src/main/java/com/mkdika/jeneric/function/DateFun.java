@@ -24,6 +24,7 @@
 package com.mkdika.jeneric.function;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -39,6 +40,7 @@ public final class DateFun {
     private DateFun() {
     }
 
+    //TODO: review Reja's contribute functions Javadoc
     /**
      * Function to return last day from the given date
      *
@@ -49,5 +51,24 @@ public final class DateFun {
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate lastDay = localDate.withDayOfMonth(localDate.lengthOfMonth());
         return Date.from(lastDay.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    }
+    
+    //TODO: finihsh DateFun.of javadoc
+    public static Date of(int year, int month, int dayOfMonth) {
+        return of(year, month, dayOfMonth, 0, 0, 0);
+    }
+
+    //TODO: finihsh DateFun.of javadoc
+    public static Date of(int year, int month, int dayOfMonth, int hour, int minute, int second) {
+        LocalDateTime ldt = LocalDateTime.of(year, month, dayOfMonth, hour, minute, second);
+        long epoch = ldt.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        return new Date(epoch);
+    }
+
+    //TODO: finihsh DateFun.now javadoc
+    public static Date now() {
+        LocalDateTime ldt = LocalDateTime.now();
+        long epoch = ldt.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        return new Date(epoch);
     }
 }

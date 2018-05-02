@@ -23,29 +23,11 @@
  */
 package com.mkdika.jeneric.helper;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
-
 /**
  *
  * @author Maikel Chandika <mkdika@gmail.com>
  */
 public final class DateHelper {
 
-    public static Date of(int year, int month, int dayOfMonth) {
-        return of(year, month, dayOfMonth, 0, 0, 0);
-    }
-
-    public static Date of(int year, int month, int dayOfMonth, int hour, int minute, int second) {
-        LocalDateTime ldt = LocalDateTime.of(year, month, dayOfMonth, hour, minute, second);
-        long epoch = ldt.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        return new Date(epoch);
-    }
-
-    public static Date now() {
-        LocalDateTime ldt = LocalDateTime.now();
-        long epoch = ldt.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        return new Date(epoch);
-    }
+    
 }

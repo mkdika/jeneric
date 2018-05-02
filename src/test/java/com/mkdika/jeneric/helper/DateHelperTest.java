@@ -52,14 +52,5 @@ public class DateHelperTest {
         } catch (NoSuchMethodException | SecurityException | InstantiationException
                 | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
         }
-    }
-    
-    @Test
-    public void test_now_success() {
-        System.out.println("test_DateHelper_now_success");
-        
-        Date date = DateHelper.now();
-        assertThat(date,notNullValue());
-    }
-    
+    }           
 }

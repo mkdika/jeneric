@@ -23,7 +23,6 @@
  */
 package com.mkdika.jeneric.function;
 
-import com.mkdika.jeneric.helper.DateHelper;
 import com.mkdika.jeneric.types.DateFormat;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -50,7 +49,7 @@ public class StringFunTest {
     @Test
     public void test_class_instance() {
         System.out.println("test_StringFun_class_instance");
-        
+
         try {
             Constructor<StringFun> c = StringFun.class.getDeclaredConstructor();
             c.setAccessible(true);
@@ -85,60 +84,60 @@ public class StringFunTest {
         assertThat(a, not(equalTo(("XXX"))));
 
         String b = StringFun.lpad("", 5, ' ');
-        assertThat(b, not(equalTo((" "))));                
+        assertThat(b, not(equalTo((" "))));
     }
-    
+
     @Test(expected = java.lang.NullPointerException.class)
     public void test_lpad_exception() {
         System.out.println("test_StringFun_lpad_exception");
-        
+
         String a = StringFun.lpad(null, 5, ' ');
         assertThat(a, not(equalTo((" "))));
     }
-    
+
     @Test
     public void test_fromDate_success() {
         System.out.println("test_StringFun_fromDate_success");
-        
+
         // 10 Dec 2018 15:15:30
-        Date date = DateHelper.of(2018, 12, 10, 15, 15, 30);
-        
-        String a = StringFun.fromDate(date);        
-        assertThat(a, equalTo("2018-12-10.15:15:30"));       
-        
+        Date date = DateFun.of(2018, 12, 10, 15, 15, 30);
+
+        String a = StringFun.fromDate(date);
+        assertThat(a, equalTo("2018-12-10.15:15:30"));
+
         String b = StringFun.fromDate(date, DateFormat.BASIC_ISO_DATE_TIME);
         assertThat(b, equalTo("20181210151530"));
-        
+
         String c = StringFun.fromDate(date, "MMM yy");
-        assertThat(c, equalTo("Dec 18"));                
+        assertThat(c, equalTo("Dec 18"));
     }
-    
+
     @Test
     public void test_fromDate_unsuccess() {
         System.out.println("test_StringFun_fromDate_unsuccess");
-        
+
         // 10 Dec 2018 15:15:30
-        Date date = DateHelper.of(2018, 12, 10, 15, 15, 30);
-        
+        Date date = DateFun.of(2018, 12, 10, 15, 15, 30);
+
         String a = StringFun.fromDate(date, "");
         assertThat(a, not(equalTo("Dec 18")));
     }
-    
+
     @Test(expected = java.lang.NullPointerException.class)
     public void test_fromDate_exception() {
-        System.out.println("test_StringFun_fromDate_exception");        
-        
+        System.out.println("test_StringFun_fromDate_exception");
+
         String a = StringFun.fromDate(null, DateFormat.DEFAULT);
         assertThat(a, not(equalTo("Dec 18")));
     }
-    
+
     @Test
     public void test_nvl_success() {
         System.out.println("test_StringFun_nvl_success");
-        
+
         String a = StringFun.nvl(null);
-        assertThat(a,equalTo(""));
-        
+        assertThat(a, equalTo(""));
+
         String b = StringFun.nvl("abc");
         assertThat(b, equalTo("abc"));
     }

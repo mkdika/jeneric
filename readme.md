@@ -5,8 +5,8 @@
 [![codebeat badge](https://codebeat.co/badges/c81ed47b-a083-45a8-8c29-1f818c7068d5)](https://codebeat.co/projects/github-com-mkdika-jeneric-master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/be3cf34c527b95597c66/maintainability)](https://codeclimate.com/github/mkdika/jeneric/maintainability)
 
-A tiny library for custom yet frequently used function in Java. Build on
-top of Java 8 standard API, no external libraries is needed.
+A tiny library for collection of custom yet frequently used function in Java. 
+Build on top of Java 8 standard API, no external libraries is needed.
 
 Others releated information will coming soon.
 

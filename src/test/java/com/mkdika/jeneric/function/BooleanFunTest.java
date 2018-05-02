@@ -23,7 +23,6 @@
  */
 package com.mkdika.jeneric.function;
 
-import com.mkdika.jeneric.helper.DateHelper;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -64,61 +63,68 @@ public class BooleanFunTest {
     public void test_isDateOverlap_success() {
         System.out.println("test_BooleanFun_isDateOverlap_success");
 
-        Date dtA1 = DateHelper.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
-        Date dtA2 = DateHelper.of(2018, 1, 25, 10, 30, 45); // 25 Jan 2018 10:30:45
-        Date dtA3 = DateHelper.of(2018, 1, 10, 10, 30, 45); // 10 Jan 2018 10:30:45
-        Date dtA4 = DateHelper.of(2018, 1, 20, 10, 30, 45); // 20 Jan 2018 10:30:45
+        Date dtA1 = DateFun.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
+        Date dtA2 = DateFun.of(2018, 1, 25, 10, 30, 45); // 25 Jan 2018 10:30:45
+        Date dtA3 = DateFun.of(2018, 1, 10, 10, 30, 45); // 10 Jan 2018 10:30:45
+        Date dtA4 = DateFun.of(2018, 1, 20, 10, 30, 45); // 20 Jan 2018 10:30:45
         boolean a = BooleanFun.isDateOverlap(dtA1, dtA2, dtA3, dtA4);
         assertTrue(a);
 
-        Date dtB1 = DateHelper.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
-        Date dtB2 = DateHelper.of(2018, 1, 25, 10, 30, 45); // 25 Jan 2018 10:30:45
-        Date dtB3 = DateHelper.of(2018, 1, 10, 10, 30, 45); // 10 Jan 2018 10:30:45
-        Date dtB4 = DateHelper.of(2018, 2, 20, 10, 30, 45); // 20 Feb 2018 10:30:45
+        Date dtB1 = DateFun.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
+        Date dtB2 = DateFun.of(2018, 1, 25, 10, 30, 45); // 25 Jan 2018 10:30:45
+        Date dtB3 = DateFun.of(2018, 1, 10, 10, 30, 45); // 10 Jan 2018 10:30:45
+        Date dtB4 = DateFun.of(2018, 2, 20, 10, 30, 45); // 20 Feb 2018 10:30:45
         boolean b = BooleanFun.isDateOverlap(dtB1, dtB2, dtB3, dtB4);
         assertTrue(b);
 
-        Date dtC1 = DateHelper.of(2018, 1, 1, 10, 30, 45);   // 1  Jan 2018 10:30:45
-        Date dtC2 = DateHelper.of(2018, 1, 25, 10, 30, 45);  // 25 Jan 2018 10:30:45
-        Date dtC3 = DateHelper.of(2017, 12, 10, 10, 30, 45); // 10 Dec 2017 10:30:45
-        Date dtC4 = DateHelper.of(2018, 1, 20, 10, 30, 45);  // 20 Feb 2018 10:30:45
+        Date dtC1 = DateFun.of(2018, 1, 1, 10, 30, 45);   // 1  Jan 2018 10:30:45
+        Date dtC2 = DateFun.of(2018, 1, 25, 10, 30, 45);  // 25 Jan 2018 10:30:45
+        Date dtC3 = DateFun.of(2017, 12, 10, 10, 30, 45); // 10 Dec 2017 10:30:45
+        Date dtC4 = DateFun.of(2018, 1, 20, 10, 30, 45);  // 20 Feb 2018 10:30:45
         boolean c = BooleanFun.isDateOverlap(dtC1, dtC2, dtC3, dtC4);
         assertTrue(c);
 
-        Date dtD1 = DateHelper.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
-        Date dtD2 = DateHelper.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
-        Date dtD3 = DateHelper.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
-        Date dtD4 = DateHelper.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
+        Date dtD1 = DateFun.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
+        Date dtD2 = DateFun.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
+        Date dtD3 = DateFun.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
+        Date dtD4 = DateFun.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
         boolean d = BooleanFun.isDateOverlap(dtD1, dtD2, dtD3, dtD4);
         assertTrue(d);
 
-        Date dtE1 = DateHelper.of(2018, 1, 1, 10, 30, 45);   // 1  Jan 2018 10:30:45
-        Date dtE2 = DateHelper.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
-        Date dtE3 = DateHelper.of(2018, 1, 1, 10, 30, 45);   // 1  Jan 2018 10:30:45
-        Date dtE4 = DateHelper.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
+        Date dtE1 = DateFun.of(2018, 1, 1, 10, 30, 45);   // 1  Jan 2018 10:30:45
+        Date dtE2 = DateFun.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
+        Date dtE3 = DateFun.of(2018, 1, 1, 10, 30, 45);   // 1  Jan 2018 10:30:45
+        Date dtE4 = DateFun.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
         boolean e = BooleanFun.isDateOverlap(dtE1, dtE2, dtE3, dtE4);
         assertTrue(e);
 
-        Date dtF1 = DateHelper.of(2018, 1, 1, 10, 30, 45);   // 1  Jan 2018 10:30:45
-        Date dtF2 = DateHelper.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
-        Date dtF3 = DateHelper.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
-        Date dtF4 = DateHelper.of(2018, 1, 20, 10, 30, 45);  // 20 Jan 2018 10:30:45
+        Date dtF1 = DateFun.of(2018, 1, 1, 10, 30, 45);   // 1  Jan 2018 10:30:45
+        Date dtF2 = DateFun.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
+        Date dtF3 = DateFun.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
+        Date dtF4 = DateFun.of(2018, 1, 20, 10, 30, 45);  // 20 Jan 2018 10:30:45
         boolean f = BooleanFun.isDateOverlap(dtF1, dtF2, dtF3, dtF4);
         assertTrue(f);
 
-        Date dtG1 = DateHelper.of(2018, 1, 1, 10, 30, 45);   // 1  Jan 2018 10:30:45
-        Date dtG2 = DateHelper.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
-        Date dtG3 = DateHelper.of(2018, 1, 10, 10, 30, 46);  // 10 Jan 2018 10:30:45
-        Date dtG4 = DateHelper.of(2018, 1, 20, 10, 30, 45);  // 20 Jan 2018 10:30:45
+        Date dtG1 = DateFun.of(2018, 1, 1, 10, 30, 45);   // 1  Jan 2018 10:30:45
+        Date dtG2 = DateFun.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
+        Date dtG3 = DateFun.of(2018, 1, 10, 10, 30, 46);  // 10 Jan 2018 10:30:45
+        Date dtG4 = DateFun.of(2018, 1, 20, 10, 30, 45);  // 20 Jan 2018 10:30:45
         boolean g = BooleanFun.isDateOverlap(dtG1, dtG2, dtG3, dtG4);
         assertFalse(g);
 
-        Date dtH1 = DateHelper.of(2018, 1, 1);   // 1  Jan 2018
-        Date dtH2 = DateHelper.of(2018, 1, 10);  // 10 Jan 2018
-        Date dtH3 = DateHelper.of(2018, 1, 11);  // 10 Jan 2018
-        Date dtH4 = DateHelper.of(2018, 1, 20);  // 20 Jan 2018
+        Date dtH1 = DateFun.of(2018, 1, 1);   // 1  Jan 2018
+        Date dtH2 = DateFun.of(2018, 1, 10);  // 10 Jan 2018
+        Date dtH3 = DateFun.of(2018, 1, 11);  // 10 Jan 2018
+        Date dtH4 = DateFun.of(2018, 1, 20);  // 20 Jan 2018
         boolean h = BooleanFun.isDateOverlap(dtH1, dtH2, dtH3, dtH4);
         assertFalse(h);
+        
+        Date dtI1 = DateFun.of(2018, 1, 1);   // 1  Jan 2018
+        Date dtI2 = DateFun.of(2018, 1, 3);  // 1 Jan 2018
+        Date dtI3 = DateFun.of(2018, 1, 2);  // 2 Jan 2018
+        Date dtI4 = DateFun.of(2018, 1, 2);  // 2 Jan 2018
+        boolean i = BooleanFun.isDateOverlap(dtI1, dtI2, dtI3, dtI4);
+        assertTrue(i);
     }
     
     @Test(expected = NullPointerException.class)
@@ -131,10 +137,10 @@ public class BooleanFunTest {
     @Test(expected = IllegalArgumentException.class)
     public void test_isDateOverlap_exception2() {
         System.out.println("test_BooleanFun_isDateOverlap_exception2");
-        Date dtA1 = DateHelper.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
-        Date dtA2 = DateHelper.of(2018, 1, 9, 10, 30, 45);   // 9  Jan 2018 10:30:45
-        Date dtA3 = DateHelper.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
-        Date dtA4 = DateHelper.of(2018, 1, 20, 10, 30, 45);  // 20 Jan 2018 10:30:45
+        Date dtA1 = DateFun.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
+        Date dtA2 = DateFun.of(2018, 1, 9, 10, 30, 45);   // 9  Jan 2018 10:30:45
+        Date dtA3 = DateFun.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
+        Date dtA4 = DateFun.of(2018, 1, 20, 10, 30, 45);  // 20 Jan 2018 10:30:45
         boolean a = BooleanFun.isDateOverlap(dtA1, dtA2, dtA3, dtA4);
         assertTrue(a);
     }
@@ -142,10 +148,10 @@ public class BooleanFunTest {
     @Test(expected = IllegalArgumentException.class)
     public void test_isDateOverlap_exception3() {
         System.out.println("test_BooleanFun_isDateOverlap_exception3");
-        Date dtA1 = DateHelper.of(2018, 1, 1, 10, 30, 45);  // 1 Jan 2018 10:30:45
-        Date dtA2 = DateHelper.of(2018, 1, 9, 10, 30, 45);   // 9  Jan 2018 10:30:45
-        Date dtA3 = DateHelper.of(2018, 1, 11, 10, 30, 45);  // 11 Jan 2018 10:30:45
-        Date dtA4 = DateHelper.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
+        Date dtA1 = DateFun.of(2018, 1, 1, 10, 30, 45);  // 1 Jan 2018 10:30:45
+        Date dtA2 = DateFun.of(2018, 1, 9, 10, 30, 45);   // 9  Jan 2018 10:30:45
+        Date dtA3 = DateFun.of(2018, 1, 11, 10, 30, 45);  // 11 Jan 2018 10:30:45
+        Date dtA4 = DateFun.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
         boolean a = BooleanFun.isDateOverlap(dtA1, dtA2, dtA3, dtA4);
         assertTrue(a);
     }
