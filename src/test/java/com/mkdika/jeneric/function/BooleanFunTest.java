@@ -249,4 +249,24 @@ public class BooleanFunTest {
         boolean b = BooleanFun.isStringContainAlphabet("+-*/");
         assertFalse(b);
     }
+    
+    @Test
+    public void test_isDoubleFractional_success() {
+        System.out.println("test_BooleanFun_isDoubleFractional_success");
+        
+        boolean a = BooleanFun.isDoubleFractional(3.0d);
+        assertFalse(a);
+        
+        boolean b = BooleanFun.isDoubleFractional(12.56d);
+        assertTrue(b);
+        
+    }
+    
+    @Test(expected = NullPointerException.class)
+    public void test_isDoubleFractional_exception() {
+        System.out.println("test_BooleanFun_isDoubleFractional_exception");
+        
+        boolean a = BooleanFun.isDoubleFractional(null);
+        assertFalse(a);
+    }
 }

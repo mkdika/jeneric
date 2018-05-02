@@ -40,7 +40,7 @@ import java.util.regex.Pattern;
  * @since 2018-04-28
  */
 public final class BooleanFun {      
-        
+            
     /*
         To prevent class from instanate from outside.
      */
@@ -105,5 +105,11 @@ public final class BooleanFun {
         Pattern pattern = Pattern.compile(regexPattern);
         Matcher matcher = pattern.matcher(str);
         return matcher.find();
-    }
+    }   
+    
+    //TODO: finish BooleanFun.isDoubleFractional javadoc
+    public static boolean isDoubleFractional(Double d) {
+        Double fractionalPart = (d % 1);        
+        return Double.compare(0d, fractionalPart) < 0;
+    }        
 }
