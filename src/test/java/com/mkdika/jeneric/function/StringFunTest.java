@@ -74,6 +74,9 @@ public class StringFunTest {
 
         String d = StringFun.lpad("", 4, '0');
         assertThat(d, equalTo("0000"));
+
+        String e = StringFun.lpad("ABC", 5);
+        assertThat(e, equalTo("  ABC"));
     }
 
     @Test
@@ -92,6 +95,45 @@ public class StringFunTest {
         System.out.println("test_StringFun_lpad_exception");
 
         String a = StringFun.lpad(null, 5, ' ');
+        assertThat(a, not(equalTo((" "))));
+    }
+
+    @Test
+    public void test_rpad_success() {
+        System.out.println("test_StringFun_rpad_success");
+
+        String a = StringFun.rpad("123", 6, '0');
+        assertThat(a, equalTo("123000"));
+
+        String b = StringFun.rpad("A", 10, 'X');
+        assertThat(b, equalTo("AXXXXXXXXX"));
+
+        String c = StringFun.rpad("XYZ", 0, '0');
+        assertThat(c, equalTo("XYZ"));
+
+        String d = StringFun.rpad("", 4, '0');
+        assertThat(d, equalTo("0000"));
+
+        String e = StringFun.rpad("ABC", 5);
+        assertThat(e, equalTo("ABC  "));
+    }
+
+    @Test
+    public void test_rpad_unsuccess() {
+        System.out.println("test_StringFun_rpad_unsuccess");
+
+        String a = StringFun.rpad("", 0, 'X');
+        assertThat(a, not(equalTo(("XXX"))));
+
+        String b = StringFun.rpad("", 5, ' ');
+        assertThat(b, not(equalTo(("    "))));
+    }
+
+    @Test(expected = java.lang.NullPointerException.class)
+    public void test_rpad_exception() {
+        System.out.println("test_StringFun_rpad_exception");
+
+        String a = StringFun.rpad(null, 5, ' ');
         assertThat(a, not(equalTo((" "))));
     }
 
@@ -140,5 +182,131 @@ public class StringFunTest {
 
         String b = StringFun.nvl("abc");
         assertThat(b, equalTo("abc"));
+    }
+
+    @Test
+    public void test_left_success() {
+        System.out.println("test_StringFun_left_success");
+
+        String a = StringFun.left("apple", 3);
+        assertThat(a, equalTo("app"));
+
+        String b = StringFun.left("apple", 10);
+        assertThat(b, equalTo("apple"));
+
+        String c = StringFun.left("apple", -2);
+        assertThat(c, equalTo(""));
+
+        String d = StringFun.left("apple", 3);
+        assertThat(d, not(equalTo("ap")));
+    }
+
+    @Test(expected = java.lang.NullPointerException.class)
+    public void test_left_exception() {
+        System.out.println("test_StringFun_left_exception");
+
+        String a = StringFun.left(null, 3);
+        assertThat(a, equalTo("app"));
+    }
+
+    @Test
+    public void test_right_success() {
+        System.out.println("test_StringFun_right_success");
+
+        String a = StringFun.right("pineapple", 5);
+        assertThat(a, equalTo("apple"));
+
+        String b = StringFun.right("pineapple", 15);
+        assertThat(b, equalTo("pineapple"));
+
+        String c = StringFun.right("pineapple", -2);
+        assertThat(c, equalTo(""));
+
+        String d = StringFun.right("pineapple", 3);
+        assertThat(d, not(equalTo("apple")));
+    }
+
+    @Test(expected = java.lang.NullPointerException.class)
+    public void test_right_exception() {
+        System.out.println("test_StringFun_right_exception");
+
+        String a = StringFun.right(null, 3);
+        assertThat(a, equalTo("app"));
+    }
+
+    @Test
+    public void test_middle_success() {
+        System.out.println("test_StringFun_middle_success");
+
+        String a = StringFun.middle("banana", 2,3);
+        assertThat(a, equalTo("nan"));
+
+        String b = StringFun.middle("banana", 15,2);
+        assertThat(b, equalTo(""));
+
+        String c = StringFun.middle("banana", -2,2);
+        assertThat(c, equalTo(""));
+
+        String d = StringFun.middle("banana", 1,3);
+        assertThat(d, not(equalTo("nan")));
+    }
+
+    @Test(expected = java.lang.NullPointerException.class)
+    public void test_middle_exception() {
+        System.out.println("test_StringFun_middle_exception");
+
+        String a = StringFun.middle(null, 3, 3);
+        assertThat(a, equalTo("xxx"));
+    }
+
+    @Test
+    public void test_leftTrim_success() {
+        System.out.println("test_StringFun_leftTrim_success");
+
+        String a = StringFun.leftTrim("pineapple", 4);
+        assertThat(a, equalTo("apple"));
+
+        String b = StringFun.leftTrim("pineapple", 15);
+        assertThat(b, equalTo(""));
+
+        String c = StringFun.leftTrim("pineapple", -2);
+        assertThat(c, equalTo("pineapple"));
+
+        String d = StringFun.leftTrim("pineapple", 3);
+        assertThat(d, not(equalTo("apple")));
+    }
+
+    @Test(expected = java.lang.NullPointerException.class)
+    public void test_leftTrim_exception() {
+        System.out.println("test_StringFun_leftTrim_exception");
+
+        String a = StringFun.leftTrim(null, 3);
+        assertThat(a, equalTo("app"));
+    }
+
+    @Test
+    public void test_rightTrim_success() {
+        System.out.println("test_StringFun_rightTrim_success");
+
+        String a = StringFun.rightTrim("pineapple", 4);
+        assertThat(a, equalTo("pinea"));
+
+        String b = StringFun.rightTrim("pineapple", 15);
+        assertThat(b, equalTo(""));
+
+        String c = StringFun.rightTrim("pineapple", -2);
+        assertThat(c, equalTo("pineapple"));
+
+        String d = StringFun.rightTrim("pineapple", 3);
+        assertThat(d, not(equalTo("pine")));
+
+    }
+
+    @Test(expected = java.lang.NullPointerException.class)
+    public void test_rightTrim_exception() {
+        System.out.println("test_StringFun_rightTrim_exception");
+
+        String a = StringFun.rightTrim(null, 3);
+        assertThat(a, equalTo("app"));
     }
 }

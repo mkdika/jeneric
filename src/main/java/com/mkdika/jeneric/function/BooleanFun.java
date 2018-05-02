@@ -100,9 +100,9 @@ public final class BooleanFun {
     }   
     
     //TODO: finish BooleanFun.isStringMatch javadoc
-    public static boolean isStringMatch(String str,String strPattern) {
+    public static boolean isStringMatch(String str,String regexPattern) {
         if (str == null) return false;
-        Pattern pattern = Pattern.compile(strPattern);
+        Pattern pattern = Pattern.compile(regexPattern);
         Matcher matcher = pattern.matcher(str);
         return matcher.find();
     }

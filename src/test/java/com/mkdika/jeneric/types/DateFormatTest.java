@@ -45,7 +45,7 @@ public class DateFormatTest {
 
     @Test
     public void test_dateFormat_formatter() {
-        System.out.println("test_dateFormat_formatter");
+        System.out.println("test_DateFormat_formatter");
 
         LocalDateTime dt = LocalDateTime.of(2018, Month.FEBRUARY, 28, 23, 59, 59); // 28 Feb 2018 23:59:59
         long epoch = dt.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
@@ -70,6 +70,5 @@ public class DateFormatTest {
         
         dateFormatFixture.applyPattern(DateFormat.BASIC_DATE_TIME.getFormat());
         assertThat(dateFormatFixture.format(date), equalTo("28 Feb 2018 23:59:59"));
-    }
-
+    }        
 }
