@@ -30,6 +30,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -70,5 +71,18 @@ public class DateFormatTest {
         
         dateFormatFixture.applyPattern(DateFormat.BASIC_DATE_TIME.getFormat());
         assertThat(dateFormatFixture.format(date), equalTo("28 Feb 2018 23:59:59"));
+    }        
+    
+    @Test
+    public void test_dateFormat_values() {
+        System.out.println("test_DateFormat_values");        
+        assertTrue(DateFormat.values().length > 0);                
+    }
+    
+    @Test
+    public void test_dateFormat_valueOf() {
+        System.out.println("test_DateFormat_valueOf");        
+        
+        assertThat(DateFormat.valueOf("DEFAULT"), equalTo(DateFormat.DEFAULT));
     }        
 }
