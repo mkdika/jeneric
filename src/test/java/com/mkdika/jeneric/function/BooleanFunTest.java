@@ -269,4 +269,33 @@ public class BooleanFunTest {
         boolean a = BooleanFun.isDoubleFractional(null);
         assertFalse(a);
     }
+    
+    @Test
+    public void test_isPalindrome_success() {
+        System.out.println("test_BooleanFun_isPalindrome_success");
+        
+        boolean a = BooleanFun.isPalindrome("madam");
+        assertTrue(a);
+        
+        boolean b = BooleanFun.isPalindrome("able was I ere I saw elba");
+        assertTrue(b);
+        
+        boolean c = BooleanFun.isPalindrome("avid siva");
+        assertFalse(c);    
+        
+        boolean d = BooleanFun.isPalindrome("a");
+        assertTrue(d);   
+        
+        boolean e = BooleanFun.isPalindrome("");
+        assertTrue(e);   
+    }
+    
+    @Test(expected = NullPointerException.class)
+    public void test_isPalindrome_exception() {
+        System.out.println("test_BooleanFun_isPalindrome_exception");
+        
+        boolean a = BooleanFun.isPalindrome(null);
+        assertTrue(a);
+    }
+    
 }

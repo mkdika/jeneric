@@ -40,7 +40,7 @@ import java.util.regex.Pattern;
  * @since 2018-04-28
  */
 public final class BooleanFun {      
-            
+                
     /*
         To prevent class from instanate from outside.
      */
@@ -111,5 +111,16 @@ public final class BooleanFun {
     public static boolean isDoubleFractional(Double d) {
         Double fractionalPart = (d % 1);        
         return Double.compare(0d, fractionalPart) < 0;
-    }        
+    }  
+    
+    //TODO: finish BooleanFun.isPalindrome javadoc
+    static boolean isPalindrome(String str) {
+        if (str.length() == 0 || str.length() == 1) {
+            return true;
+        }
+        if (str.charAt(0) == str.charAt(str.length() - 1)) {
+            return isPalindrome(str.substring(1, str.length() - 1));
+        }
+        return false;
+    }
 }
