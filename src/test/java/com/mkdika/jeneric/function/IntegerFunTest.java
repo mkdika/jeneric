@@ -27,6 +27,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -65,5 +66,16 @@ public class IntegerFunTest {
         
         Integer b = IntegerFun.nvl(null);
         assertThat(b, equalTo(0));
+    }
+    
+    @Test
+    public void test_rand_success() {
+        System.out.println("test_IntegerFun_nvl_success");
+                        
+        Integer a = IntegerFun.random();        
+        assertTrue(a > -1);
+        
+        Integer b = IntegerFun.random(1, 1000);        
+        assertTrue((b >= 1 && b <= 1000));                
     }
 }

@@ -39,4 +39,13 @@ public final class IntegerFun {
     public static Integer nvl(Integer i) {
         return (i == null ? 0 : i);
     }
+
+    //TODO: finish IntegerFun.rand javadoc
+    public static int random(int min, int max) {                
+        return ((int) ((Math.random() * ((max - min) + 1)) + min));
+    }
+        
+    public static int random(){
+        return random(0, (Integer.MAX_VALUE-1));
+    }
 }
