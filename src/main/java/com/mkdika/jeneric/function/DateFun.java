@@ -52,7 +52,7 @@ public final class DateFun {
         LocalDate lastDay = localDate.withDayOfMonth(localDate.lengthOfMonth());
         return Date.from(lastDay.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
-    
+
     //TODO: finihsh DateFun.of javadoc
     public static Date of(int year, int month, int dayOfMonth) {
         return of(year, month, dayOfMonth, 0, 0, 0);
@@ -70,5 +70,30 @@ public final class DateFun {
         LocalDateTime ldt = LocalDateTime.now();
         long epoch = ldt.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
         return new Date(epoch);
+    }
+
+    /**
+     * Function to return truncate date from the given date
+     *
+     * @param date given date to return date by removing time part
+     * @return java.util.Date
+     */
+    public static Date trunc(Date date) {
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDateTime truncDate = LocalDateTime.of(localDate.getYear(), localDate.getMonthValue(), localDate.getDayOfMonth(), 0, 0, 0, 0);
+        return Date.from(truncDate.atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    /**
+     * Function to return truncate date from the given date
+     * 
+     * @param date given date to return date by removing nano-second time part
+     * @return 
+     */
+    public static Date truncSec(Date date) {
+        LocalDateTime localDateTime = new java.sql.Timestamp(date.getTime()).toLocalDateTime();
+        LocalDateTime truncSecDate = LocalDateTime.of(localDateTime.getYear(), localDateTime.getMonthValue(), localDateTime.getDayOfMonth(),
+                localDateTime.getHour(), localDateTime.getMinute(), localDateTime.getSecond(), 0);
+        return Date.from(truncSecDate.atZone(ZoneId.systemDefault()).toInstant());
     }
 }
