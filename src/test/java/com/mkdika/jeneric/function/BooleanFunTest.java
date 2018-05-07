@@ -311,5 +311,24 @@ public class BooleanFunTest {
         boolean a = BooleanFun.isPalindrome(null);
         assertTrue(a);
     }
-
+    
+    @Test
+    public void test_isPrime_success() {
+        System.out.println("test_BooleanFun_isPrime_success");
+        
+        boolean a = BooleanFun.isPrime(1);
+        assertFalse(a);
+        
+        boolean b = BooleanFun.isPrime(983);
+        assertTrue(b);
+        
+        boolean c = BooleanFun.isPrime(179_424_691);
+        assertTrue(c);
+        
+        boolean d = BooleanFun.isPrime(179_425_321);
+        assertFalse(d);
+        
+        boolean e = BooleanFun.isPrime(1_000_000L,10);
+        assertFalse(e);
+    }        
 }

@@ -23,6 +23,7 @@
  */
 package com.mkdika.jeneric.function;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -126,4 +127,15 @@ public final class BooleanFun {
         }
         return false;
     }
+
+    //TODO: finish BooleanFun.isPrime javadoc
+    public static boolean isPrime(int i) {
+        return isPrime(i, 1);
+    }
+    
+    public static boolean isPrime(long l,int certainty) {
+        BigInteger bi = BigInteger.valueOf(l);
+        return bi.isProbablePrime(certainty);
+    }
+
 }
