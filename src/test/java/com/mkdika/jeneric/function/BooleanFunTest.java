@@ -62,7 +62,7 @@ public class BooleanFunTest {
     @Test
     public void test_isDateOverlap_success() {
         System.out.println("test_BooleanFun_isDateOverlap_success");
-        
+
         Date dtA1 = DateFun.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
         Date dtA2 = DateFun.of(2018, 1, 25, 10, 30, 45); // 25 Jan 2018 10:30:45
         Date dtA3 = DateFun.of(2018, 1, 10, 10, 30, 45); // 10 Jan 2018 10:30:45
@@ -311,24 +311,67 @@ public class BooleanFunTest {
         boolean a = BooleanFun.isPalindrome(null);
         assertTrue(a);
     }
-    
+
     @Test
     public void test_isPrime_success() {
         System.out.println("test_BooleanFun_isPrime_success");
-        
+
         boolean a = BooleanFun.isPrime(1);
         assertFalse(a);
-        
+
         boolean b = BooleanFun.isPrime(983);
         assertTrue(b);
-        
+
         boolean c = BooleanFun.isPrime(179_424_691);
         assertTrue(c);
-        
+
         boolean d = BooleanFun.isPrime(179_425_321);
         assertFalse(d);
-        
-        boolean e = BooleanFun.isPrime(1_000_000L,10);
+
+        boolean e = BooleanFun.isPrime(1_000_000L, 10);
         assertFalse(e);
-    }        
+    }
+
+    @Test
+    public void test_isValidIpV4Address_success() {
+        System.out.println("test_BooleanFun_isValidIpV4Address_success");
+
+        boolean a = BooleanFun.isValidIpV4Address("192.168.1.1");
+        assertTrue(a);
+
+        boolean b = BooleanFun.isValidIpV4Address("127.0.0.1");
+        assertTrue(b);
+
+        boolean c = BooleanFun.isValidIpV4Address("0.0.0.0");
+        assertTrue(c);
+
+        boolean d = BooleanFun.isValidIpV4Address("10.100.090.002");
+        assertTrue(d);
+
+        boolean e = BooleanFun.isValidIpV4Address("222.222.2.999");
+        assertFalse(e);
+
+        boolean f = BooleanFun.isValidIpV4Address("172.16.230");
+        assertFalse(f);
+
+        boolean g = BooleanFun.isValidIpV4Address(null);
+        assertFalse(g);
+    }
+
+    @Test
+    public void test_isValidMacAddress_success() {
+        System.out.println("test_BooleanFun_isValidMacAddress_success");
+
+        boolean a = BooleanFun.isValidMacAddress("bc:85:56:20:f3:bf");
+        assertTrue(a);
+
+        boolean b = BooleanFun.isValidMacAddress("bc:00:56:20:F3:BF");
+        assertTrue(b);
+
+        boolean c = BooleanFun.isValidMacAddress("00:GH:DE:EF:AB:BC");
+        assertFalse(c);
+
+        boolean d = BooleanFun.isValidMacAddress(null);
+        assertFalse(d);
+    }
 }

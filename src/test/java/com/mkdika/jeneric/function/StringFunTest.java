@@ -26,10 +26,18 @@ package com.mkdika.jeneric.function;
 import com.mkdika.jeneric.types.DateFormat;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.net.Inet4Address;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.Collections;
 import java.util.Date;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -308,5 +316,31 @@ public class StringFunTest {
 
         String a = StringFun.rightTrim(null, 3);
         assertThat(a, equalTo("app"));
+    }
+    
+    @Test
+    public void test_getIpV4Addres_success() throws SocketException {
+        System.out.println("test_StringFun_getIpV4Address_success");   
+        
+        String a = StringFun.getIpV4Address();        
+        assertNotNull(a); 
+        
+        assertFalse(a.isEmpty());
+        
+        boolean c = BooleanFun.isValidIpV4Address(a);
+        assertTrue(c);
+    }
+    
+    @Test
+    public void test_getMacAddress_success() throws SocketException {
+        System.out.println("test_StringFun_getMacAddress_success");   
+        
+        String a = StringFun.getMacAddress();        
+        assertNotNull(a); 
+        
+        assertFalse(a.isEmpty());  
+        
+        boolean c = BooleanFun.isValidMacAddress(a);
+        assertTrue(c);
     }
 }

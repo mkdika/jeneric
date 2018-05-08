@@ -42,7 +42,7 @@ import java.util.regex.Pattern;
  * @since 2018-04-28
  */
 public final class BooleanFun {
-
+   
     /*
         To prevent class from instanate from outside.
      */
@@ -136,6 +136,16 @@ public final class BooleanFun {
     public static boolean isPrime(long l,int certainty) {
         BigInteger bi = BigInteger.valueOf(l);
         return bi.isProbablePrime(certainty);
+    }
+    
+    //TODO: finish BooleanFun.isValidIpV4Address javadoc
+    public static boolean isValidIpV4Address(String ipV4Address) {
+        return isStringMatch(ipV4Address, "\\b((25[0–5]|2[0–4]\\d|[01]?\\d\\d?)(\\.)){3}(25[0–5]|2[0–4]\\d|[01]?\\d\\d?)\\b");
+    }
+    
+    //TODO: finish BooleanFun.isValidMacAddress javadoc
+    public static boolean isValidMacAddress(String macAddress) {
+        return isStringMatch(macAddress, "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$");
     }
 
 }

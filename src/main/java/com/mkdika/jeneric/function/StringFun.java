@@ -24,7 +24,12 @@
 package com.mkdika.jeneric.function;
 
 import com.mkdika.jeneric.types.DateFormat;
+import java.net.Inet4Address;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 
 /**
@@ -185,7 +190,7 @@ public final class StringFun {
     public static String middle(String str, int startIndex, int length) {
         int n = length;
         if (startIndex > str.length()) {
-            startIndex =  str.length();
+            startIndex = str.length();
             n = 0;
         }
         if (startIndex < 0) {
@@ -217,5 +222,25 @@ public final class StringFun {
             n = 0;
         }
         return str.substring(0, str.length() - n);
+    }
+
+    //TODO: finish StringFun.getIpAddress javadoc
+    public static String getIpV4Address() throws SocketException {
+        return Collections.list(NetworkInterface.getNetworkInterfaces()).stream()
+                .flatMap(i -> Collections.list(i.getInetAddresses()).stream())
+                .filter(ip -> ip instanceof Inet4Address && ip.isSiteLocalAddress())
+                .findFirst().orElseThrow(RuntimeException::new)
+                .getHostAddress();
+    }
+
+    //TODO: finish StringFun.getMacAddress javadoc
+    public static String getMacAddress() throws SocketException {
+        NetworkInterface netInf = NetworkInterface.getNetworkInterfaces().nextElement();
+        byte[] mac = netInf.getHardwareAddress();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < mac.length; i++) {
+            sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? ":" : ""));
+        }
+        return sb.toString();
     }
 }
