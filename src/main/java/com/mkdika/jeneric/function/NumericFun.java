@@ -24,6 +24,8 @@
 package com.mkdika.jeneric.function;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 
 /**
  *
@@ -55,4 +57,21 @@ public final class NumericFun {
     public static BigDecimal timesPercent(BigDecimal numeric, int percent) {
         return numeric.multiply(BigDecimal.valueOf(percent)).divide(BigDecimal.valueOf(100));
     }
+
+    public static BigDecimal addPercent(BigDecimal numeric, int percent) {
+        return numeric.add(timesPercent(numeric, percent));
+    }
+
+    public static BigDecimal subPercent(BigDecimal numeric, int percent) {
+        return numeric.subtract(timesPercent(numeric, percent));
+    }
+
+    public static BigDecimal toPercent(BigDecimal numericA, BigDecimal numericB) {
+        return numericA.divide(numericB, MathContext.DECIMAL128).multiply(BigDecimal.valueOf(100));
+    }
+
+    public static BigDecimal addVat(BigDecimal numeric) {
+        return numeric.multiply(BigDecimal.valueOf(1.1));
+    }
+
 }

@@ -26,6 +26,7 @@ package com.mkdika.jeneric.function;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -86,11 +87,11 @@ public class NumericFunTest {
 
         BigDecimal a = NumericFun.timesPercent(BigDecimal.valueOf(1000), 10);
         assertThat(a, equalTo(BigDecimal.valueOf(100)));
-        
+
         BigDecimal b = NumericFun.timesPercent(BigDecimal.valueOf(0), 10);
         assertThat(b, equalTo(BigDecimal.ZERO));
-        
-        BigDecimal c = NumericFun.timesPercent(BigDecimal.valueOf(-100), 10);        
+
+        BigDecimal c = NumericFun.timesPercent(BigDecimal.valueOf(-100), 10);
         assertThat(c, equalTo(BigDecimal.valueOf(-10)));
     }
 
@@ -100,6 +101,62 @@ public class NumericFunTest {
 
         BigDecimal a = NumericFun.timesPercent(null, 10);
         assertThat(a, equalTo(BigDecimal.valueOf(100)));
+    }
+
+    @Test
+    public void test_addPercent_sucess() {
+        System.out.println("test_NumericFun_addPercent_success");
+        BigDecimal a = NumericFun.addPercent(BigDecimal.valueOf(1000), 25);
+        assertThat(a, equalTo(BigDecimal.valueOf(1250)));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void test_addPercent_exception() {
+        System.out.println("test_NumericFun_addPercent_exception");
+        BigDecimal a = NumericFun.addPercent(null, 25);
+        assertThat(a, equalTo(BigDecimal.valueOf(1250)));
+    }
+
+    @Test
+    public void test_subPercent_success() {
+        System.out.println("test_NumericFun_subPercent_success");
+        BigDecimal a = NumericFun.subPercent(BigDecimal.valueOf(1000), 25);
+        assertThat(a, equalTo(BigDecimal.valueOf(750)));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void test_subPercent_exception() {
+        System.out.println("test_NumericFun_subPercent_exception");
+        BigDecimal a = NumericFun.subPercent(null, 25);
+        assertThat(a, equalTo(BigDecimal.valueOf(750)));
+    }
+
+    @Test
+    public void test_toPercent_success() {
+        System.out.println("test_NumericFun_toPercent_success");
+        BigDecimal a = NumericFun.toPercent(BigDecimal.valueOf(750), BigDecimal.valueOf(1000));
+        assertThat(a, equalTo(BigDecimal.valueOf(75).setScale(2, RoundingMode.HALF_UP)));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void test_toPercent_exception() {
+        System.out.println("test_NumericFun_toPercent_exception");
+        BigDecimal a = NumericFun.toPercent(null, BigDecimal.valueOf(1000));
+         assertThat(a, equalTo(BigDecimal.valueOf(75).setScale(2, RoundingMode.HALF_UP)));
+    }
+
+    @Test
+    public void test_addVat_success() {
+        System.out.println("test_NumericFun_addVat_success");
+        BigDecimal a = NumericFun.addVat(BigDecimal.valueOf(1000));
+        assertThat(a, equalTo(BigDecimal.valueOf(1100.0)));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void test_addVat_exception() {
+        System.out.println("test_NumericFun_addVat_exception");
+        BigDecimal a = NumericFun.addVat(null);
+        assertThat(a, equalTo(BigDecimal.valueOf(1100.0)));
     }
 
 }

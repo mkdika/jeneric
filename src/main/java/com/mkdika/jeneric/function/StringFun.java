@@ -24,6 +24,7 @@
 package com.mkdika.jeneric.function;
 
 import com.mkdika.jeneric.types.DateFormat;
+import com.mkdika.jeneric.types.StringFormat;
 import java.io.UnsupportedEncodingException;
 import java.net.Inet4Address;
 import java.net.NetworkInterface;
@@ -34,6 +35,9 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import javax.xml.bind.DatatypeConverter;
 
 /**
@@ -240,13 +244,41 @@ public final class StringFun {
 
     //TODO: finish StringFun.getMacAddress javadoc
     public static String getMacAddress() throws SocketException {
-        NetworkInterface netInf = NetworkInterface.getNetworkInterfaces().nextElement();
+        /*  NetworkInterface netInf = NetworkInterface.getNetworkInterfaces().nextElement();
         byte[] mac = netInf.getHardwareAddress();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < mac.length; i++) {
             sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? ":" : ""));
         }
         return sb.toString();
+         */
+
+        String networkInterface = null;
+        Map<String, String> networkAddress = new HashMap<>();
+        Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
+        while (networkInterfaces.hasMoreElements()) {
+            NetworkInterface network = networkInterfaces.nextElement();
+
+            byte[] mac = network.getHardwareAddress();
+            if (mac != null) {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < mac.length; i++) {
+                    sb.append(String.format(StringFormat.MAC_ADDRESS_FORMAT.getFormat(), mac[i], (i < mac.length - 1) ? "-" : ""));
+                }
+                if (!sb.toString().isEmpty()) {
+                    networkAddress.put(network.getName(), sb.toString());
+                }
+
+                if (!sb.toString().isEmpty() && networkInterface == null) {
+                    networkInterface = network.getName();
+                }
+            }
+        }
+
+        if (networkInterface != null) {
+            return networkAddress.get(networkInterface);
+        }
+        return null;
     }
 
     /*
