@@ -24,13 +24,17 @@
 package com.mkdika.jeneric.function;
 
 import com.mkdika.jeneric.types.DateFormat;
+import java.io.UnsupportedEncodingException;
 import java.net.Inet4Address;
 import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
+import javax.xml.bind.DatatypeConverter;
 
 /**
  * This class is collection of all java.lang.String return functions.
@@ -213,8 +217,8 @@ public final class StringFun {
     }
 
     //TODO: finish StringFun.rightTrim javadoc
-    public static String rightTrim(String str, int length) {        
-        
+    public static String rightTrim(String str, int length) {
+
         int n = length;
         if (length > str.length()) {
             n = str.length();
@@ -243,5 +247,49 @@ public final class StringFun {
             sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? ":" : ""));
         }
         return sb.toString();
+    }
+
+    public static String toMd5(String plain) throws NoSuchAlgorithmException {
+        return toMd5(plain, null);
+    }
+
+    /*
+        TODO: finish StringFun.toMd5 javadoc
+        A lower case retun MD5, UTF-8
+    */
+    public static String toMd5(String plain, String salt) throws NoSuchAlgorithmException {
+        return toHashing(plain, salt, "MD5");
+    }
+    
+    public static String toSha(String plain)throws NoSuchAlgorithmException {
+        return toSha(plain, null);
+    }
+    
+    /*
+        TODO: finish StringFun.toSha128 javadoc
+        A lower case retun, UTF-8
+    */
+    public static String toSha(String plain, String salt)throws NoSuchAlgorithmException {
+        return toHashing(plain, salt, "SHA");
+    }
+    
+    public static String toSha256(String plain)throws NoSuchAlgorithmException {
+        return toSha256(plain, null);
+    }
+    
+    /*
+        TODO: finish StringFun.toSha256 javadoc
+        A lower case retun, UTF-8
+    */
+    public static String toSha256(String plain, String salt)throws NoSuchAlgorithmException {
+        return toHashing(plain, salt, "SHA-256");
+    }
+            
+    private static String toHashing(String plain,String salt, String algorithm) throws NoSuchAlgorithmException {
+        String plainSalt = (salt == null ? plain : (plain + salt));        
+        MessageDigest md = MessageDigest.getInstance(algorithm);
+        md.update(plainSalt.getBytes(StandardCharsets.UTF_8));
+        byte[] digest = md.digest();
+        return DatatypeConverter.printHexBinary(digest).toLowerCase();
     }
 }
