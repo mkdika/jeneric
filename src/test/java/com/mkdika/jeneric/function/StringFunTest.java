@@ -357,7 +357,7 @@ public class StringFunTest {
         assertThat(a.toUpperCase(),equalTo(hashA));
         
         String hashB = "ce491ffa534d26fe1cfaa089fc21f616";
-        String b = StringFun.toMd5("I Miss You","abc123");        
+        String b = StringFun.toMd5("I Miss Youabc123");        
         assertNotNull(b);        
         assertThat(b.length(), equalTo(32));
         assertThat(b,equalTo(hashB));
@@ -367,7 +367,7 @@ public class StringFunTest {
     public void test_toMd5_exception() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         System.out.println("test_StringFun_toMd5_exception");
         
-        String a = StringFun.toMd5(null,null);          
+        String a = StringFun.toMd5(null);          
         assertThat(a.length(), equalTo(32));        
     }
     
@@ -381,7 +381,7 @@ public class StringFunTest {
         assertThat(a,equalTo(hashA));   
         
         String hashB = "5165baf7b1eabd262e553ea5f0d8c02f0db88d70";
-        String b = StringFun.toSha("I Miss You","abc123");        
+        String b = StringFun.toSha("I Miss Youabc123");        
         assertNotNull(b);                
         assertThat(b,equalTo(hashB));
     }
@@ -390,7 +390,7 @@ public class StringFunTest {
     public void test_toSha_exception()throws NoSuchAlgorithmException {
          System.out.println("test_StringFun_toSha_exception");
         
-        String a = StringFun.toSha(null,null);          
+        String a = StringFun.toSha(null);          
         assertThat(a.length(), equalTo(32));     
     }
     
@@ -404,7 +404,7 @@ public class StringFunTest {
         assertThat(a,equalTo(hashA));   
         
         String hashB = "e06d6c9ef50e95ab3520f211866f3f9503357b76675cdaf29a592f28182a5607";
-        String b = StringFun.toSha256("I Miss You","abc123");        
+        String b = StringFun.toSha256("I Miss Youabc123");        
         assertNotNull(b);                
         assertThat(b,equalTo(hashB));
     }
@@ -413,7 +413,7 @@ public class StringFunTest {
     public void test_toSha256_exception()throws NoSuchAlgorithmException {
          System.out.println("test_StringFun_toSha256_exception");
         
-        String a = StringFun.toSha256(null,null);          
+        String a = StringFun.toSha256(null);          
         assertThat(a.length(), equalTo(32));     
     }
 }

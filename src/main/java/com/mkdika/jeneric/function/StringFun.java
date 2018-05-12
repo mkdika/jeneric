@@ -249,46 +249,33 @@ public final class StringFun {
         return sb.toString();
     }
 
-    public static String toMd5(String plain) throws NoSuchAlgorithmException {
-        return toMd5(plain, null);
-    }
-
     /*
         TODO: finish StringFun.toMd5 javadoc
         A lower case retun MD5, UTF-8
-    */
-    public static String toMd5(String plain, String salt) throws NoSuchAlgorithmException {
-        return toHashing(plain, salt, "MD5");
+     */
+    public static String toMd5(String plainText) throws NoSuchAlgorithmException {
+        return toHashing(plainText, "MD5");
     }
-    
-    public static String toSha(String plain)throws NoSuchAlgorithmException {
-        return toSha(plain, null);
-    }
-    
+
     /*
         TODO: finish StringFun.toSha128 javadoc
         A lower case retun, UTF-8
-    */
-    public static String toSha(String plain, String salt)throws NoSuchAlgorithmException {
-        return toHashing(plain, salt, "SHA");
+     */
+    public static String toSha(String plain) throws NoSuchAlgorithmException {
+        return toHashing(plain, "SHA");
     }
-    
-    public static String toSha256(String plain)throws NoSuchAlgorithmException {
-        return toSha256(plain, null);
-    }
-    
+
     /*
         TODO: finish StringFun.toSha256 javadoc
         A lower case retun, UTF-8
-    */
-    public static String toSha256(String plain, String salt)throws NoSuchAlgorithmException {
-        return toHashing(plain, salt, "SHA-256");
+     */
+    public static String toSha256(String plain) throws NoSuchAlgorithmException {
+        return toHashing(plain, "SHA-256");
     }
-            
-    private static String toHashing(String plain,String salt, String algorithm) throws NoSuchAlgorithmException {
-        String plainSalt = (salt == null ? plain : (plain + salt));        
+
+    private static String toHashing(String plain, String algorithm) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance(algorithm);
-        md.update(plainSalt.getBytes(StandardCharsets.UTF_8));
+        md.update(plain.getBytes(StandardCharsets.UTF_8));
         byte[] digest = md.digest();
         return DatatypeConverter.printHexBinary(digest).toLowerCase();
     }
