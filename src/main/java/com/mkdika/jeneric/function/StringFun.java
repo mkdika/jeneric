@@ -213,7 +213,8 @@ public final class StringFun {
     }
 
     //TODO: finish StringFun.rightTrim javadoc
-    public static String rightTrim(String str, int length) {
+    public static String rightTrim(String str, int length) {        
+        
         int n = length;
         if (length > str.length()) {
             n = str.length();

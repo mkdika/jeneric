@@ -29,7 +29,8 @@ import java.math.BigDecimal;
  *
  * @author Maikel Chandika (mkdika@gmail.com)
  */
-public final class NumericFun {   
+public final class NumericFun {
+
     /*
         To prevent class from instanate from outside.
      */
@@ -39,14 +40,19 @@ public final class NumericFun {
     //TODO: finish NumericFun.nvl BigDecimal javadoc
     public static BigDecimal nvl(BigDecimal n) {
         return (n == null ? BigDecimal.ZERO : n);
-    }   
-    
+    }
+
     //TODO: finish NumericFun.randomDouble javadoc
     public static double randomDouble() {
         return randomDouble(0.0d, Double.MAX_VALUE);
     }
-    
-    public static double randomDouble(double min,double max) {
+
+    public static double randomDouble(double min, double max) {
         return (Math.random() * ((max - min) + 1) + min);
+    }
+
+    //TODO: finish NumericFun.timesPercent javadoc
+    public static BigDecimal timesPercent(BigDecimal numeric, int percent) {
+        return numeric.multiply(BigDecimal.valueOf(percent)).divide(BigDecimal.valueOf(100));
     }
 }

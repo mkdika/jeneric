@@ -73,10 +73,33 @@ public class NumericFunTest {
     public void test_randomDouble_success() {
         System.out.println("test_NumericFun_randomDouble_success");
 
-        double a = NumericFun.randomDouble();        
+        double a = NumericFun.randomDouble();
         assertTrue(a > -1);
 
-        double b = NumericFun.randomDouble(1d, 100d);        
+        double b = NumericFun.randomDouble(1d, 100d);
         assertTrue((Double.compare(1d, b) == -1 && Double.compare(b, 100d) == -1));
     }
+
+    @Test
+    public void test_timesPercent_success() {
+        System.out.println("test_NumericFun_timesPercent_success");
+
+        BigDecimal a = NumericFun.timesPercent(BigDecimal.valueOf(1000), 10);
+        assertThat(a, equalTo(BigDecimal.valueOf(100)));
+        
+        BigDecimal b = NumericFun.timesPercent(BigDecimal.valueOf(0), 10);
+        assertThat(b, equalTo(BigDecimal.ZERO));
+        
+        BigDecimal c = NumericFun.timesPercent(BigDecimal.valueOf(-100), 10);        
+        assertThat(c, equalTo(BigDecimal.valueOf(-10)));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void test_timesPercent_exception() {
+        System.out.println("test_NumericFun_timesPercent_exception");
+
+        BigDecimal a = NumericFun.timesPercent(null, 10);
+        assertThat(a, equalTo(BigDecimal.valueOf(100)));
+    }
+
 }
