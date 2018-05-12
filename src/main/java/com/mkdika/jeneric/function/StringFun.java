@@ -25,7 +25,6 @@ package com.mkdika.jeneric.function;
 
 import com.mkdika.jeneric.types.DateFormat;
 import com.mkdika.jeneric.types.StringFormat;
-import java.io.UnsupportedEncodingException;
 import java.net.Inet4Address;
 import java.net.NetworkInterface;
 import java.net.SocketException;
