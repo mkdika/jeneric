@@ -37,6 +37,7 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import javax.xml.bind.DatatypeConverter;
 
@@ -222,7 +223,6 @@ public final class StringFun {
 
     //TODO: finish StringFun.rightTrim javadoc
     public static String rightTrim(String str, int length) {
-
         int n = length;
         if (length > str.length()) {
             n = str.length();
@@ -254,12 +254,24 @@ public final class StringFun {
                 for (int i = 0; i < mac.length; i++) {
                     sb.append(String.format(StringFormat.MAC_ADDRESS_FORMAT.getFormat(), mac[i], (i < mac.length - 1) ? ":" : ""));
                 }
-                if (!sb.toString().isEmpty()) {
-                    macSet.add(sb.toString());
-                }
+                macSet.add(sb.toString());
             }
         }
         return macSet;
+    }
+
+    /*
+        TODO: finish  StringFun.getUUID javadoc
+        This is used UUID v4 with random number
+     */
+    public static String getUUID() {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString();
+    }
+    
+    // TODO: finish StringFun.getSecureMD5 javadoc
+    public static String getSecureMD5() throws NoSuchAlgorithmException {
+        return toMd5(getUUID());
     }
 
     /*
