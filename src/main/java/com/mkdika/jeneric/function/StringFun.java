@@ -35,8 +35,9 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 import javax.xml.bind.DatatypeConverter;
 
 /**
@@ -233,51 +234,32 @@ public final class StringFun {
     }
 
     //TODO: finish StringFun.getIpAddress javadoc
-    public static String getIpV4Address() throws SocketException {
+    public static Set<String> getIpV4Address() throws SocketException {
         return Collections.list(NetworkInterface.getNetworkInterfaces()).stream()
                 .flatMap(i -> Collections.list(i.getInetAddresses()).stream())
                 .filter(ip -> ip instanceof Inet4Address && ip.isSiteLocalAddress())
-                .findFirst().orElseThrow(RuntimeException::new)
-                .getHostAddress();
+                .map(n -> n.getHostAddress())
+                .collect(Collectors.toSet());
     }
 
     //TODO: finish StringFun.getMacAddress javadoc
-    public static String getMacAddress() throws SocketException {
-        /*  NetworkInterface netInf = NetworkInterface.getNetworkInterfaces().nextElement();
-        byte[] mac = netInf.getHardwareAddress();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < mac.length; i++) {
-            sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? ":" : ""));
-        }
-        return sb.toString();
-         */
-
-        String networkInterface = null;
-        Map<String, String> networkAddress = new HashMap<>();
+    public static Set<String> getMacAddress() throws SocketException {
+        Set<String> macSet = new HashSet<>();
         Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
         while (networkInterfaces.hasMoreElements()) {
             NetworkInterface network = networkInterfaces.nextElement();
-
             byte[] mac = network.getHardwareAddress();
             if (mac != null) {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < mac.length; i++) {
-                    sb.append(String.format(StringFormat.MAC_ADDRESS_FORMAT.getFormat(), mac[i], (i < mac.length - 1) ? "-" : ""));
+                    sb.append(String.format(StringFormat.MAC_ADDRESS_FORMAT.getFormat(), mac[i], (i < mac.length - 1) ? ":" : ""));
                 }
                 if (!sb.toString().isEmpty()) {
-                    networkAddress.put(network.getName(), sb.toString());
-                }
-
-                if (!sb.toString().isEmpty() && networkInterface == null) {
-                    networkInterface = network.getName();
+                    macSet.add(sb.toString());
                 }
             }
         }
-
-        if (networkInterface != null) {
-            return networkAddress.get(networkInterface);
-        }
-        return null;
+        return macSet;
     }
 
     /*

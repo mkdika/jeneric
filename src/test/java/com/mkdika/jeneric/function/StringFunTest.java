@@ -27,13 +27,10 @@ import com.mkdika.jeneric.types.DateFormat;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.net.Inet4Address;
-import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Collections;
 import java.util.Date;
+import java.util.Set;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertFalse;
@@ -324,26 +321,28 @@ public class StringFunTest {
     public void test_getIpV4Addres_success() throws SocketException {
         System.out.println("test_StringFun_getIpV4Address_success");        
         
-        String a = StringFun.getIpV4Address();        
-        assertNotNull(a);        
+        Set<String> a = StringFun.getIpV4Address();        
+        assertNotNull(a);
         
-        assertFalse(a.isEmpty());
-        
-        boolean c = BooleanFun.isValidIpV4Address(a);
-        assertTrue(c);
+        if (a.size() > 0) {
+            a.stream().map((s) -> BooleanFun.isValidIpV4Address(s)).forEachOrdered((c) -> {
+                assertTrue(c);
+            });
+        }        
     }
     
     @Test
     public void test_getMacAddress_success() throws SocketException {
         System.out.println("test_StringFun_getMacAddress_success");        
         
-        String a = StringFun.getMacAddress();        
+        Set<String> a = StringFun.getMacAddress();        
         assertNotNull(a);        
         
-        assertFalse(a.isEmpty());        
-        
-        boolean c = BooleanFun.isValidMacAddress(a);
-        assertTrue(c);
+        if (a.size() > 0) {
+            a.stream().map((s) -> BooleanFun.isValidMacAddress(s)).forEachOrdered((c) -> {
+                assertTrue(c);
+            });
+        }               
     }
     
     @Test
