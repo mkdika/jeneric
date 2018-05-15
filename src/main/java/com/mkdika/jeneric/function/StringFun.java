@@ -26,10 +26,11 @@ package com.mkdika.jeneric.function;
 import com.mkdika.jeneric.types.DateFormat;
 import com.mkdika.jeneric.types.StringFormat;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.Inet4Address;
 import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -331,9 +332,42 @@ public final class StringFun {
     }
 
     // TODO: finish StringFun.readTextFile javadoc
-    public static String readTextFile(String filePath) throws URISyntaxException, IOException {        
+    public static String readTextFile(String filePath) throws URISyntaxException, IOException {
         Path path = Paths.get(filePath);
         byte[] fileBytes = Files.readAllBytes(path);
         return new String(fileBytes);
+    }
+
+    // TODO: finish StringFun.fromFileSize javadoc
+    // be able to convert from 0 B .. 999 TB
+    public static String fromFileSize(long fileSize) {
+        BigDecimal k = new BigDecimal(1024);
+        StringBuilder sb = new StringBuilder();
+        if (fileSize >= 0L && fileSize < 1024L) { // B
+            return sb.append(fileSize).append(" B").toString();
+        } else if (fileSize >= 1024L && fileSize < 1048576L) {  // KB            
+            BigDecimal n = new BigDecimal(fileSize);
+            BigDecimal r = n.divide(k, RoundingMode.HALF_UP);
+            return sb.append(String.valueOf(r.longValueExact())).append(" KB").toString();
+        } else if (fileSize >= 1048576L && fileSize < 1073741824L) { // MB
+            BigDecimal n = new BigDecimal(fileSize);
+            BigDecimal r = n.divide(k, RoundingMode.HALF_UP).divide(k, RoundingMode.HALF_UP);
+            return sb.append(String.valueOf(r.longValueExact())).append(" MB").toString();
+        } else if (fileSize >= 1073741824L && fileSize < 1099511628000L) { // GB
+            BigDecimal n = new BigDecimal(fileSize);
+            BigDecimal r = n.divide(k, RoundingMode.HALF_UP)
+                            .divide(k, RoundingMode.HALF_UP)
+                            .divide(k, RoundingMode.HALF_UP);
+            return sb.append(String.valueOf(r.longValueExact())).append(" GB").toString();
+        } else if (fileSize >= 1099511628000L && fileSize <= 1098412116000000L) { // TB
+            BigDecimal n = new BigDecimal(fileSize);
+            BigDecimal r = n.divide(k, RoundingMode.HALF_UP)
+                            .divide(k, RoundingMode.HALF_UP)
+                            .divide(k, RoundingMode.HALF_UP)
+                            .divide(k, RoundingMode.HALF_UP);
+            return sb.append(String.valueOf(r.longValueExact())).append(" TB").toString();
+        } else {
+            return "";
+        }
     }
 }

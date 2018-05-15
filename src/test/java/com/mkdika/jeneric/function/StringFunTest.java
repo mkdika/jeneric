@@ -475,4 +475,21 @@ public class StringFunTest {
         String a = StringFun.readTextFile(input);        
         assertNotNull(a);
     }
+    
+    
+    @Test
+    @Parameters({"0, 0 B",
+                 "1024, 1 KB",
+                 "27648, 27 KB",
+                 "75254592, 72 MB",
+                 "950000000, 906 MB",
+                 "134217728000, 125 GB",
+                 "1098412116000000, 999 TB"
+    })   
+    public void test_fromFileSize_success(long fileSize,String result) {
+        System.out.println("test_StringFun_fromFileSize_success");
+        
+        String a = StringFun.fromFileSize(fileSize);
+        assertThat(a, equalTo(result));
+    }
 }
