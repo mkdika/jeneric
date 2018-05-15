@@ -10,6 +10,12 @@ Build on top of Java 8 standard API, no external libraries is needed.
 
 Others releated information will coming soon.
 
+## Library
+- __Unit Testing__:
+	- [Java Hamcrest](http://hamcrest.org/JavaHamcrest/), for ease matcher and more human readable equality test.
+	- [JUnitParams](https://github.com/Pragmatists/JUnitParams), for ease parameterized test.
+	- [Mockito](http://site.mockito.org/), a mock test framework.
+
 ## Maintainer
 - [Maikel Chandika](https://github.com/mkdika)
 - [Reja](https://github.com/zigic88)

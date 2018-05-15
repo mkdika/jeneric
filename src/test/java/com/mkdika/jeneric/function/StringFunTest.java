@@ -31,6 +31,8 @@ import java.net.SocketException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.Set;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertNotNull;
@@ -39,13 +41,12 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
 
 /**
  *
  * @author Maikel Chandika (mkdika@gmail.com)
  */
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(JUnitParamsRunner.class)
 public class StringFunTest {
 
     @Before
@@ -418,17 +419,47 @@ public class StringFunTest {
     @Test
     public void test_getUUID_success() {
         System.out.println("test_StringFun_getUUID_success");
-        
+
         String a = StringFun.getUUID();
         assertNotNull(a);
     }
-    
+
     @Test
     public void test_getSecureMD5_success() throws NoSuchAlgorithmException {
         System.out.println("test_StringFun_getSecureMD5_success");
-                
+
         String a = StringFun.getSecureMD5();
         assertNotNull(a);
-        assertThat(a.length(), equalTo(32));        
+        assertThat(a.length(), equalTo(32));
+    }
+
+    @Test
+    @Parameters({"1, I",
+                 "17, XVII",
+                 "79, LXXIX",
+                 "365, CCCLXV",
+                 "1983, MCMLXXXIII",
+                 "2018, MMXVIII",
+                 "4999, MMMMCMXCIX"
+    })
+    public void test_toRoman_success(int input, String result) {
+        System.out.println("test_StringFun_toRoman_success");
+        
+        String a = StringFun.toRoman(input);        
+        assertThat(a, equalTo(result));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test_toRoman_exception1() {
+        System.out.println("test_StringFun_toRoman_exception1");
+        
+        String a = StringFun.toRoman(-1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test_toRoman_exception2() {
+        System.out.println("test_StringFun_toRoman_exception2");
+        
+        String a = StringFun.toRoman(5000);
     }
 }

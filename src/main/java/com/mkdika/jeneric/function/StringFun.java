@@ -50,7 +50,10 @@ import javax.xml.bind.DatatypeConverter;
  * @since 2018-04-28
  */
 public final class StringFun {
-
+    
+    private static final String[] RCODE = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+    private static final int[] BVAL = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+   
     /*
         To prevent class from instanate from outside.
      */
@@ -303,5 +306,21 @@ public final class StringFun {
         md.update(plain.getBytes(StandardCharsets.UTF_8));
         byte[] digest = md.digest();
         return DatatypeConverter.printHexBinary(digest).toLowerCase();
+    }
+    
+    // TODO: finish StringFun.toRoman javadoc
+    // max allowed int range is 1..4999
+    public static String toRoman(int n) {
+        if (n < 1 || n>4999) {
+            throw new IllegalArgumentException("toRoman accept range must be in 1..4999");
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < RCODE.length; i++) {
+            while (n >= BVAL[i]) {
+                n -= BVAL[i];
+                sb.append(RCODE[i]);                
+            }
+        }
+        return sb.toString();
     }
 }
