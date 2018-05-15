@@ -25,10 +25,16 @@ package com.mkdika.jeneric.function;
 
 import com.mkdika.jeneric.types.DateFormat;
 import com.mkdika.jeneric.types.StringFormat;
+import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
@@ -50,10 +56,10 @@ import javax.xml.bind.DatatypeConverter;
  * @since 2018-04-28
  */
 public final class StringFun {
-    
+
     private static final String[] RCODE = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
     private static final int[] BVAL = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
-   
+
     /*
         To prevent class from instanate from outside.
      */
@@ -271,7 +277,7 @@ public final class StringFun {
         UUID uuid = UUID.randomUUID();
         return uuid.toString();
     }
-    
+
     // TODO: finish StringFun.getSecureMD5 javadoc
     public static String getSecureMD5() throws NoSuchAlgorithmException {
         return toMd5(getUUID());
@@ -307,20 +313,27 @@ public final class StringFun {
         byte[] digest = md.digest();
         return DatatypeConverter.printHexBinary(digest).toLowerCase();
     }
-    
+
     // TODO: finish StringFun.toRoman javadoc
     // max allowed int range is 1..4999
     public static String toRoman(int n) {
-        if (n < 1 || n>4999) {
+        if (n < 1 || n > 4999) {
             throw new IllegalArgumentException("toRoman accept range must be in 1..4999");
         }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < RCODE.length; i++) {
             while (n >= BVAL[i]) {
                 n -= BVAL[i];
-                sb.append(RCODE[i]);                
+                sb.append(RCODE[i]);
             }
         }
         return sb.toString();
+    }
+
+    // TODO: finish StringFun.readTextFile javadoc
+    public static String readTextFile(String filePath) throws URISyntaxException, IOException {        
+        Path path = Paths.get(filePath);
+        byte[] fileBytes = Files.readAllBytes(path);
+        return new String(fileBytes);
     }
 }

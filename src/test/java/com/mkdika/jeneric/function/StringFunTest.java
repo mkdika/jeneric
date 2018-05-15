@@ -24,10 +24,12 @@
 package com.mkdika.jeneric.function;
 
 import com.mkdika.jeneric.types.DateFormat;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.net.SocketException;
+import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.Set;
@@ -461,5 +463,16 @@ public class StringFunTest {
         System.out.println("test_StringFun_toRoman_exception2");
         
         String a = StringFun.toRoman(5000);
+    }
+    
+    @Test
+    @Parameters({"resource/hello.txt",
+                 "resource/test.txt"
+    })    
+    public void test_readTextFile_success(String input) throws URISyntaxException, IOException {
+        System.out.println("test_StringFun_readTextFile_success");
+        
+        String a = StringFun.readTextFile(input);        
+        assertNotNull(a);
     }
 }
