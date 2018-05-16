@@ -23,6 +23,7 @@
  */
 package com.mkdika.jeneric.function;
 
+import com.mkdika.jeneric.model.TimePeriod;
 import com.mkdika.jeneric.types.DateFormat;
 import com.mkdika.jeneric.types.StringFormat;
 import java.io.IOException;
@@ -356,18 +357,34 @@ public final class StringFun {
         } else if (fileSize >= 1073741824L && fileSize < 1099511628000L) { // GB
             BigDecimal n = new BigDecimal(fileSize);
             BigDecimal r = n.divide(k, RoundingMode.HALF_UP)
-                            .divide(k, RoundingMode.HALF_UP)
-                            .divide(k, RoundingMode.HALF_UP);
+                    .divide(k, RoundingMode.HALF_UP)
+                    .divide(k, RoundingMode.HALF_UP);
             return sb.append(String.valueOf(r.longValueExact())).append(" GB").toString();
         } else if (fileSize >= 1099511628000L && fileSize <= 1098412116000000L) { // TB
             BigDecimal n = new BigDecimal(fileSize);
             BigDecimal r = n.divide(k, RoundingMode.HALF_UP)
-                            .divide(k, RoundingMode.HALF_UP)
-                            .divide(k, RoundingMode.HALF_UP)
-                            .divide(k, RoundingMode.HALF_UP);
+                    .divide(k, RoundingMode.HALF_UP)
+                    .divide(k, RoundingMode.HALF_UP)
+                    .divide(k, RoundingMode.HALF_UP);
             return sb.append(String.valueOf(r.longValueExact())).append(" TB").toString();
         } else {
             return "";
         }
+    }
+
+    public static String elapsedTime(Date startDate, Date endDate) {
+        return elapsedTime(startDate.getTime(), endDate.getTime());
+    }
+
+    // TODO: finish StringFun.elapsedTime javadoc
+    public static String elapsedTime(long startTime, long endTime) {
+        TimePeriod period = CustomFun.calculatePeriod(startTime, endTime);
+        StringBuilder sb = new StringBuilder();
+        sb.append(period.getDays()).append(" days ");
+        sb.append(period.getHours()).append(" hours ");
+        sb.append(period.getMinutes()).append(" minutes ");
+        sb.append(period.getSeconds()).append(" seconds ");
+        sb.append(period.getMilliseconds()).append(" milliseconds");
+        return sb.toString();        
     }
 }

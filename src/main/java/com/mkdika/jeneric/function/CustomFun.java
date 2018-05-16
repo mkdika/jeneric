@@ -23,45 +23,48 @@
  */
 package com.mkdika.jeneric.function;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+import com.mkdika.jeneric.model.TimePeriod;
+import java.util.Date;
 
 /**
  *
- * @author Maikel Chandika (mkdika@gmail.com)
+ * @author Maikel Chandika <mkdika@gmail.com>
  */
-public final class NumericFun {
+public final class CustomFun {
 
     /*
         To prevent class from instanate from outside.
      */
-    private NumericFun() {
+    private CustomFun() {
     }
 
-    //TODO: finish NumericFun.nvl BigDecimal javadoc
-    public static BigDecimal nvl(BigDecimal n) {
-        return (n == null ? BigDecimal.ZERO : n);
+    public static TimePeriod calculatePeriod(Date startDate, Date endDate) {
+        return calculatePeriod(startDate.getTime(), endDate.getTime());
     }
+
+    public static TimePeriod calculatePeriod(long startTime, long endTime) {
+        if (endTime < startTime) {
+            throw new IllegalArgumentException("End date must be equals or greater than start date.");
+        }
         
-    //TODO: finish NumericFun.timesPercent javadoc
-    public static BigDecimal timesPercent(BigDecimal numeric, int percent) {
-        return numeric.multiply(BigDecimal.valueOf(percent)).divide(BigDecimal.valueOf(100));
-    }
+        long different = endTime - startTime;      
+        long secondsInMilli = 1000;
+        long minutesInMilli = secondsInMilli * 60;
+        long hoursInMilli = minutesInMilli * 60;
+        long daysInMilli = hoursInMilli * 24;
 
-    public static BigDecimal addPercent(BigDecimal numeric, int percent) {
-        return numeric.add(timesPercent(numeric, percent));
-    }
+        long elapsedDays = different / daysInMilli;
+        different = different % daysInMilli;
 
-    public static BigDecimal subPercent(BigDecimal numeric, int percent) {
-        return numeric.subtract(timesPercent(numeric, percent));
-    }
+        long elapsedHours = different / hoursInMilli;
+        different = different % hoursInMilli;
 
-    public static BigDecimal toPercent(BigDecimal numericA, BigDecimal numericB) {
-        return numericA.divide(numericB, MathContext.DECIMAL128).multiply(BigDecimal.valueOf(100));
-    }
+        long elapsedMinutes = different / minutesInMilli;
+        different = different % minutesInMilli;
 
-    public static BigDecimal addVat(BigDecimal numeric) {
-        return numeric.multiply(BigDecimal.valueOf(1.1));
-    }
+        long elapsedSeconds = different / secondsInMilli;
+        different = different % secondsInMilli;
 
+        return new TimePeriod(elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds, different);
+    }
 }

@@ -437,59 +437,80 @@ public class StringFunTest {
 
     @Test
     @Parameters({"1, I",
-                 "17, XVII",
-                 "79, LXXIX",
-                 "365, CCCLXV",
-                 "1983, MCMLXXXIII",
-                 "2018, MMXVIII",
-                 "4999, MMMMCMXCIX"
+        "17, XVII",
+        "79, LXXIX",
+        "365, CCCLXV",
+        "1983, MCMLXXXIII",
+        "2018, MMXVIII",
+        "4999, MMMMCMXCIX"
     })
     public void test_toRoman_success(int input, String result) {
         System.out.println("test_StringFun_toRoman_success");
-        
-        String a = StringFun.toRoman(input);        
+
+        String a = StringFun.toRoman(input);
         assertThat(a, equalTo(result));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test_toRoman_exception1() {
         System.out.println("test_StringFun_toRoman_exception1");
-        
+
         String a = StringFun.toRoman(-1);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test_toRoman_exception2() {
         System.out.println("test_StringFun_toRoman_exception2");
-        
+
         String a = StringFun.toRoman(5000);
     }
-    
+
     @Test
     @Parameters({"resource/hello.txt",
-                 "resource/test.txt"
-    })    
+        "resource/test.txt"
+    })
     public void test_readTextFile_success(String input) throws URISyntaxException, IOException {
         System.out.println("test_StringFun_readTextFile_success");
-        
-        String a = StringFun.readTextFile(input);        
+
+        String a = StringFun.readTextFile(input);
         assertNotNull(a);
     }
-    
-    
+
     @Test
     @Parameters({"0, 0 B",
-                 "1024, 1 KB",
-                 "27648, 27 KB",
-                 "75254592, 72 MB",
-                 "950000000, 906 MB",
-                 "134217728000, 125 GB",
-                 "1098412116000000, 999 TB"
-    })   
-    public void test_fromFileSize_success(long fileSize,String result) {
+        "1024, 1 KB",
+        "27648, 27 KB",
+        "75254592, 72 MB",
+        "950000000, 906 MB",
+        "134217728000, 125 GB",
+        "1098412116000000, 999 TB"
+    })
+    public void test_fromFileSize_success(long fileSize, String result) {
         System.out.println("test_StringFun_fromFileSize_success");
-        
+
         String a = StringFun.fromFileSize(fileSize);
         assertThat(a, equalTo(result));
+    }
+
+    @Test
+    public void test_elapsedTime_success() {
+        System.out.println("test_StringFun_elapsedTime_success");
+
+        String a = StringFun.elapsedTime(1525896600000L, 1525924550000L);
+        assertNotNull(a);
+        assertTrue(a.length() > 0);
+
+        Date dA1 = DateFun.of(2018, 5, 10, 3, 10, 0);
+        Date dA2 = DateFun.of(2018, 7, 10, 5, 12, 50);
+        String b = StringFun.elapsedTime(dA1, dA2);
+        assertNotNull(b);
+        assertTrue(b.length() > 0);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void test_elapsedTime_exception() {
+        System.out.println("test_StringFun_elapsedTime_exception");
+
+        String a = StringFun.elapsedTime(null, null);
     }
 }

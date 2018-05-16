@@ -33,6 +33,7 @@ import java.util.Date;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
@@ -138,5 +139,15 @@ public class DateFunTest {
         Date truncSecDateCompare = Date.from(localDateTimeCompare.atZone(ZoneId.systemDefault()).toInstant());
 
         assertThat(truncSecDate, not(equalTo(truncSecDateCompare)));
+    }
+    
+    @Test
+    public void test_nvl_success() {
+        System.out.println("test_DateFun_nvl_success");
+        Date a = DateFun.nvl(null);
+        assertNotNull(a);
+
+        Date b = DateFun.nvl(DateFun.of(2018, 4, 30));
+        assertThat(b, equalTo(DateFun.of(2018, 4, 30)));
     }
 }
