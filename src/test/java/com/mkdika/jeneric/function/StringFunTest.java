@@ -495,16 +495,22 @@ public class StringFunTest {
     @Test
     public void test_elapsedTime_success() {
         System.out.println("test_StringFun_elapsedTime_success");
-        
-        String a = StringFun.elapsedTime(1525896600000L,1525924550000L);        
+
+        String a = StringFun.elapsedTime(1525896600000L, 1525924550000L);
         assertNotNull(a);
         assertTrue(a.length() > 0);
+
+        Date dA1 = DateFun.of(2018, 5, 10, 3, 10, 0);
+        Date dA2 = DateFun.of(2018, 7, 10, 5, 12, 50);
+        String b = StringFun.elapsedTime(dA1, dA2);
+        assertNotNull(b);
+        assertTrue(b.length() > 0);
     }
-    
+
     @Test(expected = NullPointerException.class)
     public void test_elapsedTime_exception() {
         System.out.println("test_StringFun_elapsedTime_exception");
-        
+
         String a = StringFun.elapsedTime(null, null);
     }
 }

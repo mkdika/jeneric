@@ -26,6 +26,7 @@ package com.mkdika.jeneric.model;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
@@ -45,7 +46,9 @@ public class TimePeriodTest {
         assertThat(period.getHours(), equalTo(3L));
         assertThat(period.getMinutes(), equalTo(10L));
         assertThat(period.getSeconds(), equalTo(30L));
-        assertThat(period.getMilliseconds(), equalTo(100L));        
+        assertThat(period.getMilliseconds(), equalTo(100L));     
+        
+        assertTrue(!period.toString().isEmpty());
     }
     
 }

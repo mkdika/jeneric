@@ -61,7 +61,7 @@ public final class StringFun {
 
     private static final String[] RCODE = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
     private static final int[] BVAL = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
-   
+
     /*
         To prevent class from instanate from outside.
      */
@@ -357,36 +357,34 @@ public final class StringFun {
         } else if (fileSize >= 1073741824L && fileSize < 1099511628000L) { // GB
             BigDecimal n = new BigDecimal(fileSize);
             BigDecimal r = n.divide(k, RoundingMode.HALF_UP)
-                            .divide(k, RoundingMode.HALF_UP)
-                            .divide(k, RoundingMode.HALF_UP);
+                    .divide(k, RoundingMode.HALF_UP)
+                    .divide(k, RoundingMode.HALF_UP);
             return sb.append(String.valueOf(r.longValueExact())).append(" GB").toString();
         } else if (fileSize >= 1099511628000L && fileSize <= 1098412116000000L) { // TB
             BigDecimal n = new BigDecimal(fileSize);
             BigDecimal r = n.divide(k, RoundingMode.HALF_UP)
-                            .divide(k, RoundingMode.HALF_UP)
-                            .divide(k, RoundingMode.HALF_UP)
-                            .divide(k, RoundingMode.HALF_UP);
+                    .divide(k, RoundingMode.HALF_UP)
+                    .divide(k, RoundingMode.HALF_UP)
+                    .divide(k, RoundingMode.HALF_UP);
             return sb.append(String.valueOf(r.longValueExact())).append(" TB").toString();
         } else {
             return "";
         }
     }
-    
+
     public static String elapsedTime(Date startDate, Date endDate) {
         return elapsedTime(startDate.getTime(), endDate.getTime());
     }
-    
+
+    // TODO: finish StringFun.elapsedTime javadoc
     public static String elapsedTime(long startTime, long endTime) {
         TimePeriod period = CustomFun.calculatePeriod(startTime, endTime);
-        if (period != null) {
-            StringBuilder sb = new StringBuilder();
-            sb.append(period.getDays()).append(" days ");
-            sb.append(period.getHours()).append(" hours ");
-            sb.append(period.getMinutes()).append(" minutes ");
-            sb.append(period.getSeconds()).append(" seconds ");
-            sb.append(period.getMilliseconds()).append(" milliseconds");            
-            return sb.toString();
-        }
-        return "";
+        StringBuilder sb = new StringBuilder();
+        sb.append(period.getDays()).append(" days ");
+        sb.append(period.getHours()).append(" hours ");
+        sb.append(period.getMinutes()).append(" minutes ");
+        sb.append(period.getSeconds()).append(" seconds ");
+        sb.append(period.getMilliseconds()).append(" milliseconds");
+        return sb.toString();        
     }
 }
