@@ -23,45 +23,28 @@
  */
 package com.mkdika.jeneric.function;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-
 /**
  *
- * @author Maikel Chandika (mkdika@gmail.com)
+ * @author Maikel Chandika <mkdika@gmail.com>
  */
-public final class NumericFun {
+public final class DoubleFun {
 
     /*
         To prevent class from instanate from outside.
      */
-    private NumericFun() {
+    private DoubleFun() {
     }
 
-    //TODO: finish NumericFun.nvl BigDecimal javadoc
-    public static BigDecimal nvl(BigDecimal n) {
-        return (n == null ? BigDecimal.ZERO : n);
-    }
-        
-    //TODO: finish NumericFun.timesPercent javadoc
-    public static BigDecimal timesPercent(BigDecimal numeric, int percent) {
-        return numeric.multiply(BigDecimal.valueOf(percent)).divide(BigDecimal.valueOf(100));
+    public static Double nvl(Double n) {
+        return (n == null ? 0.0d : n);
     }
 
-    public static BigDecimal addPercent(BigDecimal numeric, int percent) {
-        return numeric.add(timesPercent(numeric, percent));
+    //TODO: finish NumericFun.randomDouble javadoc
+    public static double random() {
+        return random(0.0d, Double.MAX_VALUE);
     }
 
-    public static BigDecimal subPercent(BigDecimal numeric, int percent) {
-        return numeric.subtract(timesPercent(numeric, percent));
+    public static double random(double min, double max) {
+        return (Math.random() * ((max - min) + 1) + min);
     }
-
-    public static BigDecimal toPercent(BigDecimal numericA, BigDecimal numericB) {
-        return numericA.divide(numericB, MathContext.DECIMAL128).multiply(BigDecimal.valueOf(100));
-    }
-
-    public static BigDecimal addVat(BigDecimal numeric) {
-        return numeric.multiply(BigDecimal.valueOf(1.1));
-    }
-
 }

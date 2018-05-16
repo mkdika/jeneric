@@ -66,10 +66,8 @@ public final class DateFun {
     }
 
     //TODO: finihsh DateFun.now javadoc
-    public static Date now() {
-        LocalDateTime ldt = LocalDateTime.now();
-        long epoch = ldt.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        return new Date(epoch);
+    public static Date now() {     
+        return new Date();
     }
 
     /**
@@ -95,5 +93,10 @@ public final class DateFun {
         LocalDateTime truncSecDate = LocalDateTime.of(localDateTime.getYear(), localDateTime.getMonthValue(), localDateTime.getDayOfMonth(),
                 localDateTime.getHour(), localDateTime.getMinute(), localDateTime.getSecond(), 0);
         return Date.from(truncSecDate.atZone(ZoneId.systemDefault()).toInstant());
+    }
+    
+    // TODO: finish DateFun.nvl javadoc
+    public static Date nvl(Date date) {
+        return (date == null? new Date() : date);
     }
 }

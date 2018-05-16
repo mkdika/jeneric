@@ -326,7 +326,7 @@ public class StringFunTest {
         Set<String> a = StringFun.getIpV4Address();
         assertNotNull(a);
 
-        if (a.size() > 0) {
+        if (a.size() > 0) {            
             a.stream().map((s) -> BooleanFun.isValidIpV4Address(s)).forEachOrdered((c) -> {
                 assertTrue(c);
             });

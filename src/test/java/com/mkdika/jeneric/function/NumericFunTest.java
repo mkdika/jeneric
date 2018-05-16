@@ -29,7 +29,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -69,18 +68,7 @@ public class NumericFunTest {
         BigDecimal b = NumericFun.nvl(BigDecimal.TEN);
         assertThat(b, equalTo(BigDecimal.TEN));
     }
-
-    @Test
-    public void test_randomDouble_success() {
-        System.out.println("test_NumericFun_randomDouble_success");
-
-        double a = NumericFun.randomDouble();
-        assertTrue(a > -1);
-
-        double b = NumericFun.randomDouble(1d, 100d);
-        assertTrue((Double.compare(1d, b) == -1 && Double.compare(b, 100d) == -1));
-    }
-
+   
     @Test
     public void test_timesPercent_success() {
         System.out.println("test_NumericFun_timesPercent_success");
@@ -157,6 +145,5 @@ public class NumericFunTest {
         System.out.println("test_NumericFun_addVat_exception");
         BigDecimal a = NumericFun.addVat(null);
         assertThat(a, equalTo(BigDecimal.valueOf(1100.0)));
-    }
-
+    }        
 }
