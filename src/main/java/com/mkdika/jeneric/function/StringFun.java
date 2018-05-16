@@ -23,6 +23,7 @@
  */
 package com.mkdika.jeneric.function;
 
+import com.mkdika.jeneric.model.TimePeriod;
 import com.mkdika.jeneric.types.DateFormat;
 import com.mkdika.jeneric.types.StringFormat;
 import java.io.IOException;
@@ -60,7 +61,7 @@ public final class StringFun {
 
     private static final String[] RCODE = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
     private static final int[] BVAL = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
-
+   
     /*
         To prevent class from instanate from outside.
      */
@@ -369,5 +370,23 @@ public final class StringFun {
         } else {
             return "";
         }
+    }
+    
+    public static String elapsedTime(Date startDate, Date endDate) {
+        return elapsedTime(startDate.getTime(), endDate.getTime());
+    }
+    
+    public static String elapsedTime(long startTime, long endTime) {
+        TimePeriod period = CustomFun.calculatePeriod(startTime, endTime);
+        if (period != null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(period.getDays()).append(" days ");
+            sb.append(period.getHours()).append(" hours ");
+            sb.append(period.getMinutes()).append(" minutes ");
+            sb.append(period.getSeconds()).append(" seconds ");
+            sb.append(period.getMilliseconds()).append(" milliseconds");            
+            return sb.toString();
+        }
+        return "";
     }
 }
