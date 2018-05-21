@@ -7,17 +7,31 @@
 A tiny library for collection of custom yet frequently used function and helper. 
 Build on top of Java 8 standard API, no external libraries is needed.
 
-Others releated information will coming soon.
 
-## Library
+## Overview
+_coming soon.._
+
+
+## Quickstart
+_coming soon.._
+
+
+## Documentation
+_coming soon.._
+
+
+## Used Tool and Library
 - __Unit Testing__:
 	- [Java Hamcrest](http://hamcrest.org/JavaHamcrest/), for ease matcher and more human readable equality test.
 	- [JUnitParams](https://github.com/Pragmatists/JUnitParams), for ease parameterized test.
 	- [Mockito](http://site.mockito.org/), a mock test framework.
+	- [Jacoco](https://www.eclemma.org/jacoco/), a code coverage library.
+	
 
 ## Maintainer
 - [Maikel Chandika](https://github.com/mkdika)
 - [Reja](https://github.com/zigic88)
+
 
 ## License
 Licensed under the Apache License, Version 2.0. See [LICENSE](/LICENSE) file.
