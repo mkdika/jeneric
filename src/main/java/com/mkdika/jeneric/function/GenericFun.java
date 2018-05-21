@@ -23,16 +23,58 @@
  */
 package com.mkdika.jeneric.function;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 /**
  *
  * @author Maikel Chandika <mkdika@gmail.com>
  */
 public final class GenericFun {
-    
+
     /*
         To prevent class from instanate from outside.
-    */
+     */
     private GenericFun() {
     }
-    
+
+    // TODO: finish GenericFun.mapKeyToSet javadoc
+    public static <K, V> Set<K> mapKeyToSet(Map<K, V> map) {
+        Set<K> set = new HashSet<>();
+        if (map != null && !map.isEmpty()) {
+            map.entrySet().stream().forEach(e -> {
+                set.add(e.getKey());
+            });
+        }
+        return set;
+    }
+
+    public static <K, V> List<K> mapKeyToList(Map<K, V> map) {
+        return new ArrayList<>(mapKeyToSet(map));
+    }
+
+    // TODO: finish GenericFun.mapValueToSet javadoc
+    public static <K, V> Set<V> mapValueToSet(Map<K, V> map) {
+        Set<V> set = new HashSet();
+        if (map != null && !map.isEmpty()) {
+            map.entrySet().stream().forEach(e -> {
+                set.add(e.getValue());
+            });
+        }
+        return set;
+    }
+
+    public static <K, V> List<V> mapValueToList(Map<K, V> map) {
+        List<V> list = new ArrayList<>();
+        if (map != null && !map.isEmpty()) {
+            map.entrySet().stream().forEach(e -> {
+                list.add(e.getValue());
+            });
+        }
+        return list;
+    }
+
 }
