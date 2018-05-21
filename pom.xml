@@ -1,43 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
     <groupId>com.mkdika</groupId>
     <artifactId>jeneric</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+    
+    <name>jeneric</name>
+    <description>A tiny library for collection of custom yet frequently used function and helper.</description>
+    <url>https://github.com/mkdika/jeneric</url>
+    
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    
+    <scm>
+        <connection>scm:git@github.com:mkdika/jeneric.git</connection>
+        <developerConnection>scm:git:git@github.com:mkdika/jeneric.git</developerConnection>
+        <url>https://github.com/mkdika/jeneric.git</url>
+        <tag>HEAD</tag>
+    </scm>
+    <developers>
+        <developer>
+            <name>Maikel Chandika</name>
+            <email>mkdika@gmail.com</email>            
+        </developer>
+        <developer>
+            <name>Reja</name>
+            <email>rejaluo24@gmail.com</email>            
+        </developer>
+    </developers>
+    <issueManagement>
+        <system>GitHub Issue Tracker</system>
+        <url>https://github.com/mkdika/jeneric/issues</url>
+    </issueManagement>
+                                                
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.target>1.8</maven.compiler.target>       
+        <mockito-core.version>2.18.3</mockito-core.version>
+        <hamcrest.version>1.3</hamcrest.version>
+        <junitparams.version>1.1.1</junitparams.version>
+        <jacoco.version>0.7.9</jacoco.version>
     </properties>
+    
     <dependencies>       
         <!--START - Testing Framework & Libraries-->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>2.18.3</version>
+            <version>${mockito-core.version}</version>
             <scope>test</scope>
         </dependency>  
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
-            <version>1.3</version>
+            <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>   
         <dependency>
             <groupId>pl.pragmatists</groupId>
             <artifactId>JUnitParams</artifactId>
-            <version>1.1.1</version>
+            <version>${junitparams.version}</version>
             <scope>test</scope>
         </dependency>           
         <!--END - Testing Framework & Libraries-->
     </dependencies>
+    
     <build>
         <plugins>
+            <!--START - Jacoco plugin-->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.9</version>
+                <version>${jacoco.version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -53,6 +95,7 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--END - Jacoco plugin-->
         </plugins>
     </build>
 </project>

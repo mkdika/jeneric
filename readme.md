@@ -22,6 +22,7 @@ _coming soon.._
 
 ## Used Tool and Library
 - __Unit Testing__:
+	- [JUnit4](https://junit.org/junit4/), as unit testing framework.
 	- [Java Hamcrest](http://hamcrest.org/JavaHamcrest/), for ease matcher and more human readable equality test.
 	- [JUnitParams](https://github.com/Pragmatists/JUnitParams), for ease parameterized test.
 	- [Mockito](http://site.mockito.org/), a mock test framework.
