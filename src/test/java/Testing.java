@@ -28,9 +28,10 @@ public class Testing {
     
     @Test
     public void testing1() {
-        String s = "Chandika";
+        String s = "F25A2FC72690B780B2A14E140EF6A9E0";
         System.out.println(StringFun.rightTrim(s, 4));
         System.out.println(StringFun.getUUID());
+        System.out.println(s.toLowerCase());
     }
     
 }

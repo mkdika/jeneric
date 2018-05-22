@@ -36,9 +36,16 @@ public final class NumericFun {
     private NumericFun() {
     }
 
-    //TODO: finish NumericFun.nvl BigDecimal javadoc
-    public static BigDecimal nvl(BigDecimal n) {
-        return (n == null ? BigDecimal.ZERO : n);
+    /**
+     * Null Value Logic (NVL) or Denullify.
+     * <p>
+     * If argument is <b>null</b>, it will return <b>BigDecimal.ZERO</b>.
+     *
+     * @param number input argument to check.
+     * @return {@link java.math.BigDecimal}
+     */
+    public static BigDecimal nvl(BigDecimal number) {
+        return (number == null ? BigDecimal.ZERO : number);
     }
         
     //TODO: finish NumericFun.timesPercent javadoc

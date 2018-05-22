@@ -60,21 +60,26 @@ public class StringFunTest {
         }
     }
 
+    Object[] lpadParam() {
+        return new Object[]{
+            new Object[]{"123", 6, '0', "000123"},
+            new Object[]{"A", 10, 'X', "XXXXXXXXXA"},
+            new Object[]{"XYZ", 0, '0', "XYZ"},
+            new Object[]{"", 4, '0', "0000"},};
+    }
+
     @Test
-    public void test_lpad_success() {
+    @Parameters(method = "lpadParam")
+    public void test_lpad_success(String s, int n, char c, String result) {
         System.out.println("test_StringFun_lpad_success");
 
-        String a = StringFun.lpad("123", 6, '0');
-        assertThat(a, equalTo("000123"));
+        String a = StringFun.lpad(s, n, c);
+        assertThat(a, equalTo(result));
+    }
 
-        String b = StringFun.lpad("A", 10, 'X');
-        assertThat(b, equalTo("XXXXXXXXXA"));
-
-        String c = StringFun.lpad("XYZ", 0, '0');
-        assertThat(c, equalTo("XYZ"));
-
-        String d = StringFun.lpad("", 4, '0');
-        assertThat(d, equalTo("0000"));
+    @Test
+    public void test_lpad_success2() {
+        System.out.println("test_StringFun_lpad_succes2");
 
         String e = StringFun.lpad("ABC", 5);
         assertThat(e, equalTo("  ABC"));
@@ -99,22 +104,26 @@ public class StringFunTest {
         assertThat(a, not(equalTo((" "))));
     }
 
+    Object[] rpadParam() {
+        return new Object[]{
+            new Object[]{"123", 6, '0', "123000"},
+            new Object[]{"A", 10, 'X', "AXXXXXXXXX"},
+            new Object[]{"XYZ", 0, '0', "XYZ"},
+            new Object[]{"", 4, '0', "0000"},};
+    }
+
     @Test
-    public void test_rpad_success() {
+    @Parameters(method = "rpadParam")
+    public void test_rpad_success(String s, int n, char c, String result) {
         System.out.println("test_StringFun_rpad_success");
 
-        String a = StringFun.rpad("123", 6, '0');
-        assertThat(a, equalTo("123000"));
+        String a = StringFun.rpad(s, n, c);
+        assertThat(a, equalTo(result));
+    }
 
-        String b = StringFun.rpad("A", 10, 'X');
-        assertThat(b, equalTo("AXXXXXXXXX"));
-
-        String c = StringFun.rpad("XYZ", 0, '0');
-        assertThat(c, equalTo("XYZ"));
-
-        String d = StringFun.rpad("", 4, '0');
-        assertThat(d, equalTo("0000"));
-
+    @Test
+    public void test_rpad_success2() {
+        System.out.println("test_StringFun_rpad_succes2");
         String e = StringFun.rpad("ABC", 5);
         assertThat(e, equalTo("ABC  "));
     }
@@ -185,21 +194,20 @@ public class StringFunTest {
         assertThat(b, equalTo("abc"));
     }
 
+    Object[] leftParam() {
+        return new Object[]{
+            new Object[]{"apple", 3, "app"},
+            new Object[]{"apple", 10, "apple"},
+            new Object[]{"apple", -2, ""},};
+    }
+
     @Test
-    public void test_left_success() {
+    @Parameters(method = "leftParam")
+    public void test_left_success(String s, int n, String result) {
         System.out.println("test_StringFun_left_success");
 
-        String a = StringFun.left("apple", 3);
-        assertThat(a, equalTo("app"));
-
-        String b = StringFun.left("apple", 10);
-        assertThat(b, equalTo("apple"));
-
-        String c = StringFun.left("apple", -2);
-        assertThat(c, equalTo(""));
-
-        String d = StringFun.left("apple", 3);
-        assertThat(d, not(equalTo("ap")));
+        String a = StringFun.left(s, n);
+        assertThat(a, equalTo(result));
     }
 
     @Test(expected = java.lang.NullPointerException.class)
@@ -210,21 +218,21 @@ public class StringFunTest {
         assertThat(a, equalTo("app"));
     }
 
+    Object[] rightParam() {
+        return new Object[]{
+            new Object[]{"pineapple", 5, "apple"},
+            new Object[]{"pineapple", 15, "pineapple"},
+            new Object[]{"pineapple", -2, ""},
+            new Object[]{"pineapple", 3, "ple"}};
+    }
+
     @Test
-    public void test_right_success() {
+    @Parameters(method = "rightParam")
+    public void test_right_success(String s, int n, String result) {
         System.out.println("test_StringFun_right_success");
 
-        String a = StringFun.right("pineapple", 5);
-        assertThat(a, equalTo("apple"));
-
-        String b = StringFun.right("pineapple", 15);
-        assertThat(b, equalTo("pineapple"));
-
-        String c = StringFun.right("pineapple", -2);
-        assertThat(c, equalTo(""));
-
-        String d = StringFun.right("pineapple", 3);
-        assertThat(d, not(equalTo("apple")));
+        String a = StringFun.right(s, n);
+        assertThat(a, equalTo(result));
     }
 
     @Test(expected = java.lang.NullPointerException.class)
@@ -235,21 +243,22 @@ public class StringFunTest {
         assertThat(a, equalTo("app"));
     }
 
+    Object[] middleParam() {
+        return new Object[]{
+            new Object[]{"banana", 2, 3, "nan"},
+            new Object[]{"banana", 15, 2, ""},
+            new Object[]{"banana", -2, 2, ""},
+            new Object[]{"banana", 1, 3, "ana"}
+        };
+    }
+
     @Test
-    public void test_middle_success() {
+    @Parameters(method = "middleParam")
+    public void test_middle_success(String s, int start, int end, String result) {
         System.out.println("test_StringFun_middle_success");
 
-        String a = StringFun.middle("banana", 2, 3);
-        assertThat(a, equalTo("nan"));
-
-        String b = StringFun.middle("banana", 15, 2);
-        assertThat(b, equalTo(""));
-
-        String c = StringFun.middle("banana", -2, 2);
-        assertThat(c, equalTo(""));
-
-        String d = StringFun.middle("banana", 1, 3);
-        assertThat(d, not(equalTo("nan")));
+        String a = StringFun.middle(s, start, end);
+        assertThat(a, equalTo(result));
     }
 
     @Test(expected = java.lang.NullPointerException.class)
@@ -260,21 +269,21 @@ public class StringFunTest {
         assertThat(a, equalTo("xxx"));
     }
 
+    Object[] leftTrimParam() {
+        return new Object[]{
+            new Object[]{"pineapple", 4, "apple"},
+            new Object[]{"pineapple", 15, ""},
+            new Object[]{"pineapple", -2, "pineapple"},
+            new Object[]{"pineapple", 3, "eapple"},};
+    }
+
     @Test
-    public void test_leftTrim_success() {
+    @Parameters(method = "leftTrimParam")
+    public void test_leftTrim_success(String s, int n, String result) {
         System.out.println("test_StringFun_leftTrim_success");
 
-        String a = StringFun.leftTrim("pineapple", 4);
-        assertThat(a, equalTo("apple"));
-
-        String b = StringFun.leftTrim("pineapple", 15);
-        assertThat(b, equalTo(""));
-
-        String c = StringFun.leftTrim("pineapple", -2);
-        assertThat(c, equalTo("pineapple"));
-
-        String d = StringFun.leftTrim("pineapple", 3);
-        assertThat(d, not(equalTo("apple")));
+        String a = StringFun.leftTrim(s, n);
+        assertThat(a, equalTo(result));
     }
 
     @Test(expected = java.lang.NullPointerException.class)
@@ -285,22 +294,21 @@ public class StringFunTest {
         assertThat(a, equalTo("app"));
     }
 
+    Object[] rightTrimParam() {
+        return new Object[]{
+            new Object[]{"pineapple", 4, "pinea"},
+            new Object[]{"pineapple", 15, ""},
+            new Object[]{"pineapple", -2, "pineapple"},
+            new Object[]{"pineapple", 3, "pineap"},};
+    }
+
     @Test
-    public void test_rightTrim_success() {
+    @Parameters(method = "rightTrimParam")
+    public void test_rightTrim_success(String s, int n, String result) {
         System.out.println("test_StringFun_rightTrim_success");
 
-        String a = StringFun.rightTrim("pineapple", 4);
-        assertThat(a, equalTo("pinea"));
-
-        String b = StringFun.rightTrim("pineapple", 15);
-        assertThat(b, equalTo(""));
-
-        String c = StringFun.rightTrim("pineapple", -2);
-        assertThat(c, equalTo("pineapple"));
-
-        String d = StringFun.rightTrim("pineapple", 3);
-        assertThat(d, not(equalTo("pine")));
-
+        String a = StringFun.rightTrim(s, n);
+        assertThat(a, equalTo(result));
     }
 
     @Test(expected = java.lang.NullPointerException.class)
@@ -340,20 +348,17 @@ public class StringFunTest {
     }
 
     @Test
-    public void test_toMd5_success() throws NoSuchAlgorithmException, UnsupportedEncodingException, UnsupportedEncodingException {
+    @Parameters({
+        "f25a2fc72690b780b2a14e140ef6a9e0,iloveyou",
+        "ce491ffa534d26fe1cfaa089fc21f616,I Miss Youabc123"
+    })
+    public void test_toMd5_success(String hash, String plain) throws NoSuchAlgorithmException, UnsupportedEncodingException, UnsupportedEncodingException {
         System.out.println("test_StringFun_toMd5_success");
 
-        String hashA = "F25A2FC72690B780B2A14E140EF6A9E0";
-        String a = StringFun.toMd5("iloveyou");
+        String a = StringFun.toMd5(plain);
         assertNotNull(a);
         assertThat(a.length(), equalTo(32));
-        assertThat(a.toUpperCase(), equalTo(hashA));
-
-        String hashB = "ce491ffa534d26fe1cfaa089fc21f616";
-        String b = StringFun.toMd5("I Miss Youabc123");
-        assertNotNull(b);
-        assertThat(b.length(), equalTo(32));
-        assertThat(b, equalTo(hashB));
+        assertThat(a, equalTo(hash));
     }
 
     @Test(expected = NullPointerException.class)
@@ -365,18 +370,16 @@ public class StringFunTest {
     }
 
     @Test
-    public void test_toSha_success() throws NoSuchAlgorithmException {
+    @Parameters({
+        "ee8d8728f435fd550f83852aabab5234ce1da528,iloveyou",
+        "5165baf7b1eabd262e553ea5f0d8c02f0db88d70,I Miss Youabc123"
+    })
+    public void test_toSha_success(String hash, String plain) throws NoSuchAlgorithmException {
         System.out.println("test_StringFun_toSha_success");
 
-        String hashA = "ee8d8728f435fd550f83852aabab5234ce1da528";
-        String a = StringFun.toSha("iloveyou");
+        String a = StringFun.toSha(plain);
         assertNotNull(a);
-        assertThat(a, equalTo(hashA));
-
-        String hashB = "5165baf7b1eabd262e553ea5f0d8c02f0db88d70";
-        String b = StringFun.toSha("I Miss Youabc123");
-        assertNotNull(b);
-        assertThat(b, equalTo(hashB));
+        assertThat(a, equalTo(hash));
     }
 
     @Test(expected = NullPointerException.class)
@@ -388,18 +391,16 @@ public class StringFunTest {
     }
 
     @Test
-    public void test_toSha256_success() throws NoSuchAlgorithmException {
+    @Parameters({
+        "e4ad93ca07acb8d908a3aa41e920ea4f4ef4f26e7f86cf8291c5db289780a5ae,iloveyou",
+        "e06d6c9ef50e95ab3520f211866f3f9503357b76675cdaf29a592f28182a5607,I Miss Youabc123"
+    })
+    public void test_toSha256_success(String hash, String plain) throws NoSuchAlgorithmException {
         System.out.println("test_StringFun_toSha256_success");
 
-        String hashA = "e4ad93ca07acb8d908a3aa41e920ea4f4ef4f26e7f86cf8291c5db289780a5ae";
-        String a = StringFun.toSha256("iloveyou");
+        String a = StringFun.toSha256(plain);
         assertNotNull(a);
-        assertThat(a, equalTo(hashA));
-
-        String hashB = "e06d6c9ef50e95ab3520f211866f3f9503357b76675cdaf29a592f28182a5607";
-        String b = StringFun.toSha256("I Miss Youabc123");
-        assertNotNull(b);
-        assertThat(b, equalTo(hashB));
+        assertThat(a, equalTo(hash));
     }
 
     @Test(expected = NullPointerException.class)
@@ -409,20 +410,19 @@ public class StringFunTest {
         String a = StringFun.toSha256(null);
         assertThat(a.length(), equalTo(32));
     }
-    
+
     @Test
-    public void test_toSha512_success() throws NoSuchAlgorithmException {
+    @Parameters({"50e0dc4455bcb1ee80adb942d153c6b0eb17b31d603b017fa77f60f60f68fd7d0565cb486783f29cea210313c97f0f9d49e64e6730053bfa1448d5b826309184,"
+        + "iloveyou",
+        "7c431129049001626202effe2760ac0702e9a971b82ba9148f4a73975c4c27d25de875d9765f926c11d87c25cdcaf3a87080a9cdf026127a17859923643778b2,"
+        + "I Miss Youabc123"
+    })
+    public void test_toSha512_success(String hash, String plain) throws NoSuchAlgorithmException {
         System.out.println("test_StringFun_toSha512_success");
 
-        String hashA = "50e0dc4455bcb1ee80adb942d153c6b0eb17b31d603b017fa77f60f60f68fd7d0565cb486783f29cea210313c97f0f9d49e64e6730053bfa1448d5b826309184";
-        String a = StringFun.toSha512("iloveyou");
+        String a = StringFun.toSha512(plain);
         assertNotNull(a);
-        assertThat(a, equalTo(hashA));
-
-        String hashB = "7c431129049001626202effe2760ac0702e9a971b82ba9148f4a73975c4c27d25de875d9765f926c11d87c25cdcaf3a87080a9cdf026127a17859923643778b2";
-        String b = StringFun.toSha512("I Miss Youabc123");
-        assertNotNull(b);
-        assertThat(b, equalTo(hashB));
+        assertThat(a, equalTo(hash));
     }
 
     @Test(expected = NullPointerException.class)
@@ -503,7 +503,7 @@ public class StringFunTest {
     public void test_fromFileSize_success(long fileSize, String result) {
         System.out.println("test_StringFun_fromFileSize_success");
 
-        String a = StringFun.fromFileSize(fileSize);        
+        String a = StringFun.fromFileSize(fileSize);
         assertThat(a, equalTo(result));
     }
 
@@ -517,7 +517,7 @@ public class StringFunTest {
 
         Date dA1 = DateFun.of(2018, 5, 10, 3, 10, 0);
         Date dA2 = DateFun.of(2018, 7, 10, 5, 12, 50);
-        String b = StringFun.elapsedTime(dA1, dA2);        
+        String b = StringFun.elapsedTime(dA1, dA2);
         assertNotNull(b);
         assertTrue(b.length() > 0);
     }
