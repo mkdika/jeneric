@@ -526,7 +526,7 @@ public final class StringFun {
         byte[] fileBytes = Files.readAllBytes(path);
         return new String(fileBytes);
     }
-    
+
     /**
      * To return a human readable file size UOM (B,KB,MB,GB,TB) base on given
      * size (long).
@@ -539,41 +539,45 @@ public final class StringFun {
      * @return {@link java.lang.String}
      */
     public static String fromFileSize(long fileSize) {
+        if (fileSize > 1098412116000000L) {
+            throw new IllegalArgumentException("File size can not more than 999 TB.");
+        }
+
         BigDecimal k = new BigDecimal(1024);
         StringBuilder sb = new StringBuilder();
         if (fileSize >= 0L && fileSize < 1024L) { // B
-            return sb.append(fileSize).append(" B").toString();
+            sb.append(fileSize).append(" B").toString();
         } else if (fileSize >= 1024L && fileSize < 1048576L) {  // KB            
             BigDecimal n = new BigDecimal(fileSize);
             BigDecimal r = n.divide(k, RoundingMode.HALF_UP);
-            return sb.append(String.valueOf(r.longValueExact())).append(" KB").toString();
+            sb.append(String.valueOf(r.longValueExact())).append(" KB").toString();
         } else if (fileSize >= 1048576L && fileSize < 1073741824L) { // MB
             BigDecimal n = new BigDecimal(fileSize);
             BigDecimal r = n.divide(k, RoundingMode.HALF_UP).divide(k, RoundingMode.HALF_UP);
-            return sb.append(String.valueOf(r.longValueExact())).append(" MB").toString();
+            sb.append(String.valueOf(r.longValueExact())).append(" MB").toString();
         } else if (fileSize >= 1073741824L && fileSize < 1099511628000L) { // GB
             BigDecimal n = new BigDecimal(fileSize);
             BigDecimal r = n.divide(k, RoundingMode.HALF_UP)
                     .divide(k, RoundingMode.HALF_UP)
                     .divide(k, RoundingMode.HALF_UP);
-            return sb.append(String.valueOf(r.longValueExact())).append(" GB").toString();
-        } else if (fileSize >= 1099511628000L && fileSize <= 1098412116000000L) { // TB
+            sb.append(String.valueOf(r.longValueExact())).append(" GB").toString();
+        } else if (fileSize >= 1099511628000L) { // TB
             BigDecimal n = new BigDecimal(fileSize);
             BigDecimal r = n.divide(k, RoundingMode.HALF_UP)
                     .divide(k, RoundingMode.HALF_UP)
                     .divide(k, RoundingMode.HALF_UP)
                     .divide(k, RoundingMode.HALF_UP);
-            return sb.append(String.valueOf(r.longValueExact())).append(" TB").toString();
-        } else {
-            return "";
+            sb.append(String.valueOf(r.longValueExact())).append(" TB").toString();
         }
+        return sb.toString();
     }
 
     /**
-     * To return information (String) of elapsed time between two {@link java.util.Date}.
+     * To return information (String) of elapsed time between two
+     * {@link java.util.Date}.
      * <p>
      * See {@link com.mkdika.jeneric.function.StringFun#elapsedTime(long, long)}
-     * 
+     *
      * @param startDate input startDate (timestamp).
      * @param endDate input endDate (timestamp).
      * @return {@link java.lang.String}
@@ -581,7 +585,7 @@ public final class StringFun {
     public static String elapsedTime(Date startDate, Date endDate) {
         return elapsedTime(startDate.getTime(), endDate.getTime());
     }
-   
+
     /**
      * To return information (String) of elapsed time between two timestamp.
      * <p>
@@ -590,7 +594,7 @@ public final class StringFun {
      * date1 = 10 May 2018 03:10:00<br>
      * date2 = 10 Jul 2018 05:12:50<br>
      * will return: 61 days 2 hours 2 minutes 50 seconds 0 milliseconds
-     *      
+     *
      * @param startTime input the startTime (numbers of milliseconds)
      * @param endTime input the endTime (numbers of milliseconds)
      * @return {@link java.lang.String}
