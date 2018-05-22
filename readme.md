@@ -12,22 +12,39 @@ Build on top of Java 8 standard API, no external libraries is needed.
 _coming soon.._
 
 
-## Quickstart
-_coming soon.._
-
-
-## Documentation
-_coming soon.._
-
-
 ## Used Tool and Library
+- [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html)
+- [Maven3](https://maven.apache.org/index.html), as build system and dependency management.
 - __Unit Testing__:
 	- [JUnit4](https://junit.org/junit4/), as unit testing framework.
 	- [Java Hamcrest](http://hamcrest.org/JavaHamcrest/), for ease matcher and more human readable equality test.
 	- [JUnitParams](https://github.com/Pragmatists/JUnitParams), for ease parameterized test.
 	- [Mockito](http://site.mockito.org/), a mock test framework.
 	- [Jacoco](https://www.eclemma.org/jacoco/), a code coverage library.
+	- [Pitest](http://pitest.org/), State of the art mutation testing system for the JVM.
+
+
+## Quickstart
+_coming soon.._
+
+
+## Build and Testing
+- Install Java 8 JDK.
+- [Install Maven3](https://maven.apache.org/install.html).
+- To build from source and run the complete __Coverage Test__ and __Mutation Test__, execute this from project root:
 	
+	```console
+	mvn clean install org.pitest:pitest-maven:mutationCoverage
+	```
+	
+	- Check `target` folder, and search for `jeneric-<version>.jar`, for build file.
+	- Check folder and open file `target/site/jacoco/index.html`, for Jacoco coverage test result.
+	- Check folder and open file `target/pit-reports/<YYYYMMDDHHMI>/index.html`, for PiTest result.
+
+
+## Documentation
+_coming soon.._
+
 
 ## Maintainer
 - [Maikel Chandika](https://github.com/mkdika)
