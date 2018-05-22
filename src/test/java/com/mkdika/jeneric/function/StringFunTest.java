@@ -490,23 +490,22 @@ public class StringFunTest {
         String a = StringFun.readTextFile(input);
         assertNotNull(a);
     }
-    
+
     Object[] fromFileSizeParam() {
         return new Object[]{
-            new Object[]{-1L,""},
-            new Object[]{0L,"0 B"},
-            new Object[]{700L,"700 B"},
-            new Object[]{1024L,"1 KB"},
-            new Object[]{27648L,"27 KB"},
-            new Object[]{1048576L,"1 MB"},
-            new Object[]{75254592L,"72 MB"},
-            new Object[]{950000000L,"906 MB"},
-            new Object[]{1073741824L,"1 GB"},
-            new Object[]{134217728000L,"125 GB"},
-            new Object[]{1099511628000L,"1 TB"},
+            new Object[]{-1L, ""},
+            new Object[]{0L, "0 B"},
+            new Object[]{700L, "700 B"},
+            new Object[]{1024L, "1 KB"},
+            new Object[]{27648L, "27 KB"},
+            new Object[]{1048576L, "1 MB"},
+            new Object[]{75254592L, "72 MB"},
+            new Object[]{950000000L, "906 MB"},
+            new Object[]{1073741824L, "1 GB"},
+            new Object[]{134217728000L, "125 GB"},
+            new Object[]{1099511628000L, "1 TB"},
             new Object[]{8796093022208L, "8 TB"},
-            new Object[]{1098412116000000L,"999 TB"},            
-        };    
+            new Object[]{1098412116000000L, "999 TB"},};
     }
 
     @Test
@@ -517,11 +516,11 @@ public class StringFunTest {
         String a = StringFun.fromFileSize(fileSize);
         assertThat(a, equalTo(result));
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void test_fromFileSize_exception() {
         System.out.println("test_StringFun_fromFileSize_exception");
-        
+
         String a = StringFun.fromFileSize(1098412116000001L);
     }
 
