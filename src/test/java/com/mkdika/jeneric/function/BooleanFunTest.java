@@ -20,18 +20,21 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
 
 /**
  *
  * @author Maikel Chandika (mkdika@gmail.com)
  */
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(JUnitParamsRunner.class)
 public class BooleanFunTest {
 
     @Before
@@ -52,92 +55,70 @@ public class BooleanFunTest {
     }
 
     @Test
-    public void test_isDateOverlap_success() {
+    @Parameters({"2018,1 ,1 ,10,30,45,"
+               + "2018,1 ,25,10,30,45,"
+               + "2018,1 ,10,10,30,45,"
+               + "2018,1 ,20,10,30,45,true",
+                 "2018,1 ,1 ,10,30,45,"
+               + "2018,1 ,25,10,30,45,"
+               + "2018,1 ,10,10,30,45,"
+               + "2018,2 ,20,10,30,45,true",
+                 "2018,1 ,1 ,10,30,45,"
+               + "2018,1 ,25,10,30,45,"
+               + "2017,12,10,10,30,45,"
+               + "2018,1 ,20,10,30,45,true",
+                 "2018,1 ,1 ,10,30,45,"
+               + "2018,1 ,1 ,10,30,45,"
+               + "2018,1 ,1 ,10,30,45,"
+               + "2018,1 ,1 ,10,30,45,true",
+                 "2018,1 ,1 ,10,30,45,"
+               + "2018,1 ,10,10,30,45,"
+               + "2018,1 ,1 ,10,30,45,"
+               + "2018,1 ,10,10,30,45,true",
+                 "2018,1 ,1 ,10,30,45,"
+               + "2018,1 ,10,10,30,45,"
+               + "2018,1 ,10,10,30,45,"
+               + "2018,1 ,20,10,30,45,true",
+                 "2018,1 ,1 ,10,30,45,"
+               + "2018,1 ,10,10,30,45,"
+               + "2018,1 ,10,10,30,45,"
+               + "2018,1 ,20,10,30,45,true",
+                 "2018,1 ,1 ,1 ,1 ,1 ,"
+               + "2018,1 ,10,1 ,1 ,1 ,"
+               + "2018,1 ,11,1 ,1 ,1 ,"
+               + "2018,1 ,20,1 ,1 ,1 ,false",
+                 "2018,1 ,1 ,1 ,1 ,1 ,"
+               + "2018,1 ,3 ,1 ,1 ,1 ,"
+               + "2018,1 ,2 ,1 ,1 ,1 ,"
+               + "2018,1 ,2 ,1 ,1 ,1 ,true",
+                 "2018,1 ,3 ,1 ,1 ,1 ,"
+               + "2018,1 ,4 ,1 ,1 ,1 ,"
+               + "2018,1 ,2 ,1 ,1 ,1 ,"
+               + "2018,1 ,2 ,1 ,1 ,1 ,false",
+                 "2018,1 ,3 ,1 ,1 ,1 ,"
+               + "2018,1 ,4 ,1 ,1 ,1 ,"
+               + "2018,1 ,5 ,1 ,1 ,1 ,"
+               + "2018,1 ,5 ,1 ,1 ,1 ,false"        
+    })
+    public void test_isDateOverlap_success(int a1,int b1,int c1,int d1,int e1,int f1,
+                                           int a2,int b2,int c2,int d2,int e2,int f2,
+                                           int a3,int b3,int c3,int d3,int e3,int f3,
+                                           int a4,int b4,int c4,int d4,int e4,int f4,boolean result) {
         System.out.println("test_BooleanFun_isDateOverlap_success");
 
-        Date dtA1 = DateFun.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
-        Date dtA2 = DateFun.of(2018, 1, 25, 10, 30, 45); // 25 Jan 2018 10:30:45
-        Date dtA3 = DateFun.of(2018, 1, 10, 10, 30, 45); // 10 Jan 2018 10:30:45
-        Date dtA4 = DateFun.of(2018, 1, 20, 10, 30, 45); // 20 Jan 2018 10:30:45
-        boolean a = BooleanFun.isDateOverlap(dtA1, dtA2, dtA3, dtA4);
-        assertTrue(a);
-
-        Date dtB1 = DateFun.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
-        Date dtB2 = DateFun.of(2018, 1, 25, 10, 30, 45); // 25 Jan 2018 10:30:45
-        Date dtB3 = DateFun.of(2018, 1, 10, 10, 30, 45); // 10 Jan 2018 10:30:45
-        Date dtB4 = DateFun.of(2018, 2, 20, 10, 30, 45); // 20 Feb 2018 10:30:45
-        boolean b = BooleanFun.isDateOverlap(dtB1, dtB2, dtB3, dtB4);
-        assertTrue(b);
-
-        Date dtC1 = DateFun.of(2018, 1, 1, 10, 30, 45);   // 1  Jan 2018 10:30:45
-        Date dtC2 = DateFun.of(2018, 1, 25, 10, 30, 45);  // 25 Jan 2018 10:30:45
-        Date dtC3 = DateFun.of(2017, 12, 10, 10, 30, 45); // 10 Dec 2017 10:30:45
-        Date dtC4 = DateFun.of(2018, 1, 20, 10, 30, 45);  // 20 Feb 2018 10:30:45
-        boolean c = BooleanFun.isDateOverlap(dtC1, dtC2, dtC3, dtC4);
-        assertTrue(c);
-
-        Date dtD1 = DateFun.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
-        Date dtD2 = DateFun.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
-        Date dtD3 = DateFun.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
-        Date dtD4 = DateFun.of(2018, 1, 1, 10, 30, 45);  // 1  Jan 2018 10:30:45
-        boolean d = BooleanFun.isDateOverlap(dtD1, dtD2, dtD3, dtD4);
-        assertTrue(d);
-
-        Date dtE1 = DateFun.of(2018, 1, 1, 10, 30, 45);   // 1  Jan 2018 10:30:45
-        Date dtE2 = DateFun.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
-        Date dtE3 = DateFun.of(2018, 1, 1, 10, 30, 45);   // 1  Jan 2018 10:30:45
-        Date dtE4 = DateFun.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
-        boolean e = BooleanFun.isDateOverlap(dtE1, dtE2, dtE3, dtE4);
-        assertTrue(e);
-
-        Date dtF1 = DateFun.of(2018, 1, 1, 10, 30, 45);   // 1  Jan 2018 10:30:45
-        Date dtF2 = DateFun.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
-        Date dtF3 = DateFun.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
-        Date dtF4 = DateFun.of(2018, 1, 20, 10, 30, 45);  // 20 Jan 2018 10:30:45
-        boolean f = BooleanFun.isDateOverlap(dtF1, dtF2, dtF3, dtF4);
-        assertTrue(f);
-
-        Date dtG1 = DateFun.of(2018, 1, 1, 10, 30, 45);   // 1  Jan 2018 10:30:45
-        Date dtG2 = DateFun.of(2018, 1, 10, 10, 30, 45);  // 10 Jan 2018 10:30:45
-        Date dtG3 = DateFun.of(2018, 1, 10, 10, 30, 46);  // 10 Jan 2018 10:30:45
-        Date dtG4 = DateFun.of(2018, 1, 20, 10, 30, 45);  // 20 Jan 2018 10:30:45
-        boolean g = BooleanFun.isDateOverlap(dtG1, dtG2, dtG3, dtG4);
-        assertFalse(g);
-
-        Date dtH1 = DateFun.of(2018, 1, 1);   // 1  Jan 2018
-        Date dtH2 = DateFun.of(2018, 1, 10);  // 10 Jan 2018
-        Date dtH3 = DateFun.of(2018, 1, 11);  // 11 Jan 2018
-        Date dtH4 = DateFun.of(2018, 1, 20);  // 20 Jan 2018
-        boolean h = BooleanFun.isDateOverlap(dtH1, dtH2, dtH3, dtH4);
-        assertFalse(h);
-
-        Date dtI1 = DateFun.of(2018, 1, 1);   // 1  Jan 2018
-        Date dtI2 = DateFun.of(2018, 1, 3);  // 3 Jan 2018
-        Date dtI3 = DateFun.of(2018, 1, 2);  // 2 Jan 2018
-        Date dtI4 = DateFun.of(2018, 1, 2);  // 2 Jan 2018
-        boolean i = BooleanFun.isDateOverlap(dtI1, dtI2, dtI3, dtI4);
-        assertTrue(i);
-
-        Date dtJ1 = DateFun.of(2018, 1, 3);   // 3  Jan 2018
-        Date dtJ2 = DateFun.of(2018, 1, 4);  // 4 Jan 2018
-        Date dtJ3 = DateFun.of(2018, 1, 2);  // 2 Jan 2018
-        Date dtJ4 = DateFun.of(2018, 1, 2);  // 2 Jan 2018
-        boolean j = BooleanFun.isDateOverlap(dtJ1, dtJ2, dtJ3, dtJ4);
-        assertFalse(j);
-
-        Date dtK1 = DateFun.of(2018, 1, 3);   // 3  Jan 2018
-        Date dtK2 = DateFun.of(2018, 1, 4);  // 4 Jan 2018
-        Date dtK3 = DateFun.of(2018, 1, 5);  // 5 Jan 2018
-        Date dtK4 = DateFun.of(2018, 1, 5);  // 5 Jan 2018
-        boolean k = BooleanFun.isDateOverlap(dtK1, dtK2, dtK3, dtK4);
-        assertFalse(k);
+        Date dtA1 = DateFun.of(a1,b1,c1,d1,e1,f1);  
+        Date dtA2 = DateFun.of(a2,b2,c2,d2,e2,f2);  
+        Date dtA3 = DateFun.of(a3,b3,c3,d3,e3,f3);  
+        Date dtA4 = DateFun.of(a4,b4,c4,d4,e4,f4);  
+        boolean b = BooleanFun.isDateOverlap(dtA1, dtA2, dtA3, dtA4);
+        assertThat(b,equalTo(result));                                         
     }
 
     @Test(expected = NullPointerException.class)
     public void test_isDateOverlap_exception1() {
         System.out.println("test_BooleanFun_isDateOverlap_exception1");
         boolean a = BooleanFun.isDateOverlap(null, null, null, null);
-        assertFalse(a);
+        assertFalse(a);                
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -208,17 +189,15 @@ public class BooleanFunTest {
     }
 
     @Test
-    public void test_isStringContainNumeric_success() {
+    @Parameters({"maikel, false",
+                 "app1e, true",
+                 "G0O6LE, true"
+    })
+    public void test_isStringContainNumeric_success(String input, boolean result) {
         System.out.println("test_BooleanFun_isStringContainNumeric_success");
 
-        boolean a = BooleanFun.isStringContainNumeric("maikel");
-        assertFalse(a);
-
-        boolean b = BooleanFun.isStringContainNumeric("app1e");
-        assertTrue(b);
-
-        boolean c = BooleanFun.isStringContainNumeric("G0O6LE");
-        assertTrue(c);
+        boolean a = BooleanFun.isStringContainNumeric(input);
+        assertThat(a,equalTo(result));
     }
 
     @Test
@@ -233,17 +212,15 @@ public class BooleanFunTest {
     }
 
     @Test
-    public void test_isStringContainAlphabet_success() {
+    @Parameters({"123456, false",
+                 "125O00, true",
+                 "maikel7369, true"
+    })
+    public void test_isStringContainAlphabet_success(String input, boolean result) {
         System.out.println("test_BooleanFun_isStringContainAlphabet_success");
 
-        boolean a = BooleanFun.isStringContainAlphabet("123456");
-        assertFalse(a);
-
-        boolean b = BooleanFun.isStringContainAlphabet("125O00");
-        assertTrue(b);
-
-        boolean c = BooleanFun.isStringContainAlphabet("maikel7369");
-        assertTrue(c);
+        boolean a = BooleanFun.isStringContainAlphabet(input);
+        assertThat(a,equalTo(result));        
     }
 
     @Test
@@ -258,15 +235,14 @@ public class BooleanFunTest {
     }
 
     @Test
-    public void test_isDoubleFractional_success() {
+    @Parameters({"3.0d, false",
+                 "12.56d, true"                 
+    })
+    public void test_isDoubleFractional_success(Double d, boolean result) {
         System.out.println("test_BooleanFun_isDoubleFractional_success");
 
-        boolean a = BooleanFun.isDoubleFractional(3.0d);
-        assertFalse(a);
-
-        boolean b = BooleanFun.isDoubleFractional(12.56d);
-        assertTrue(b);
-
+        boolean a = BooleanFun.isDoubleFractional(d);
+        assertThat(a,equalTo(result));
     }
 
     @Test(expected = NullPointerException.class)
@@ -278,23 +254,18 @@ public class BooleanFunTest {
     }
 
     @Test
-    public void test_isPalindrome_success() {
+    @Parameters({"madam, true",
+                 "able was I ere I saw elba,true",
+                 "avid siva,false",
+                 "a,true",
+                 ",true"
+                 
+    })
+    public void test_isPalindrome_success(String input, boolean result) {
         System.out.println("test_BooleanFun_isPalindrome_success");
 
-        boolean a = BooleanFun.isPalindrome("madam");
-        assertTrue(a);
-
-        boolean b = BooleanFun.isPalindrome("able was I ere I saw elba");
-        assertTrue(b);
-
-        boolean c = BooleanFun.isPalindrome("avid siva");
-        assertFalse(c);
-
-        boolean d = BooleanFun.isPalindrome("a");
-        assertTrue(d);
-
-        boolean e = BooleanFun.isPalindrome("");
-        assertTrue(e);
+        boolean a = BooleanFun.isPalindrome(input);
+        assertThat(a,equalTo(result));
     }
 
     @Test(expected = NullPointerException.class)
@@ -306,65 +277,48 @@ public class BooleanFunTest {
     }
 
     @Test
-    public void test_isPrime_success() {
+    @Parameters({
+        "1,false",
+        "983,true",
+        "179424691,true",
+        "179425321,false",
+        "1000000,false"
+    })
+    public void test_isPrime_success(int input,boolean result) {
         System.out.println("test_BooleanFun_isPrime_success");
 
-        boolean a = BooleanFun.isPrime(1);
-        assertFalse(a);
-
-        boolean b = BooleanFun.isPrime(983);
-        assertTrue(b);
-
-        boolean c = BooleanFun.isPrime(179_424_691);
-        assertTrue(c);
-
-        boolean d = BooleanFun.isPrime(179_425_321);
-        assertFalse(d);
-
-        boolean e = BooleanFun.isPrime(1_000_000L, 10);
-        assertFalse(e);
+        boolean a = BooleanFun.isPrime(input);
+        assertThat(a,equalTo(result));
     }
 
     @Test
-    public void test_isValidIpV4Address_success() {
+    @Parameters({
+        "192.168.1.1,true",
+        "127.0.0.1,true",
+        "0.0.0.0,true",
+        "10.100.090.002,true",
+        "222.222.2.999,false",
+        "172.16.230,false", 
+        ",false"
+    })
+    public void test_isValidIpV4Address_success(String input, boolean result) {
         System.out.println("test_BooleanFun_isValidIpV4Address_success");
 
-        boolean a = BooleanFun.isValidIpV4Address("192.168.1.1");
-        assertTrue(a);
-
-        boolean b = BooleanFun.isValidIpV4Address("127.0.0.1");
-        assertTrue(b);
-
-        boolean c = BooleanFun.isValidIpV4Address("0.0.0.0");
-        assertTrue(c);
-
-        boolean d = BooleanFun.isValidIpV4Address("10.100.090.002");
-        assertTrue(d);
-
-        boolean e = BooleanFun.isValidIpV4Address("222.222.2.999");
-        assertFalse(e);
-
-        boolean f = BooleanFun.isValidIpV4Address("172.16.230");
-        assertFalse(f);
-
-        boolean g = BooleanFun.isValidIpV4Address(null);
-        assertFalse(g);
+        boolean a = BooleanFun.isValidIpV4Address(input);
+        assertThat(a,equalTo(result));
     }
 
     @Test
-    public void test_isValidMacAddress_success() {
+    @Parameters({
+        "bc:85:56:20:f3:bf,true",
+        "bc:00:56:20:F3:BF,true",
+        "00:GH:DE:EF:AB:BC,false",
+        ",false"        
+    })
+    public void test_isValidMacAddress_success(String input, boolean result) {
         System.out.println("test_BooleanFun_isValidMacAddress_success");
 
-        boolean a = BooleanFun.isValidMacAddress("bc:85:56:20:f3:bf");
-        assertTrue(a);
-
-        boolean b = BooleanFun.isValidMacAddress("bc:00:56:20:F3:BF");
-        assertTrue(b);
-
-        boolean c = BooleanFun.isValidMacAddress("00:GH:DE:EF:AB:BC");
-        assertFalse(c);
-
-        boolean d = BooleanFun.isValidMacAddress(null);
-        assertFalse(d);
+        boolean a = BooleanFun.isValidMacAddress(input);
+        assertThat(a,equalTo(result));       
     }
 }

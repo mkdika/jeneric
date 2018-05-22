@@ -93,7 +93,7 @@ public final class DateFun {
     }
     
     /**
-     * Null Value Logic (NVL)
+     * Null Value Logic (NVL) or Denullify.
      * <p>
      * If argument is <b>null</b>, it will return <b>new Date()</b>.
      *

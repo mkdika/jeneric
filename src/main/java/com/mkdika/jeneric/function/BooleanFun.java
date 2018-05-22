@@ -85,7 +85,7 @@ public final class BooleanFun {
     }
 
     /**
-     * Check wheter the collection of String is contains the search string
+     * Check wheter the collection of String is contains the search string.
      * <p>
      * If collection is <b>null</b> or <b>empty</b>, it will return
      * <b>false</b>.<br>
@@ -103,7 +103,7 @@ public final class BooleanFun {
     }
 
     /**
-     * Null Value Logic (NVL)
+     * Null Value Logic (NVL) or Denullify.
      * <p>
      * If argument is <b>null</b>, it will return <b>false</b>.
      *
@@ -222,6 +222,7 @@ public final class BooleanFun {
      *
      * @param ipV4Address input argument to check
      * @return {@link boolean}
+     * @see com.mkdika.jeneric.function.BooleanFun#isStringMatch(java.lang.String, java.lang.String) 
      */
     public static boolean isValidIpV4Address(String ipV4Address) {
         return isStringMatch(ipV4Address, IPV4_ADDRESS_PATTERN);
@@ -234,6 +235,7 @@ public final class BooleanFun {
      *
      * @param macAddress input argument to check
      * @return {@link boolean}
+     * @see com.mkdika.jeneric.function.BooleanFun#isStringMatch(java.lang.String, java.lang.String) 
      */
     public static boolean isValidMacAddress(String macAddress) {
         return isStringMatch(macAddress, "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$");

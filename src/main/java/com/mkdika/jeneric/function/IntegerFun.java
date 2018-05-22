@@ -33,7 +33,7 @@ public final class IntegerFun {
     }
 
     /**
-     * Null Value Logic (NVL)
+     * Null Value Logic (NVL) or Denullify.
      * <p>
      * If argument is <b>null</b>, it will return <b>0</b>.
      *

@@ -166,7 +166,7 @@ public final class StringFun {
 
     
     /**
-     * Null Value Logic (NVL)
+     * Null Value Logic (NVL) or Denullify.
      * <p>
      * If argument is <b>null</b>, it will return <b>empty String</b>.
      *
