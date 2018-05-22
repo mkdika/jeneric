@@ -34,10 +34,26 @@ public final class ObjectFun {
     private ObjectFun() {
     }
 
-    public static TimePeriod calculatePeriod(Date startDate, Date endDate) {
+    /**
+     * To return the elapsed time (timestamp) between given two {@link java.util.Date}.
+     * 
+     * @param startDate input startDate (timestamp)
+     * @param endDate input endDate (timestamp)
+     * @return {@link com.mkdika.jeneric.model.TimePeriod}
+     * @see com.mkdika.jeneric.function.ObjectFun#calculatePeriod(long, long) 
+     */
+    public static TimePeriod calculatePeriod(Date startDate, Date endDate) {                
         return calculatePeriod(startDate.getTime(), endDate.getTime());
     }
 
+    
+    /**
+     * To return the elapsed time (timestamp) between given two numbers of milliseconds (long).
+     * 
+     * @param startTime input the startTime (numbers of milliseconds)
+     * @param endTime input the endTime (numbers of milliseconds)
+     * @return {@link com.mkdika.jeneric.model.TimePeriod}
+     */
     public static TimePeriod calculatePeriod(long startTime, long endTime) {
         if (endTime < startTime) {
             throw new IllegalArgumentException("End date must be equals or greater than start date.");

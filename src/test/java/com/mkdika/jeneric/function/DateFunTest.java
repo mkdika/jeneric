@@ -114,13 +114,10 @@ public class DateFunTest {
     @Test
     public void test_truncSec_success() {
         System.out.println("test_DateFun_truncSec_success");
-        LocalDateTime localDateTime = LocalDateTime.of(2018, Month.MAY, 1, 12, 10, 30, 22);
-        Date truncSecDate = DateFun.truncSec(Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant()));
-
-        LocalDateTime localDateTimeCompare = LocalDateTime.of(2018, Month.MAY, 1, 12, 10, 30, 0);
-        Date truncSecDateCompare = Date.from(localDateTimeCompare.atZone(ZoneId.systemDefault()).toInstant());
-
-        assertThat(truncSecDate, equalTo(truncSecDateCompare));
+        
+        Date dt = DateFun.of(2018, 5, 10, 10,30,22);
+        Date trancDt = DateFun.truncSec(dt);
+        assertThat(trancDt,equalTo(DateFun.of(2018, 5, 10,10,30,0)));                
     }
 
     @Test(expected = java.lang.NullPointerException.class)

@@ -16,11 +16,17 @@
 package com.mkdika.jeneric.model;
 
 /**
+ * This class is use to wrap the elapsed time or duration calculation between
+ * two timestamp.
  *
  * @author Maikel Chandika (mkdika@gmail.com)
+ * @since 2018-05-20
  */
 public final class TimePeriod {
 
+    /**
+     * Numbers of days.
+     */
     private final long days;
     private final long hours;
     private final long minutes;
@@ -58,13 +64,13 @@ public final class TimePeriod {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        
+
         sb.append(this.days).append("D");
         sb.append(this.hours).append("H");
         sb.append(this.minutes).append("M");
         sb.append(this.seconds).append("S");
         sb.append(this.milliseconds).append("MS");
-        
+
         return sb.toString();
     }
 }
