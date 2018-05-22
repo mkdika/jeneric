@@ -44,11 +44,25 @@ public final class DoubleFun {
         return (number == null ? 0.0d : number);
     }
 
-    //TODO: finish NumericFun.randomDouble javadoc
+    /**
+     * To return a random value of double.
+     * <p>
+     * The range of random value is from 0.0d to {@link java.lang.Double#MAX_VALUE}.<br>
+     * See {@link com.mkdika.jeneric.function.DoubleFun#random(double, double)}
+     * 
+     * @return {@link double}
+     */
     public static double random() {
         return random(0.0d, Double.MAX_VALUE);
     }
 
+    /**
+     * To return a random value of double by given range.
+     * 
+     * @param min the minimum range value
+     * @param max the maximum range value
+     * @return {@link double}
+     */
     public static double random(double min, double max) {
         return (Math.random() * ((max - min) + 1) + min);
     }
