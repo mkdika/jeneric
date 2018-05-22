@@ -257,7 +257,7 @@ public final class StringFun {
             byte[] mac = network.getHardwareAddress();
             if (mac != null) {
                 StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < mac.length; i++) {
+                for (int i = 0; i < mac.length; i++) {                    
                     sb.append(String.format(StringFormat.MAC_ADDRESS_FORMAT.getFormat(), mac[i], (i < mac.length - 1) ? ":" : ""));
                 }
                 macSet.add(sb.toString());
