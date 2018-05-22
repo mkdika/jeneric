@@ -27,9 +27,16 @@ public final class IntegerFun {
     private IntegerFun() {
     }
 
-    //TODO: finish IntegerFun.nvl javadoc
-    public static Integer nvl(Integer i) {
-        return (i == null ? 0 : i);
+    /**
+     * Null Value Logic (NVL)
+     * <p>
+     * If number is null, it will return 0.
+     *
+     * @param number input parameter to check.
+     * @return {@link java.lang.Integer}
+     */
+    public static Integer nvl(Integer number) {
+        return (number == null ? 0 : number);
     }
 
     //TODO: finish IntegerFun.rand javadoc

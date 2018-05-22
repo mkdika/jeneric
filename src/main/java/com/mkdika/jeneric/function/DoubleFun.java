@@ -17,7 +17,7 @@ package com.mkdika.jeneric.function;
 
 /**
  *
- * @author Maikel Chandika <mkdika@gmail.com>
+ * @author Maikel Chandika (mkdika@gmail.com)
  */
 public final class DoubleFun {
 
@@ -27,8 +27,16 @@ public final class DoubleFun {
     private DoubleFun() {
     }
 
-    public static Double nvl(Double n) {
-        return (n == null ? 0.0d : n);
+    /**
+     * Null Value Logic (NVL)
+     * <p>
+     * If number is null, it will return 0.0d.
+     *
+     * @param number input parameter to check.
+     * @return {@link java.lang.Double}
+     */
+    public static Double nvl(Double number) {
+        return (number == null ? 0.0d : number);
     }
 
     //TODO: finish NumericFun.randomDouble javadoc

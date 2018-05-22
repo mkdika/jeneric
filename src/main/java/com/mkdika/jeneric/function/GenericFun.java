@@ -23,7 +23,7 @@ import java.util.Set;
 
 /**
  *
- * @author Maikel Chandika <mkdika@gmail.com>
+ * @author Maikel Chandika (mkdika@gmail.com)
  */
 public final class GenericFun {
 

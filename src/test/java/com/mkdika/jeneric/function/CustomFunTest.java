@@ -27,7 +27,7 @@ import org.junit.Test;
 
 /**
  *
- * @author Maikel Chandika <mkdika@gmail.com>
+ * @author Maikel Chandika (mkdika@gmail.com)
  */
 public class CustomFunTest {
 

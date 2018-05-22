@@ -17,7 +17,7 @@ package com.mkdika.jeneric.model;
 
 /**
  *
- * @author Maikel Chandika <mkdika@gmail.com>
+ * @author Maikel Chandika (mkdika@gmail.com)
  */
 public final class TimePeriod {
 

@@ -112,7 +112,7 @@ public final class StringFun {
      * Function to return string with given java.util.Date and with(out) format
      * pattern
      * <p>
-     * Work just like
+     * See
      * {@link com.mkdika.jeneric.function.StringFun#fromDate(Date,String)} with
      * default date format pattern
      * {@link com.mkdika.jeneric.types.DateFormat#DEFAULT}
@@ -131,7 +131,7 @@ public final class StringFun {
      * Function to return string with given java.util.Date and with(out) format
      * pattern
      * <p>
-     * Work just like
+     * See
      * {@link com.mkdika.jeneric.function.StringFun#fromDate(Date,String)}
      *
      * @param date given date to format
@@ -163,11 +163,13 @@ public final class StringFun {
         return dateFormat.format(date);
     }
 
-    //TODO: finish StringFun.nvl javadoc
+    
     /**
      * Null Value Logic (NVL)
+     * <p>
+     * If str is null, it will return empty String.
      *
-     * @param str
+     * @param str input parameter to check.
      * @return {@link java.lang.String}
      */
     public static String nvl(String str) {

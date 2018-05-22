@@ -87,7 +87,14 @@ public final class DateFun {
         return Date.from(truncSecDate.atZone(ZoneId.systemDefault()).toInstant());
     }
     
-    // TODO: finish DateFun.nvl javadoc
+    /**
+     * Null Value Logic (NVL)
+     * <p>
+     * If date is null, it will return new Date.
+     *
+     * @param date input parameter to check.
+     * @return {@link java.util.Date}
+     */
     public static Date nvl(Date date) {
         return (date == null? new Date() : date);
     }

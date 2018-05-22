@@ -69,22 +69,45 @@ public final class BooleanFun {
         return ((startDate1.compareTo(endDate2) <= 0) && (startDate2.compareTo(endDate1) <= 0));
     }
 
-    // TODO: finish BooleanFun.isStringContains javadoc
-    public static boolean isStringContains(String str, String... strToCheck) {
-        return isStringContains(str, Arrays.asList(strToCheck));
+    /**
+     * Function to check wheter the array of String is contains the search string
+     * <p>
+     * If array is null or array is empty, it will return false.<br>
+     * See {@link com.mkdika.jeneric.function.BooleanFun#isStringContains(String,Collection)}
+     * 
+     * @param searchStr search string
+     * @param arrayToSearch array to search with.
+     * @return {@link boolean}
+     */
+    public static boolean isStringContains(String searchStr, String[] arrayToSearch) {
+        return isStringContains(searchStr, Arrays.asList(arrayToSearch));
     }
 
-    // TODO: finish BooleanFun.isStringContains javadoc
-    public static boolean isStringContains(String str, Collection<String> strToCheck) {
-        if (str == null || str.trim().isEmpty() || strToCheck == null || strToCheck.size() < 1) {
+    /**
+     * Function to check wheter the collection of String is contains the search string
+     * <p>
+     * If array is null or array is empty, it will return false.
+     * 
+     * @param searchStr search string
+     * @param arrayToSearch array to search with.
+     * @return {@link boolean}
+     */
+    public static boolean isStringContains(String searchStr, Collection<String> arrayToSearch) {
+        if (searchStr == null || searchStr.trim().isEmpty() || arrayToSearch == null || arrayToSearch.size() < 1) {
             return false;
         }
-        Set<String> sets = new HashSet<>();
-        sets.addAll(strToCheck);
-        return sets.contains(str);
+        Set<String> sets = new HashSet<>(arrayToSearch);        
+        return sets.contains(searchStr);
     }
 
-    // TODO: finish BooleanFun.nvl javadoc
+    /**
+     * Null Value Logic (NVL)
+     * <p>
+     * If bool is null, it will return false.
+     *
+     * @param bool input parameter to check.
+     * @return {@link boolean}
+     */
     static boolean nvl(Boolean bool) {
         return (bool == null ? Boolean.FALSE : bool);
     }
