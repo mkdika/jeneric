@@ -27,8 +27,8 @@ import java.util.regex.Pattern;
 /**
  * This class is collection of all boolean return functions.
  *
- * All of this class static method will return {@link boolean} or
- * {@link java.lang.Boolean}
+ * All static method may return {@link boolean}, {@link java.lang.Boolean} or
+ * Array/Collection of {@link java.lang.Boolean}.
  *
  * @author Maikel Chandika (mkdika@gmail.com)
  * @since 2018-04-28
@@ -48,16 +48,16 @@ public final class BooleanFun {
     }
 
     /**
-     * Function to check whether 2 given range of date are overlaps
+     * Check whether given two range of date are overlaps
      * <p>
      * Example: <br>
      * - "2018-01-01","2018-01-20","2018-01-10","2018-01-15" is return true -
      * "2018-01-01","2018-01-20","2018-01-21","2018-01-25" is return false
      *
-     * @param startDate1 start date of date range 1
-     * @param endDate1 end date of date range 1
-     * @param startDate2 start date of date range 2
-     * @param endDate2 end date of date range 2
+     * @param startDate1 start date of date range 1.
+     * @param endDate1 end date of date range 1.
+     * @param startDate2 start date of date range 2.
+     * @param endDate2 end date of date range 2.
      * @return {@link boolean}
      * @see java.util.Date Date
      * @see java.time.LocalDateTime LocalDateTime
@@ -70,12 +70,13 @@ public final class BooleanFun {
     }
 
     /**
-     * Function to check wheter the array of String is contains the search string
+     * Check wheter the array of String is contains the search string
      * <p>
-     * If array is null or array is empty, it will return false.<br>
-     * See {@link com.mkdika.jeneric.function.BooleanFun#isStringContains(String,Collection)}
-     * 
-     * @param searchStr search string
+     * If array is <b>null</b> or <b>empty</b>, it will return <b>false</b>.<br>
+     * See
+     * {@link com.mkdika.jeneric.function.BooleanFun#isStringContains(String,Collection)}
+     *
+     * @param searchStr search string.
      * @param arrayToSearch array to search with.
      * @return {@link boolean}
      */
@@ -84,11 +85,12 @@ public final class BooleanFun {
     }
 
     /**
-     * Function to check wheter the collection of String is contains the search string
+     * Check wheter the collection of String is contains the search string
      * <p>
-     * If array is null or array is empty, it will return false.
-     * 
-     * @param searchStr search string
+     * If collection is <b>null</b> or <b>empty</b>, it will return
+     * <b>false</b>.<br>
+     *
+     * @param searchStr search string.
      * @param arrayToSearch array to search with.
      * @return {@link boolean}
      */
@@ -96,33 +98,58 @@ public final class BooleanFun {
         if (searchStr == null || searchStr.trim().isEmpty() || arrayToSearch == null || arrayToSearch.size() < 1) {
             return false;
         }
-        Set<String> sets = new HashSet<>(arrayToSearch);        
+        Set<String> sets = new HashSet<>(arrayToSearch);
         return sets.contains(searchStr);
     }
 
     /**
      * Null Value Logic (NVL)
      * <p>
-     * If bool is null, it will return false.
+     * If argument is <b>null</b>, it will return <b>false</b>.
      *
-     * @param bool input parameter to check.
+     * @param bool input argument to check.
      * @return {@link boolean}
      */
-    static boolean nvl(Boolean bool) {
+    public static boolean nvl(Boolean bool) {
         return (bool == null ? Boolean.FALSE : bool);
     }
 
-    //TODO: finish BooleanFun.isStringContainNumeric javadoc
+    /**
+     * Check whether given String argument value is contains a numeric
+     * character.
+     * <p>
+     * If argument is <b>null</b>, it will return <b>false</b>
+     *
+     * @param str input argument to check.
+     * @return {@link boolean}
+     */
     public static boolean isStringContainNumeric(String str) {
         return isStringMatch(str, "\\d");
     }
 
-    //TODO: finish BooleanFun.isStringContainAlphabet javadoc
+    /**
+     * Check whether given String argument value is contains a alphabet
+     * character.
+     * <p>
+     * If argument is <b>null</b>, it will return <b>false</b>
+     *
+     * @param str input argument to check.
+     * @return {@link boolean}
+     */
     public static boolean isStringContainAlphabet(String str) {
         return isStringMatch(str, "[a-zA-Z]");
     }
 
-    //TODO: finish BooleanFun.isStringMatch javadoc
+    /**
+     * Check whether given String argument value is match to given regex
+     * pattern.
+     * <p>
+     * If argument is <b>null</b>, it will return <b>false</b>
+     *
+     * @param str input argument to check.
+     * @param regexPattern regular expression pattern to match with.
+     * @return {@link boolean}
+     */
     public static boolean isStringMatch(String str, String regexPattern) {
         if (str == null) {
             return false;
@@ -132,13 +159,26 @@ public final class BooleanFun {
         return matcher.find();
     }
 
-    //TODO: finish BooleanFun.isDoubleFractional javadoc
-    public static boolean isDoubleFractional(Double d) {
-        Double fractionalPart = (d % 1);
+    /**
+     * Check whether given Double argument value is have fractional (decimal)
+     * element.
+     *
+     * @param number input argument to check.
+     * @return {@link boolean}
+     */
+    public static boolean isDoubleFractional(Double number) {
+        Double fractionalPart = (number % 1);
         return Double.compare(0d, fractionalPart) < 0;
     }
 
-    //TODO: finish BooleanFun.isPalindrome javadoc
+    /**
+     * Check whether given String argument value is palindrome or not.
+     * <p>
+     * Comparisson character will be compare as <b>case sensitive</b>.
+     *
+     * @param str input argument to check.
+     * @return {@link boolean}
+     */
     static boolean isPalindrome(String str) {
         if (str.length() == 0 || str.length() == 1) {
             return true;
@@ -149,22 +189,52 @@ public final class BooleanFun {
         return false;
     }
 
-    //TODO: finish BooleanFun.isPrime javadoc
-    public static boolean isPrime(int i) {
-        return isPrime(i, 1);
+    /**
+     * Check whether given Integer argument value is probably prime number.
+     * <p>
+     * see {@link com.mkdika.jeneric.function.BooleanFun#isPrime(long, int)}
+     *
+     * @param number input argument to check
+     * @return {@link boolean}
+     */
+    public static boolean isPrime(int number) {
+        return isPrime(number, 1);
     }
 
-    public static boolean isPrime(long l, int certainty) {
-        BigInteger bi = BigInteger.valueOf(l);
+    /**
+     * Check whether given Integer argument value is probably prime number.
+     *
+     * @param number input argument to check
+     * @param certainty a measure of the uncertainty that the caller is willing
+     * to tolerate
+     * @return {@link boolean}
+     * @see java.math.BigInteger#isProbablePrime(int)
+     */
+    public static boolean isPrime(long number, int certainty) {
+        BigInteger bi = BigInteger.valueOf(number);
         return bi.isProbablePrime(certainty);
     }
 
-    //TODO: finish BooleanFun.isValidIpV4Address javadoc
+    /**
+     * Check whether given IP v4 Address is valid.
+     * <p>
+     * If argument is <b>null</b>, it will return <b>false</b>
+     *
+     * @param ipV4Address input argument to check
+     * @return {@link boolean}
+     */
     public static boolean isValidIpV4Address(String ipV4Address) {
         return isStringMatch(ipV4Address, IPV4_ADDRESS_PATTERN);
     }
 
-    //TODO: finish BooleanFun.isValidMacAddress javadoc
+    /**
+     * Check whether given Mac (physical) address is valid.
+     * <p>
+     * If argument is <b>null</b>, it will return <b>false</b>
+     *
+     * @param macAddress input argument to check
+     * @return {@link boolean}
+     */
     public static boolean isValidMacAddress(String macAddress) {
         return isStringMatch(macAddress, "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$");
     }

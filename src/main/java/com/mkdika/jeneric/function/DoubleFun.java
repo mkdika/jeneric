@@ -16,8 +16,13 @@
 package com.mkdika.jeneric.function;
 
 /**
+ * This class is collection of all double return functions.
+ *
+ * All static method may return {@link double}, {@link java.lang.Double} or
+ * Array/Collection of {@link java.lang.Double}.
  *
  * @author Maikel Chandika (mkdika@gmail.com)
+ * @since 2018-04-28
  */
 public final class DoubleFun {
 
@@ -30,9 +35,9 @@ public final class DoubleFun {
     /**
      * Null Value Logic (NVL)
      * <p>
-     * If number is null, it will return 0.0d.
+     * If argument is <b>null</b>, it will return <b>0.0d</b>.
      *
-     * @param number input parameter to check.
+     * @param number input argument to check.
      * @return {@link java.lang.Double}
      */
     public static Double nvl(Double number) {

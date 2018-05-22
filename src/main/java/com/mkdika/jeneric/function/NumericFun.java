@@ -19,8 +19,13 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 /**
+ * This class is collection of all Numeric/BigDecimal return functions.
+ *
+ * All static method may return {@link java.math.BigDecimal}, Array/Collection of 
+ * {@link java.math.BigDecimal} or other related numeric class.
  *
  * @author Maikel Chandika (mkdika@gmail.com)
+ * @since 2018-04-28
  */
 public final class NumericFun {
 

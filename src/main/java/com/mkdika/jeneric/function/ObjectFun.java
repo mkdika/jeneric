@@ -19,15 +19,19 @@ import com.mkdika.jeneric.model.TimePeriod;
 import java.util.Date;
 
 /**
+ * This class is collection of all misc object/ customize class return functions.
+ *
+ * All static method will return the related reference class.
  *
  * @author Maikel Chandika (mkdika@gmail.com)
+ * @since 2018-04-28
  */
-public final class CustomFun {
+public final class ObjectFun {
 
     /*
         To prevent class from instanate from outside.
      */
-    private CustomFun() {
+    private ObjectFun() {
     }
 
     public static TimePeriod calculatePeriod(Date startDate, Date endDate) {

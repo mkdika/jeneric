@@ -40,9 +40,9 @@ public class CustomFunTest {
         System.out.println("test_CustomFun_class_instance");
 
         try {
-            Constructor<CustomFun> c = CustomFun.class.getDeclaredConstructor();
+            Constructor<ObjectFun> c = ObjectFun.class.getDeclaredConstructor();
             c.setAccessible(true);
-            CustomFun sf = c.newInstance();
+            ObjectFun sf = c.newInstance();
         } catch (NoSuchMethodException | SecurityException | InstantiationException
                 | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
         }
@@ -54,7 +54,7 @@ public class CustomFunTest {
 
         Date dA1 = DateFun.of(2018, 5, 10, 3, 10, 0);
         Date dA2 = DateFun.of(2018, 7, 10, 5, 12, 50);
-        TimePeriod tA = CustomFun.calculatePeriod(dA1, dA2);
+        TimePeriod tA = ObjectFun.calculatePeriod(dA1, dA2);
         assertNotNull(tA);
         assertThat(tA.getDays(), equalTo(61L));
         assertThat(tA.getHours(), equalTo(2L));
@@ -62,7 +62,7 @@ public class CustomFunTest {
         assertThat(tA.getSeconds(), equalTo(50L));
         assertThat(tA.getMilliseconds(), equalTo(0L));
 
-        TimePeriod tB = CustomFun.calculatePeriod(1525896600000L, 1525924550000L);
+        TimePeriod tB = ObjectFun.calculatePeriod(1525896600000L, 1525924550000L);
         assertNotNull(tB);
         assertThat(tB.getDays(), equalTo(0L));
         assertThat(tB.getHours(), equalTo(7L));
@@ -75,7 +75,7 @@ public class CustomFunTest {
     public void test_calculatePeriod_exception1() {
         System.out.println("test_CustomFun_calculatePeriod_exception1");
 
-        TimePeriod tA = CustomFun.calculatePeriod(null, null);
+        TimePeriod tA = ObjectFun.calculatePeriod(null, null);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -84,7 +84,7 @@ public class CustomFunTest {
 
         Date dA1 = DateFun.of(2018, 5, 10, 3, 10, 0);
         Date dA2 = DateFun.of(2018, 7, 10, 5, 12, 50);
-        TimePeriod tA = CustomFun.calculatePeriod(dA2, dA1);
+        TimePeriod tA = ObjectFun.calculatePeriod(dA2, dA1);
     }
 
 }

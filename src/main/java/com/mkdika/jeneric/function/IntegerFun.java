@@ -16,8 +16,13 @@
 package com.mkdika.jeneric.function;
 
 /**
+ * This class is collection of all int return functions.
+ *
+ * All static method may return {@link int}, {@link java.lang.Integer} or
+ * Array/Collection of {@link java.lang.Integer}.
  *
  * @author Maikel Chandika (mkdika@gmail.com)
+ * @since 2018-04-28
  */
 public final class IntegerFun {
 
@@ -30,9 +35,9 @@ public final class IntegerFun {
     /**
      * Null Value Logic (NVL)
      * <p>
-     * If number is null, it will return 0.
+     * If argument is <b>null</b>, it will return <b>0</b>.
      *
-     * @param number input parameter to check.
+     * @param number input argument to check.
      * @return {@link java.lang.Integer}
      */
     public static Integer nvl(Integer number) {

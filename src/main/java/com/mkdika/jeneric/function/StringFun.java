@@ -42,9 +42,10 @@ import java.util.stream.Collectors;
 import javax.xml.bind.DatatypeConverter;
 
 /**
- * This class is collection of all java.lang.String return functions.
+ * This class is collection of all String return functions.
  *
- * All of this class static method will return {@link java.lang.String}
+ * All static method may return {@link java.lang.String} or
+ * Array/Collection of {@link java.lang.String}.
  *
  * @author Maikel Chandika (mkdika@gmail.com)
  * @since 2018-04-28
@@ -167,9 +168,9 @@ public final class StringFun {
     /**
      * Null Value Logic (NVL)
      * <p>
-     * If str is null, it will return empty String.
+     * If argument is <b>null</b>, it will return <b>empty String</b>.
      *
-     * @param str input parameter to check.
+     * @param str input argument to check.
      * @return {@link java.lang.String}
      */
     public static String nvl(String str) {
@@ -372,7 +373,7 @@ public final class StringFun {
 
     // TODO: finish StringFun.elapsedTime javadoc
     public static String elapsedTime(long startTime, long endTime) {
-        TimePeriod period = CustomFun.calculatePeriod(startTime, endTime);
+        TimePeriod period = ObjectFun.calculatePeriod(startTime, endTime);
         StringBuilder sb = new StringBuilder();
         sb.append(period.getDays()).append(" days ");
         sb.append(period.getHours()).append(" hours ");

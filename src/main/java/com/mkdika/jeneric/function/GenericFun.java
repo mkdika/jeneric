@@ -22,8 +22,12 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * This class is collection of all Java Generic based return functions.
+ *
+ * All static method may return related generic class or Array/Collection of it.
  *
  * @author Maikel Chandika (mkdika@gmail.com)
+ * @since 2018-04-28
  */
 public final class GenericFun {
 

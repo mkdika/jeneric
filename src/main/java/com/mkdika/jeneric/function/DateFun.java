@@ -21,8 +21,13 @@ import java.time.ZoneId;
 import java.util.Date;
 
 /**
+ * This class is collection of all Date return functions.
+ *
+ * All static method may return {@link java.util.Date} or
+ * Array/Collection of {@link java.util.Date}.
  *
  * @author Maikel Chandika (mkdika@gmail.com)
+ * @since 2018-04-28
  */
 public final class DateFun {
 
@@ -37,7 +42,7 @@ public final class DateFun {
      * Function to return last day from the given date
      *
      * @param date given date to return last day from that month
-     * @return java.util.Date
+     * @return {@link java.util.Date}
      */
     public static Date lastDay(Date date) {
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -66,7 +71,7 @@ public final class DateFun {
      * Function to return truncate date from the given date
      *
      * @param date given date to return date by removing time part
-     * @return java.util.Date
+     * @return {@link java.util.Date}
      */
     public static Date trunc(Date date) {
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -78,7 +83,7 @@ public final class DateFun {
      * Function to return truncate date from the given date
      * 
      * @param date given date to return date by removing nano-second time part
-     * @return 
+     * @return {@link java.util.Date}
      */
     public static Date truncSec(Date date) {
         LocalDateTime localDateTime = new java.sql.Timestamp(date.getTime()).toLocalDateTime();
@@ -90,9 +95,9 @@ public final class DateFun {
     /**
      * Null Value Logic (NVL)
      * <p>
-     * If date is null, it will return new Date.
+     * If argument is <b>null</b>, it will return <b>new Date()</b>.
      *
-     * @param date input parameter to check.
+     * @param date input argument to check.
      * @return {@link java.util.Date}
      */
     public static Date nvl(Date date) {

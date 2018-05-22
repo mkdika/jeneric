@@ -172,7 +172,8 @@ public class BooleanFunTest {
         boolean a = BooleanFun.isStringContains("banana", list);
         assertTrue(a);
 
-        boolean b = BooleanFun.isStringContains("grape", "apple", "banana", "coconut");
+        String[] fruits = {"apple", "banana", "coconut"};
+        boolean b = BooleanFun.isStringContains("grape", fruits);
         assertFalse(b);
     }
 
@@ -180,10 +181,10 @@ public class BooleanFunTest {
     public void test_isStringContains_unsuccess() {
         System.out.println("test_BooleanFun_isStringContains_unsuccess");
 
-        boolean a = BooleanFun.isStringContains(null, "apple");
+        boolean a = BooleanFun.isStringContains(null, new String[]{"apple"});
         assertFalse(a);
 
-        boolean b = BooleanFun.isStringContains("", "apple");
+        boolean b = BooleanFun.isStringContains("", new String[]{"apple"});
         assertFalse(b);
 
         List<String> listA = null;
