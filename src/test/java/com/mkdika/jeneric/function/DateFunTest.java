@@ -59,6 +59,7 @@ public class DateFunTest {
     @Test
     public void test_lastDay_success() {
         System.out.println("test_DateFun_lastDay_success");
+        
         LocalDate localDate = LocalDate.of(2018, Month.MAY, 1);
         Date date = DateFun.lastDay(Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
