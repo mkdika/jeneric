@@ -37,7 +37,17 @@ public final class GenericFun {
     private GenericFun() {
     }
 
-    // TODO: finish GenericFun.mapKeyToSet javadoc
+    /**
+     * To convert Map Key list to Set.
+     * <p>
+     * If input map is <b>null</b> or size is <b>empty</b>, it will return
+     * <b>empty</b> Set.
+     *
+     * @param <K> the types of Key.
+     * @param <V> the types of Value.
+     * @param map input Map to convert.
+     * @return {@link java.util.Set}
+     */
     public static <K, V> Set<K> mapKeyToSet(Map<K, V> map) {
         Set<K> set = new HashSet<>();
         if (map != null && !map.isEmpty()) {
@@ -48,11 +58,32 @@ public final class GenericFun {
         return set;
     }
 
+    /**
+     * To convert Map Key list to List.
+     * <p>
+     * If input map is <b>null</b> or size is <b>empty</b>, it will return
+     * <b>empty</b> List.
+     *
+     * @param <K> the types of Key.
+     * @param <V> the types of Value.
+     * @param map input Map to convert.
+     * @return {@link java.util.List}
+     */
     public static <K, V> List<K> mapKeyToList(Map<K, V> map) {
         return new ArrayList<>(mapKeyToSet(map));
     }
 
-    // TODO: finish GenericFun.mapValueToSet javadoc
+    /**
+     * To convert Map Value list to Set.
+     * <p>
+     * If input map is <b>null</b> or size is <b>empty</b>, it will return
+     * <b>empty</b> set.
+     *
+     * @param <K> the types of Key.
+     * @param <V> the types of Value.
+     * @param map input Map to convert.
+     * @return {@link java.util.Set}
+     */
     public static <K, V> Set<V> mapValueToSet(Map<K, V> map) {
         Set<V> set = new HashSet();
         if (map != null && !map.isEmpty()) {
@@ -63,6 +94,17 @@ public final class GenericFun {
         return set;
     }
 
+    /**
+     * To convert Map Value list to List.
+     * <p>
+     * If input map is <b>null</b> or size is <b>empty</b>, it will return
+     * <b>empty</b> List.
+     * 
+     * @param <K> the types of Key.
+     * @param <V> the types of Value.
+     * @param map input Map to convert.
+     * @return {@link java.util.List}
+     */
     public static <K, V> List<V> mapValueToList(Map<K, V> map) {
         List<V> list = new ArrayList<>();
         if (map != null && !map.isEmpty()) {

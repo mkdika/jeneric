@@ -27,6 +27,7 @@ import java.util.Date;
  * Array/Collection of {@link java.util.Date}.
  *
  * @author Maikel Chandika (mkdika@gmail.com)
+ * @author Reja (rejaluo24@gmail.com)
  * @since 2018-04-28
  */
 public final class DateFun {
