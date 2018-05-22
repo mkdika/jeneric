@@ -32,6 +32,7 @@ public final class IntegerFun {
     private IntegerFun() {
     }
 
+    
     /**
      * Null Value Logic (NVL) or Denullify.
      * <p>
@@ -44,12 +45,29 @@ public final class IntegerFun {
         return (number == null ? 0 : number);
     }
 
-    //TODO: finish IntegerFun.rand javadoc
+    
+    /**
+     * To return a random value of Integer by given range.
+     * 
+     * @param min the minimum range value.
+     * @param max the minimum range value.
+     * @return {@link int}
+     */
     public static int random(int min, int max) {                
         return ((int) ((Math.random() * ((max - min) + 1)) + min));
     }
-        
+    
+    
+    /**
+     * To return a random value of int.
+     * <p>
+     * The range of random value is from 0 to {@link java.lang.Integer#MAX_VALUE}.<br>
+     * See {@link com.mkdika.jeneric.function.IntegerFun#random(int, int)}
+     * 
+     * @return {@link int}
+     */
     public static int random(){
         return random(0, (Integer.MAX_VALUE-1));
     }
+    
 }

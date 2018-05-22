@@ -59,8 +59,8 @@ public final class DoubleFun {
     /**
      * To return a random value of double by given range.
      * 
-     * @param min the minimum range value
-     * @param max the maximum range value
+     * @param min the minimum range value.
+     * @param max the minimum range value.
      * @return {@link double}
      */
     public static double random(double min, double max) {
