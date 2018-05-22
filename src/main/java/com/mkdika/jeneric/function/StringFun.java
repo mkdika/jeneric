@@ -44,8 +44,8 @@ import javax.xml.bind.DatatypeConverter;
 /**
  * This class is collection of all String return functions.
  *
- * All static method may return {@link java.lang.String} or
- * Array/Collection of {@link java.lang.String}.
+ * All static method may return {@link java.lang.String} or Array/Collection of
+ * {@link java.lang.String}.
  *
  * @author Maikel Chandika (mkdika@gmail.com)
  * @since 2018-04-28
@@ -62,7 +62,7 @@ public final class StringFun {
     }
 
     /**
-     * Function to return string with given length of left padded character.
+     * To return String with given length of left padded character.
      * <p>
      * If padding length less than String length, then return the orginal
      * Str.<br>
@@ -70,16 +70,17 @@ public final class StringFun {
      * character.<br><br>
      *
      * Example: <br>
-     * - lpad("12",5,'0') will return "00012"<br>
-     * - lpad("345,4,'X') will return "X345"<br>
-     * - lpad("XY",0,'0') will return "XY"
+     * <ul>
+     * <li>lpad("12",5,'0') will return "00012"</li>
+     * <li>lpad("345,4,'X') will return "X345"</li>
+     * <li>lpad("XY",0,'0') will return "XY"</li>
+     * <li>rpad("",4,'X') will return "XXXX"</li>
+     * </ul>
      *
      * @param str Current String to be padded.
-     * @param paddingLen Total String length to be return. If padding length
-     * less than Str length, then Str is the return.
+     * @param paddingLen Total String length to be return.
      * @param paddingChar Character to be used for left padding.
      * @return {@link java.lang.String}
-     *
      */
     public static String lpad(String str, int paddingLen, char paddingChar) {
         StringBuilder spad = new StringBuilder();
@@ -90,12 +91,43 @@ public final class StringFun {
         return spad.toString();
     }
 
-    //TODO: finish StringFun.lpad javadoc
+    /**
+     * To return String with given length to be left padded.
+     * <p>
+     * This will use <b>white-space</b> as the default left padding
+     * character.<br>
+     * See
+     * {@link com.mkdika.jeneric.function.StringFun#lpad(java.lang.String, int, char)}
+     *
+     * @param str Current String to be padded.
+     * @param paddingLen Total String length to be return.
+     * @return {@link java.lang.String}
+     */
     public static String lpad(String str, int paddingLen) {
         return lpad(str, paddingLen, ' ');
     }
 
-    //TODO: finish StringFun.rpad javadoc
+    /**
+     * To return String with given length of right padded character.
+     * <p>
+     * If padding length less than String length, then return the orginal
+     * Str.<br>
+     * If Str is empty and padding length greater than 0, then return padding
+     * character.<br><br>
+     *
+     * Example: <br>
+     * <ul>
+     * <li>rpad("12",5,'0') will return "12000"</li>
+     * <li>rpad("345,4,'X') will return "345X"</li>
+     * <li>rpad("XY",0,'0') will return "XY"</li>
+     * <li>rpad("",4,'X') will return "XXXX"</li>
+     * </ul>
+     *
+     * @param str Current String to be padded.
+     * @param paddingLen Total String length to be return.
+     * @param paddingChar Character to be used for right padding.
+     * @return {@link java.lang.String}
+     */
     public static String rpad(String str, int paddingLen, char paddingChar) {
         StringBuilder spad = new StringBuilder(str);
         for (int i = (str.length() + 1); i <= paddingLen; i++) {
@@ -104,67 +136,67 @@ public final class StringFun {
         return spad.toString();
     }
 
-    //TODO: finish StringFun.rpad javadoc
+    /**
+     * To return String with given length to be right padded.
+     * <p>
+     * This will use <b>white-space</b> as the default right padding
+     * character.<br>
+     * See
+     * {@link com.mkdika.jeneric.function.StringFun#rpad(java.lang.String, int, char)}
+     *
+     * @param str Current String to be padded.
+     * @param paddingLen Total String length to be return.
+     * @return {@link java.lang.String}
+     */
     public static String rpad(String str, int paddingLen) {
         return rpad(str, paddingLen, ' ');
     }
 
     /**
-     * Function to return string with given java.util.Date and with(out) format
-     * pattern
+     * To return string with given java.util.Date and with(out) format pattern.
      * <p>
-     * See
-     * {@link com.mkdika.jeneric.function.StringFun#fromDate(Date,String)} with
-     * default date format pattern
+     * See {@link com.mkdika.jeneric.function.StringFun#fromDate(Date,String)}
+     * with default date format pattern
      * {@link com.mkdika.jeneric.types.DateFormat#DEFAULT}
      *
      * @param date given date to format
      * @return {@link java.lang.String}
-     *
      * @see com.mkdika.jeneric.types.DateFormat#DEFAULT Default Patttern
-     *
      */
     public static String fromDate(Date date) {
         return fromDate(date, DateFormat.DEFAULT);
     }
 
     /**
-     * Function to return string with given java.util.Date and with(out) format
-     * pattern
+     * To return string with given java.util.Date and with(out) format pattern.
      * <p>
-     * See
-     * {@link com.mkdika.jeneric.function.StringFun#fromDate(Date,String)}
+     * See {@link com.mkdika.jeneric.function.StringFun#fromDate(Date,String)}
      *
      * @param date given date to format
      * @param pattern pattern for formatting the date from
      * {@link com.mkdika.jeneric.types.DateFormat}
      * @return {@link java.lang.String}
-     *
      * @see com.mkdika.jeneric.types.DateFormat#DEFAULT Default Patttern
-     *
      */
     public static String fromDate(Date date, DateFormat pattern) {
         return fromDate(date, pattern.getFormat());
     }
 
     /**
-     * Function to return string with given java.util.Date and with(out) format
-     * pattern
+     * To return string with given java.util.Date and with(out) format pattern.
      * <p>
-     * Example: <br>
+     * Example:<br>
      * - fromDate(date,"dd MMM yyy") will return "22 May 2018"
      *
      * @param date given date to format
      * @param pattern pattern for formatting the date
      * @return {@link java.lang.String}
-     *
      */
     public static String fromDate(Date date, String pattern) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
         return dateFormat.format(date);
     }
 
-    
     /**
      * Null Value Logic (NVL) or Denullify.
      * <p>
@@ -177,7 +209,23 @@ public final class StringFun {
         return (str == null ? "" : str);
     }
 
-    //TODO: finish StringFun.left javadoc
+    /**
+     * To return LEFT substring of given String.
+     * <p>
+     * If String length is less than or equal to substring length, it will
+     * return original String.<br>
+     * <br>
+     * Example:<br>
+     * <ul>
+     * <li>left("Apple",3), will return "App"</li>
+     * <li>left("grape",6), will return "grape"</li>
+     * <li>left("grape",-1), will return <b>empty</b></li>
+     * </ul>
+     *
+     * @param str input String to be substring.
+     * @param length length of character to be substring.
+     * @return {@link java.lang.String}
+     */
     public static String left(String str, int length) {
         int n = length;
         if (length > str.length()) {
@@ -189,7 +237,23 @@ public final class StringFun {
         return str.substring(0, n);
     }
 
-    //TODO: finish StringFun.right javadoc
+    /**
+     * To return RIGHT substring of given String.
+     * <p>
+     * If String length is less than or equal to substring length, it will
+     * return original String.<br>
+     * <br>
+     * Example:<br>
+     * <ul>
+     * <li>right("Chandika",4), will return "dika"</li>
+     * <li>right("grape",6), will return "grape"</li>
+     * <li>right("grape",-1), will return <b>empty</b></li>
+     * </ul>
+     *
+     * @param str input String to be substring.
+     * @param length length of character to be substring.
+     * @return {@link java.lang.String}
+     */
     public static String right(String str, int length) {
         int n = length;
         if (length > str.length()) {
@@ -201,7 +265,22 @@ public final class StringFun {
         return str.substring(str.length() - n, str.length());
     }
 
-    //TODO: finish StringFun.mid javadoc
+    /**
+     * To return MIDDLE substring of given String.
+     * <p>
+     * Example:<br>
+     * <ul>
+     * <li>middle("Chandika",2,4), will return "andi"</li>
+     * <li>middle("grape",6,4), will return <b>empty</b></li>
+     * <li>middle("grape",-1,3), will return <b>empty</b></li>
+     * </ul>
+     *
+     * @param str input String to be substring.
+     * @param startIndex starting index of substring.
+     * @param length length of character to be substring.
+     * @return {@link java.lang.String}
+     * @see java.lang.String#substring(int, int)
+     */
     public static String middle(String str, int startIndex, int length) {
         int n = length;
         if (startIndex > str.length()) {
@@ -215,7 +294,20 @@ public final class StringFun {
         return str.substring(startIndex, startIndex + n);
     }
 
-    //TODO: finish StringFun.leftTrim javadoc
+    /**
+     * To return LEFT trimmed of given String.
+     * <p>
+     * Example:<br>
+     * <ul>
+     * <li>leftTrim("Chandika",4), will return "dika"</li>
+     * <li>leftTrim("grape",6), will return <b>empty</b></li>
+     * <li>leftTrim("grape",-1), will return <b>empty</b></li>
+     * </ul>
+     *
+     * @param str input String to be trim
+     * @param length lenght of character to be trim
+     * @return {@link java.lang.String}
+     */
     public static String leftTrim(String str, int length) {
         int n = length;
         if (length > str.length()) {
@@ -227,7 +319,20 @@ public final class StringFun {
         return str.substring(n);
     }
 
-    //TODO: finish StringFun.rightTrim javadoc
+    /**
+     * To return RIGHT trimmed of given String.
+     * <p>
+     * Example:<br>
+     * <ul>
+     * <li>rightTrim("Chandika",4), will return "Chan"</li>
+     * <li>rightTrim("grape",6), will return <b>empty</b></li>
+     * <li>rightTrim("grape",-1), will return <b>empty</b></li>
+     * </ul>
+     *
+     * @param str input String to be trim
+     * @param length lenght of character to be trim
+     * @return {@link java.lang.String}
+     */
     public static String rightTrim(String str, int length) {
         int n = length;
         if (length > str.length()) {
@@ -239,7 +344,13 @@ public final class StringFun {
         return str.substring(0, str.length() - n);
     }
 
-    //TODO: finish StringFun.getIpAddress javadoc
+    /**
+     * To return Set of IP v4 Address from the current machine.
+     *
+     * @return {@link java.util.Set}
+     * @throws SocketException if current machine does not have active network
+     * interface.
+     */
     public static Set<String> getIpV4Address() throws SocketException {
         return Collections.list(NetworkInterface.getNetworkInterfaces()).stream()
                 .flatMap(i -> Collections.list(i.getInetAddresses()).stream())
@@ -248,7 +359,13 @@ public final class StringFun {
                 .collect(Collectors.toSet());
     }
 
-    //TODO: finish StringFun.getMacAddress javadoc
+    /**
+     * To return Set of Mac (Physical) Address from the current machine.
+     *
+     * @return {@link java.util.Set}
+     * @throws SocketException if current machine does not have active network
+     * physical address.
+     */
     public static Set<String> getMacAddress() throws SocketException {
         Set<String> macSet = new HashSet<>();
         Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
@@ -257,7 +374,7 @@ public final class StringFun {
             byte[] mac = network.getHardwareAddress();
             if (mac != null) {
                 StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < mac.length; i++) {                    
+                for (int i = 0; i < mac.length; i++) {
                     sb.append(String.format(StringFormat.MAC_ADDRESS_FORMAT.getFormat(), mac[i], (i < mac.length - 1) ? ":" : ""));
                 }
                 macSet.add(sb.toString());
@@ -266,76 +383,161 @@ public final class StringFun {
         return macSet;
     }
 
-    /*
-        TODO: finish  StringFun.getUUID javadoc
-        This is used UUID v4 with random number
+    /**
+     * To return random number of UUID version 4.
+     * <p>
+     * Alphabet character will be in lower-case character.
+     *
+     * @return {@link java.lang.String}
      */
     public static String getUUID() {
         UUID uuid = UUID.randomUUID();
         return uuid.toString();
     }
 
-    // TODO: finish StringFun.getSecureMD5 javadoc
+    /**
+     * To return MD5 from random value.
+     * <p>
+     * Alphabet character will be in lower-case character. Encoder: <b>UTF-8</b>
+     *
+     * @return {@link java.lang.String}
+     * @throws NoSuchAlgorithmException if related hashing algorithms does not
+     * support by Hash Generator.
+     * @see com.mkdika.jeneric.function.StringFun#getUUID()
+     */
     public static String getSecureMD5() throws NoSuchAlgorithmException {
         return toMd5(getUUID());
     }
 
-    /*
-        TODO: finish StringFun.toMd5 javadoc
-        A lower case retun MD5, UTF-8
+    /**
+     * To return MD5 from given plain text.
+     * <p>
+     * Alphabet character will be in lower-case character. Encoder: <b>UTF-8</b>
+     *
+     * @param plainText input plain text to be hash.
+     * @return {@link java.lang.String}
+     * @throws NoSuchAlgorithmException if related hashing algorithms does not
+     * support by Hash Generator.
+     * @see com.mkdika.jeneric.function.StringFun#toHashing(java.lang.String,
+     * java.lang.String)
      */
     public static String toMd5(String plainText) throws NoSuchAlgorithmException {
         return toHashing(plainText, "MD5");
     }
 
-    /*
-        TODO: finish StringFun.toSha128 javadoc
-        A lower case retun, UTF-8
+    /**
+     * To return SHA from given plain text.
+     * <p>
+     * Alphabet character will be in lower-case character. Encoder: <b>UTF-8</b>
+     *
+     * @param plainText input plain text to be hash.
+     * @return {@link java.lang.String}
+     * @throws NoSuchAlgorithmException if related hashing algorithms does not
+     * support by Hash Generator.
+     * @see com.mkdika.jeneric.function.StringFun#toHashing(java.lang.String,
+     * java.lang.String)
      */
-    public static String toSha(String plain) throws NoSuchAlgorithmException {
-        return toHashing(plain, "SHA");
+    public static String toSha(String plainText) throws NoSuchAlgorithmException {
+        return toHashing(plainText, "SHA");
     }
 
-    /*
-        TODO: finish StringFun.toSha256 javadoc
-        A lower case retun, UTF-8
+    /**
+     * To return SHA-256 from given plain text.
+     * <p>
+     * Alphabet character will be in lower-case character. Encoder: <b>UTF-8</b>
+     *
+     * @param plainText input plain text to be hash.
+     * @return {@link java.lang.String}
+     * @throws NoSuchAlgorithmException if related hashing algorithms does not
+     * support by Hash Generator.
+     * @see com.mkdika.jeneric.function.StringFun#toHashing(java.lang.String,
+     * java.lang.String)
      */
-    public static String toSha256(String plain) throws NoSuchAlgorithmException {
-        return toHashing(plain, "SHA-256");
+    public static String toSha256(String plainText) throws NoSuchAlgorithmException {
+        return toHashing(plainText, "SHA-256");
     }
 
-    private static String toHashing(String plain, String algorithm) throws NoSuchAlgorithmException {
+    /**
+     * To return SHA-512 from given plain text.
+     * <p>
+     * Alphabet character will be in lower-case character. Encoder: <b>UTF-8</b>
+     *
+     * @param plainText input plain text to be hash.
+     * @return {@link java.lang.String}
+     * @throws NoSuchAlgorithmException if related hashing algorithms does not
+     * support by Hash Generator.
+     * @see com.mkdika.jeneric.function.StringFun#toHashing(java.lang.String,
+     * java.lang.String)
+     */
+    public static String toSha512(String plainText) throws NoSuchAlgorithmException {
+        return toHashing(plainText, "SHA-512");
+    }
+
+    /**
+     * To return Hash cipher text from given plain text and algorithms.
+     * <p>
+     * Alphabet character will be in lower-case character. Encoder: <b>UTF-8</b>
+     *
+     * @param plainText input plain text to be hash.
+     * @param algorithm input the hashing algorithms
+     * @return {@link java.lang.String}
+     * @throws NoSuchAlgorithmException if related hashing algorithms does not
+     * support by Hash Generator.
+     */
+    private static String toHashing(String plainText, String algorithm) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance(algorithm);
-        md.update(plain.getBytes(StandardCharsets.UTF_8));
+        md.update(plainText.getBytes(StandardCharsets.UTF_8));
         byte[] digest = md.digest();
         return DatatypeConverter.printHexBinary(digest).toLowerCase();
     }
 
-    // TODO: finish StringFun.toRoman javadoc
-    // max allowed int range is 1..4999
-    public static String toRoman(int n) {
-        if (n < 1 || n > 4999) {
+    /**
+     * To return Roman Numerals from given integer.
+     * <p>
+     * Allowed range is from <b>1 - 4999</b>.
+     *
+     * @param number input number to be converted.
+     * @return {@link java.lang.String}
+     */
+    public static String toRoman(int number) {
+        if (number < 1 || number > 4999) {
             throw new IllegalArgumentException("toRoman accept range must be in 1..4999");
         }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < RCODE.length; i++) {
-            while (n >= BVAL[i]) {
-                n -= BVAL[i];
+            while (number >= BVAL[i]) {
+                number -= BVAL[i];
                 sb.append(RCODE[i]);
             }
         }
         return sb.toString();
     }
 
-    // TODO: finish StringFun.readTextFile javadoc
+    /**
+     * To return String of text file content base on file location.
+     *
+     * @param filePath location of the text file.
+     * @return {@link java.lang.String}
+     * @throws URISyntaxException if any error with class path.
+     * @throws IOException if related file can not be access.
+     */
     public static String readTextFile(String filePath) throws URISyntaxException, IOException {
         Path path = Paths.get(filePath);
         byte[] fileBytes = Files.readAllBytes(path);
         return new String(fileBytes);
     }
-
-    // TODO: finish StringFun.fromFileSize javadoc
-    // be able to convert from 0 B .. 999 TB
+    
+    /**
+     * To return a human readable file size UOM (B,KB,MB,GB,TB) base on given
+     * size (long).
+     * <p>
+     * Allowed file size range is from <b>0 B - 999 TB</b><br>
+     * <br>
+     * Example: <b>950000000</b> will return <b>906 MB</b>
+     *
+     * @param fileSize the file size to be process
+     * @return {@link java.lang.String}
+     */
     public static String fromFileSize(long fileSize) {
         BigDecimal k = new BigDecimal(1024);
         StringBuilder sb = new StringBuilder();
@@ -367,11 +569,32 @@ public final class StringFun {
         }
     }
 
+    /**
+     * To return information (String) of elapsed time between two {@link java.util.Date}.
+     * <p>
+     * See {@link com.mkdika.jeneric.function.StringFun#elapsedTime(long, long)}
+     * 
+     * @param startDate input startDate (timestamp).
+     * @param endDate input endDate (timestamp).
+     * @return {@link java.lang.String}
+     */
     public static String elapsedTime(Date startDate, Date endDate) {
         return elapsedTime(startDate.getTime(), endDate.getTime());
     }
-
-    // TODO: finish StringFun.elapsedTime javadoc
+   
+    /**
+     * To return information (String) of elapsed time between two timestamp.
+     * <p>
+     * Example:<br>
+     * given: <br>
+     * date1 = 10 May 2018 03:10:00<br>
+     * date2 = 10 Jul 2018 05:12:50<br>
+     * will return: 61 days 2 hours 2 minutes 50 seconds 0 milliseconds
+     *      
+     * @param startTime input the startTime (numbers of milliseconds)
+     * @param endTime input the endTime (numbers of milliseconds)
+     * @return {@link java.lang.String}
+     */
     public static String elapsedTime(long startTime, long endTime) {
         TimePeriod period = ObjectFun.calculatePeriod(startTime, endTime);
         StringBuilder sb = new StringBuilder();
@@ -380,6 +603,6 @@ public final class StringFun {
         sb.append(period.getMinutes()).append(" minutes ");
         sb.append(period.getSeconds()).append(" seconds ");
         sb.append(period.getMilliseconds()).append(" milliseconds");
-        return sb.toString();        
+        return sb.toString();
     }
 }

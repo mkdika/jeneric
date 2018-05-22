@@ -409,6 +409,29 @@ public class StringFunTest {
         String a = StringFun.toSha256(null);
         assertThat(a.length(), equalTo(32));
     }
+    
+    @Test
+    public void test_toSha512_success() throws NoSuchAlgorithmException {
+        System.out.println("test_StringFun_toSha512_success");
+
+        String hashA = "50e0dc4455bcb1ee80adb942d153c6b0eb17b31d603b017fa77f60f60f68fd7d0565cb486783f29cea210313c97f0f9d49e64e6730053bfa1448d5b826309184";
+        String a = StringFun.toSha512("iloveyou");
+        assertNotNull(a);
+        assertThat(a, equalTo(hashA));
+
+        String hashB = "7c431129049001626202effe2760ac0702e9a971b82ba9148f4a73975c4c27d25de875d9765f926c11d87c25cdcaf3a87080a9cdf026127a17859923643778b2";
+        String b = StringFun.toSha512("I Miss Youabc123");
+        assertNotNull(b);
+        assertThat(b, equalTo(hashB));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void test_toSha512_exception() throws NoSuchAlgorithmException {
+        System.out.println("test_StringFun_toSha512_exception");
+
+        String a = StringFun.toSha512(null);
+        assertThat(a.length(), equalTo(32));
+    }
 
     @Test
     public void test_getUUID_success() {
@@ -480,7 +503,7 @@ public class StringFunTest {
     public void test_fromFileSize_success(long fileSize, String result) {
         System.out.println("test_StringFun_fromFileSize_success");
 
-        String a = StringFun.fromFileSize(fileSize);
+        String a = StringFun.fromFileSize(fileSize);        
         assertThat(a, equalTo(result));
     }
 
@@ -494,7 +517,7 @@ public class StringFunTest {
 
         Date dA1 = DateFun.of(2018, 5, 10, 3, 10, 0);
         Date dA2 = DateFun.of(2018, 7, 10, 5, 12, 50);
-        String b = StringFun.elapsedTime(dA1, dA2);
+        String b = StringFun.elapsedTime(dA1, dA2);        
         assertNotNull(b);
         assertTrue(b.length() > 0);
     }

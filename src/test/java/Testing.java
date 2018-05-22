@@ -28,10 +28,9 @@ public class Testing {
     
     @Test
     public void testing1() {
-        Date d1 = DateFun.now();        
-        Date d2 = DateFun.now();        
-        System.out.println(StringFun.fromDate(DateFun.trunc(d1)));
-        System.out.println(StringFun.fromDate(DateFun.truncSec(d2)));
+        String s = "Chandika";
+        System.out.println(StringFun.rightTrim(s, 4));
+        System.out.println(StringFun.getUUID());
     }
     
 }

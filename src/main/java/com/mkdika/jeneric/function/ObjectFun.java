@@ -37,8 +37,8 @@ public final class ObjectFun {
     /**
      * To return the elapsed time (timestamp) between given two {@link java.util.Date}.
      * 
-     * @param startDate input startDate (timestamp)
-     * @param endDate input endDate (timestamp)
+     * @param startDate input startDate (timestamp).
+     * @param endDate input endDate (timestamp).
      * @return {@link com.mkdika.jeneric.model.TimePeriod}
      * @see com.mkdika.jeneric.function.ObjectFun#calculatePeriod(long, long) 
      */
@@ -50,8 +50,8 @@ public final class ObjectFun {
     /**
      * To return the elapsed time (timestamp) between given two numbers of milliseconds (long).
      * 
-     * @param startTime input the startTime (numbers of milliseconds)
-     * @param endTime input the endTime (numbers of milliseconds)
+     * @param startTime input the startTime (numbers of milliseconds).
+     * @param endTime input the endTime (numbers of milliseconds).
      * @return {@link com.mkdika.jeneric.model.TimePeriod}
      */
     public static TimePeriod calculatePeriod(long startTime, long endTime) {
