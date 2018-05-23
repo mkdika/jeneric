@@ -2,7 +2,8 @@
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-green.svg)](/LICENSE)
 [![Build Status](https://travis-ci.org/mkdika/jeneric.svg?branch=master)](https://travis-ci.org/mkdika/jeneric)
 [![codecov](https://codecov.io/gh/mkdika/jeneric/branch/master/graph/badge.svg)](https://codecov.io/gh/mkdika/jeneric)
-[![Javadocs](https://www.javadoc.io/badge/com.mkdika/jeneric.svg)](https://www.javadoc.io/doc/com.mkdika/jeneric/1.0.0)
+[![Maven](https://img.shields.io/maven-central/v/com.mkdika/jeneric.svg)](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.mkdika%22%20AND%20a%3A%22jeneric%22)
+[![Javadocs](https://www.javadoc.io/badge/com.mkdika/jeneric.svg)](https://www.javadoc.io/doc/com.mkdika/jeneric)
 
 A tiny library for collection of custom yet frequently used function and helper. 
 Build on top of Java 8 standard API, no external libraries is needed.
@@ -11,7 +12,7 @@ Build on top of Java 8 standard API, no external libraries is needed.
 ## Overview
 - high level function to ease usage.
 - total up to 64 functions (version 1.0.0)
-- build on top of Java 8 standard API.
+- only use Java 8 standard API.
 - high coverage > 95%, and Mutation test > 85%.
 - Return types oriented.
 
@@ -43,12 +44,17 @@ Build on top of Java 8 standard API, no external libraries is needed.
 ```
 
 #### Gradle
-_coming soon.._
+
+```groovy
+dependencies {
+    compile 'com.mkdika:jeneric:1.0.0'
+}
+```
 
 
 ### Usage
 
-This is a example Jeneric's function usage:
+This is a sample usage of Jeneric's function:
 
 ```java
 import com.mkdika.jeneric.function.DateFun;
@@ -74,13 +80,12 @@ public class JenericTest {
 - To build from source and run the __Coverage Test__, execute this from the project root:
 	
 	```console
-	mvn clean install org.pitest:pitest-maven:mutationCoverage
+	mvn clean package
 	```
-	
 	- Check `target` folder, and search for `jeneric-<version>.jar`, for built file.
 	- Check folder and open file `target/site/jacoco/index.html`, for Jacoco coverage test result.	
 	
-- After built the project, Additionally you can run the __Mutation Test__ as well (please note it may need some time to finish), execute this from the project root:
+- Additionally, after built the project you can run the __Mutation Test__ as well (please note it may need some time to finish), execute this from the project root:
 	
 	```console
 	mvn org.pitest:pitest-maven:mutationCoverage
@@ -96,6 +101,8 @@ _coming soon.._
 ## Maintainer
 - [Maikel Chandika](https://github.com/mkdika)
 - [Reja](https://github.com/zigic88)
+
+Contributions are very welcome, please read [How to contribute](/CONTRIBUTING.md).
 
 
 ## License
