@@ -49,7 +49,7 @@ _coming soon.._
 	- Check `target` folder, and search for `jeneric-<version>.jar`, for built file.
 	- Check folder and open file `target/site/jacoco/index.html`, for Jacoco coverage test result.	
 	
-- After built the project, Additionally you can run the __Mutation Test__ as well (please not it may need some time to finish), 
+- After built the project, Additionally you can run the __Mutation Test__ as well (please note it may need some time to finish), 
 execute from the project root folder:
 	
 	```console
