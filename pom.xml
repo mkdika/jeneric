@@ -4,7 +4,7 @@
     
     <groupId>com.mkdika</groupId>
     <artifactId>jeneric</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
     
     <name>jeneric</name>
@@ -23,7 +23,7 @@
         <connection>scm:git@github.com:mkdika/jeneric.git</connection>
         <developerConnection>scm:git:git@github.com:mkdika/jeneric.git</developerConnection>
         <url>https://github.com/mkdika/jeneric.git</url>
-        <tag>HEAD</tag>
+        <tag>jeneric-1.0.0</tag>
     </scm>
     
     <distributionManagement>
