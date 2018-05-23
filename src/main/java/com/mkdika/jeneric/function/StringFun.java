@@ -230,8 +230,7 @@ public final class StringFun {
         int n = length;
         if (length > str.length()) {
             n = str.length();
-        }
-        if (length < 0) {
+        }else if (length < 0) {
             n = 0;
         }
         return str.substring(0, n);
@@ -258,8 +257,7 @@ public final class StringFun {
         int n = length;
         if (length > str.length()) {
             n = str.length();
-        }
-        if (length < 0) {
+        } else if (length < 0) {
             n = 0;
         }
         return str.substring(str.length() - n, str.length());
@@ -283,7 +281,7 @@ public final class StringFun {
      */
     public static String middle(String str, int startIndex, int length) {
         int n = length;
-        if (startIndex > str.length()) {
+        if (startIndex >= str.length()) {
             startIndex = str.length();
             n = 0;
         }

@@ -8,7 +8,7 @@
             <goals>
                 <goal>clean</goal>
                 <goal>install</goal>
-                <goal>org.pitest:pitest-maven:mutationCoverage</goal>
+                
             </goals>
         </action>
     </actions>

@@ -95,11 +95,11 @@ public final class BooleanFun {
      * @return {@link boolean}
      */
     public static boolean isStringContains(String searchStr, Collection<String> arrayToSearch) {
-        if (searchStr == null || searchStr.trim().isEmpty() || arrayToSearch == null || arrayToSearch.size() < 1) {
-            return false;
+        if (searchStr != null && !searchStr.trim().isEmpty() && arrayToSearch != null && arrayToSearch.size() > 0) {
+            Set<String> sets = new HashSet<>(arrayToSearch);
+            return sets.contains(searchStr);
         }
-        Set<String> sets = new HashSet<>(arrayToSearch);
-        return sets.contains(searchStr);
+        return false;
     }
 
     /**
@@ -222,7 +222,9 @@ public final class BooleanFun {
      *
      * @param ipV4Address input argument to check
      * @return {@link boolean}
-     * @see com.mkdika.jeneric.function.BooleanFun#isStringMatch(java.lang.String, java.lang.String) 
+     * @see
+     * com.mkdika.jeneric.function.BooleanFun#isStringMatch(java.lang.String,
+     * java.lang.String)
      */
     public static boolean isValidIpV4Address(String ipV4Address) {
         return isStringMatch(ipV4Address, IPV4_ADDRESS_PATTERN);
@@ -235,7 +237,9 @@ public final class BooleanFun {
      *
      * @param macAddress input argument to check
      * @return {@link boolean}
-     * @see com.mkdika.jeneric.function.BooleanFun#isStringMatch(java.lang.String, java.lang.String) 
+     * @see
+     * com.mkdika.jeneric.function.BooleanFun#isStringMatch(java.lang.String,
+     * java.lang.String)
      */
     public static boolean isValidMacAddress(String macAddress) {
         return isStringMatch(macAddress, "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$");

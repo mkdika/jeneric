@@ -194,17 +194,21 @@ public class StringFunTest {
         assertThat(b, equalTo("abc"));
     }
 
-    Object[] leftParam() {
+    Object[] leftParam1() {
         return new Object[]{
+            new Object[]{"apple", -1, ""},
+            new Object[]{"apple", 0, ""},
+            new Object[]{"apple", 1, "a"},
             new Object[]{"apple", 3, "app"},
-            new Object[]{"apple", 10, "apple"},
-            new Object[]{"apple", -2, ""},};
+            new Object[]{"apple", 5, "apple"},
+            new Object[]{"apple", 6, "apple"},
+            new Object[]{"apple", 10, "apple"},};
     }
 
     @Test
-    @Parameters(method = "leftParam")
-    public void test_left_success(String s, int n, String result) {
-        System.out.println("test_StringFun_left_success");
+    @Parameters(method = "leftParam1")
+    public void test_left_success1(String s, int n, String result) {
+        System.out.println("test_StringFun_left_success1");
 
         String a = StringFun.left(s, n);
         assertThat(a, equalTo(result));
@@ -222,7 +226,9 @@ public class StringFunTest {
         return new Object[]{
             new Object[]{"pineapple", 5, "apple"},
             new Object[]{"pineapple", 15, "pineapple"},
+            new Object[]{"pineapple", 9, "pineapple"},
             new Object[]{"pineapple", -2, ""},
+            new Object[]{"pineapple", 0, ""},
             new Object[]{"pineapple", 3, "ple"}};
     }
 
@@ -246,18 +252,20 @@ public class StringFunTest {
     Object[] middleParam() {
         return new Object[]{
             new Object[]{"banana", 2, 3, "nan"},
+            new Object[]{"banana", 6, 3, ""},
             new Object[]{"banana", 15, 2, ""},
             new Object[]{"banana", -2, 2, ""},
+            new Object[]{"banana", 0, 2, "ba"},
             new Object[]{"banana", 1, 3, "ana"}
         };
     }
 
     @Test
     @Parameters(method = "middleParam")
-    public void test_middle_success(String s, int start, int end, String result) {
+    public void test_middle_success(String s, int start, int len, String result) {
         System.out.println("test_StringFun_middle_success");
 
-        String a = StringFun.middle(s, start, end);
+        String a = StringFun.middle(s, start, len);
         assertThat(a, equalTo(result));
     }
 
@@ -273,7 +281,9 @@ public class StringFunTest {
         return new Object[]{
             new Object[]{"pineapple", 4, "apple"},
             new Object[]{"pineapple", 15, ""},
+            new Object[]{"pineapple", 9, ""},
             new Object[]{"pineapple", -2, "pineapple"},
+            new Object[]{"pineapple", 0, "pineapple"},
             new Object[]{"pineapple", 3, "eapple"},};
     }
 
@@ -298,7 +308,9 @@ public class StringFunTest {
         return new Object[]{
             new Object[]{"pineapple", 4, "pinea"},
             new Object[]{"pineapple", 15, ""},
+            new Object[]{"pineapple", 9, ""},
             new Object[]{"pineapple", -2, "pineapple"},
+            new Object[]{"pineapple", 0, "pineapple"},
             new Object[]{"pineapple", 3, "pineap"},};
     }
 

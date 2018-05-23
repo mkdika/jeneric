@@ -19,17 +19,21 @@ import com.mkdika.jeneric.model.TimePeriod;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  *
  * @author Maikel Chandika (mkdika@gmail.com)
  */
-public class CustomFunTest {
+@RunWith(JUnitParamsRunner.class)
+public class ObjectFunTest {
 
     @Before
     public void setup() {
@@ -70,6 +74,24 @@ public class CustomFunTest {
         assertThat(tB.getSeconds(), equalTo(50L));
         assertThat(tB.getMilliseconds(), equalTo(0L));
     }
+    
+    Object[] calculatePeriodParam1() {
+        return new Object[]{      
+            new Object[]{DateFun.of(2018, 7, 10, 5, 12, 50), DateFun.of(2018, 7, 10, 5, 12, 50) },            
+            new Object[]{DateFun.of(2010, 7, 10, 5, 12, 50), DateFun.of(2018, 7, 10, 3, 10, 0) },            
+            new Object[]{DateFun.of(2011, 7, 10, 5, 12, 50), DateFun.of(2018, 5, 10, 3, 10, 0) },            
+            new Object[]{DateFun.of(2012, 7, 10, 5, 12, 50), DateFun.of(2018, 1, 10, 3, 10, 0) },            
+        };
+    }
+    
+    @Test
+    @Parameters(method = "calculatePeriodParam1")
+    public void test_calculatePeriod_success2(Date d1, Date d2) {
+        System.out.println("test_CustomFun_calculatePeriod_success2");
+        
+        TimePeriod tA = ObjectFun.calculatePeriod(d1,d2);
+        assertNotNull(tA);
+    }
 
     @Test(expected = NullPointerException.class)
     public void test_calculatePeriod_exception1() {
@@ -77,14 +99,21 @@ public class CustomFunTest {
 
         TimePeriod tA = ObjectFun.calculatePeriod(null, null);
     }
+    
+    Object[] calculatePeriodParam2() {
+        return new Object[]{            
+            new Object[]{DateFun.of(2018, 7, 10, 5, 12, 50), DateFun.of(2018, 7, 10, 3, 10, 0) },            
+            new Object[]{DateFun.of(2018, 7, 10, 5, 12, 50), DateFun.of(2018, 5, 10, 3, 10, 0) },            
+            new Object[]{DateFun.of(2018, 7, 10, 5, 12, 50), DateFun.of(2018, 1, 10, 3, 10, 0) },            
+        };
+    }
 
     @Test(expected = IllegalArgumentException.class)
-    public void test_calculatePeriod_exception2() {
+    @Parameters(method = "calculatePeriodParam2")
+    public void test_calculatePeriod_exception2(Date d1, Date d2) {
         System.out.println("test_CustomFun_calculatePeriod_exception2");
-
-        Date dA1 = DateFun.of(2018, 5, 10, 3, 10, 0);
-        Date dA2 = DateFun.of(2018, 7, 10, 5, 12, 50);
-        TimePeriod tA = ObjectFun.calculatePeriod(dA2, dA1);
+        
+        TimePeriod tA = ObjectFun.calculatePeriod(d1, d2);
     }
 
 }

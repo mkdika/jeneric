@@ -18,6 +18,7 @@ package com.mkdika.jeneric.function;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -68,6 +69,6 @@ public class IntegerFunTest {
         assertTrue(a > -1);
         
         Integer b = IntegerFun.random(1, 1000);        
-        assertTrue((b >= 1 && b <= 1000));                
+        assertTrue((b > 1 && b <= 1000));        
     }
 }
