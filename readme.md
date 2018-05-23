@@ -2,14 +2,18 @@
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-green.svg)](/LICENSE)
 [![Build Status](https://travis-ci.org/mkdika/jeneric.svg?branch=master)](https://travis-ci.org/mkdika/jeneric)
 [![codecov](https://codecov.io/gh/mkdika/jeneric/branch/master/graph/badge.svg)](https://codecov.io/gh/mkdika/jeneric)
-[![JavaDoc](https://img.shields.io/badge/javadoc-html-blue.svg)](/#)
+[![Javadocs](https://www.javadoc.io/badge/com.mkdika/jeneric.svg)](https://www.javadoc.io/doc/com.mkdika/jeneric/1.0.0)
 
 A tiny library for collection of custom yet frequently used function and helper. 
 Build on top of Java 8 standard API, no external libraries is needed.
 
 
 ## Overview
-_coming soon.._
+- high level function to ease usage.
+- total up to 64 functions (version 1.0.0)
+- build on top of Java 8 standard API.
+- high coverage > 95%, and Mutation test > 85%.
+- Return types oriented.
 
 
 ## Used Tool and Library
@@ -25,22 +29,49 @@ _coming soon.._
 
 
 ## Quickstart
+
 ### Setting up dependency
+
 #### Maven
-_coming soon.._
+
+```xml
+<dependency>
+	<groupId>com.mkdika</groupId>
+	<artifactId>jeneric</artifactId>
+	<version>1.0.0</version>
+</dependency>
+```
 
 #### Gradle
 _coming soon.._
 
-### Usage
-_coming soon.._
 
+### Usage
+
+This is a example Jeneric's function usage:
+
+```java
+import com.mkdika.jeneric.function.DateFun;
+import com.mkdika.jeneric.function.StringFun;
+import java.util.Date;
+
+public class JenericTest {
+
+    public static void main(String[] args) {
+        Date d1 = DateFun.of(2018, 4, 28, 19, 35, 25);
+        Date d2 = DateFun.of(2018, 5, 23, 12, 30, 45);
+        System.out.println(StringFun.elapsedTime(d1, d2));
+
+        // print: 24 days 16 hours 55 minutes 20 seconds 0 milliseconds        
+    }
+}
+```
 
 
 ## Build and Testing
 - Install Java 8 JDK.
 - [Install Maven3](https://maven.apache.org/install.html).
-- To build from source and run the __Coverage Test__, execute from the project root folder:
+- To build from source and run the __Coverage Test__, execute this from the project root:
 	
 	```console
 	mvn clean install org.pitest:pitest-maven:mutationCoverage
@@ -49,8 +80,7 @@ _coming soon.._
 	- Check `target` folder, and search for `jeneric-<version>.jar`, for built file.
 	- Check folder and open file `target/site/jacoco/index.html`, for Jacoco coverage test result.	
 	
-- After built the project, Additionally you can run the __Mutation Test__ as well (please note it may need some time to finish), 
-execute from the project root folder:
+- After built the project, Additionally you can run the __Mutation Test__ as well (please note it may need some time to finish), execute this from the project root:
 	
 	```console
 	mvn org.pitest:pitest-maven:mutationCoverage
