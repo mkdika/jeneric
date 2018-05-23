@@ -25,20 +25,37 @@ _coming soon.._
 
 
 ## Quickstart
+### Setting up dependency
+#### Maven
 _coming soon.._
+
+#### Gradle
+_coming soon.._
+
+### Usage
+_coming soon.._
+
 
 
 ## Build and Testing
 - Install Java 8 JDK.
 - [Install Maven3](https://maven.apache.org/install.html).
-- To build from source and run the complete __Coverage Test__ and __Mutation Test__, execute this from project root folder:
+- To build from source and run the __Coverage Test__, execute from the project root folder:
 	
 	```console
 	mvn clean install org.pitest:pitest-maven:mutationCoverage
 	```
 	
 	- Check `target` folder, and search for `jeneric-<version>.jar`, for built file.
-	- Check folder and open file `target/site/jacoco/index.html`, for Jacoco coverage test result.
+	- Check folder and open file `target/site/jacoco/index.html`, for Jacoco coverage test result.	
+	
+- After built the project, Additionally you can run the __Mutation Test__ as well (please not it may need some time to finish), 
+execute from the project root folder:
+	
+	```console
+	mvn org.pitest:pitest-maven:mutationCoverage
+	```
+	
 	- Check folder and open file `target/pit-reports/<YYYYMMDDHHMI>/index.html`, for PiTest mutation test result.
 
 
