@@ -12,15 +12,18 @@ Build on top of Java 8 standard API, no external libraries is needed.
 ## Overview
 
 The main idea behind creating of this another helper and common use function library, 
-is to ease the usage of specific and frequently functions call, by providing a 
-high level access from Java `static` method call or expression, so it does not require 
-to instance certain object prior usage. And as the result, functions supposed to be able 
-to directly use and practical.
+is to ease the usage of specific and frequently functions call, that the practical usage
+may not available on other library. Furthermore, Jeneric also provide a high level access 
+from Java `static` method call or expression, so it does not require to instance certain 
+object prior usage. And as the result, functions supposed to be able to directly use and practical.
+
+Jeneric is also a tiny library, the release size are relatively small (just less than `30 KB`), and 
+only use Java 8 standard API. So, it may suit to any Java 8 project or mobile development (Android).
 
 The collection of each functions are organize within parent class that base on its expected __return types__.
-There are serveral parent class such as `StringFun`, `BooleanFun`, `DateFun`, `IntegerFun`, etc.
+There are several parent class such as `StringFun`, `BooleanFun`, `DateFun`, `IntegerFun`, etc.
 
-For more explaination and code examples, please visit the [User Guide](/docs/user-guide.md).
+For more explanation and code examples, please visit [User Guide](/docs/user-guide.md).
 
 
 ## Used Tool and Library
