@@ -10,11 +10,17 @@ Build on top of Java 8 standard API, no external libraries is needed.
 
 
 ## Overview
-- high level function to ease usage.
-- total up to 64 functions (version 1.0.0)
-- only use Java 8 standard API.
-- high coverage > 95%, and Mutation test > 85%.
-- Return types oriented.
+
+The main idea behind creating of this another helper and common use function library, 
+is to ease the usage of specific and frequently functions call, by providing a 
+high level access from Java `static` method call or expression, so it does not require 
+to instance certain object prior usage. And as the result, functions supposed to be able 
+to directly use and practical.
+
+The collection of each functions are organize within parent class that base on its expected __return types__.
+There are serveral parent class such as `StringFun`, `BooleanFun`, `DateFun`, `IntegerFun`, etc.
+
+For more explaination and code examples, please visit the [User Guide](/docs/user-guide.md).
 
 
 ## Used Tool and Library
