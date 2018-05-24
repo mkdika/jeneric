@@ -128,7 +128,7 @@ _coming soon.._
 - [Maikel Chandika](https://github.com/mkdika)
 - [Reja](https://github.com/zigic88)
 
-Contributions are very welcome, please read [How to contribute](/documents/CONTRIBUTING.md).
+Contributions are very welcome, please read [How to contribute](/docs/CONTRIBUTING.md).
 
 
 ## License
