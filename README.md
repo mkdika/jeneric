@@ -18,7 +18,7 @@ from Java `static` method call or expression, so it does not require to instance
 object prior usage. And as the result, functions supposed to be able to directly use and practical.
 
 Jeneric is also a tiny library, the release size are relatively small (just less than `30 KB`), and 
-only use Java 8 standard API. So, it may suit to any Java 8 project or mobile development (Android).
+used only Java 8 standard API. So, it may suit to any Java 8 project or mobile development (Android).
 
 The collection of each functions are organize within parent class that base on its expected __return types__.
 There are several parent class such as `StringFun`, `BooleanFun`, `DateFun`, `IntegerFun`, etc.

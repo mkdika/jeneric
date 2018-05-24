@@ -19,7 +19,7 @@ Every PR will be considered.
 * Format your code so it looks somewhat like the rest of the source.
 * Write a proper and sufficient __javadoc__ for each method or attribute, give some example of usage if needed. Try to follow the style and convension from the existing code.
 * Try to write some unit test for your change. There are a lot of examples in the `test` dir.
-* In order to maintain the standard quality of delivery, here are some metric that we use:
+* In order to maintain the standard quality of delivery, here are some metric that we used:
 	* Coverage test: __>= 90%__
 	* Mutation test: __>= 80%__
 
