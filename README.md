@@ -74,24 +74,50 @@ public class JenericTest {
 ```
 
 
-## Build and Testing
+## Build, Testing and Install
+
+### Pre-requirement
 - Install Java 8 JDK.
 - [Install Maven3](https://maven.apache.org/install.html).
-- To build from source and run the __Coverage Test__, execute this from the project root:
+
+### Build
+To build from source and run the __Coverage Test__, execute this from the project root:
 	
-	```console
-	mvn clean package
-	```
-	- Check `target` folder, and search for `jeneric-<version>.jar`, for built file.
-	- Check folder and open file `target/site/jacoco/index.html`, for Jacoco coverage test result.	
+```console
+mvn clean package
+```
+
+Check `target` folder, and search for `jeneric-<version>.jar`, for built file.	
 	
-- Additionally, after built the project you can run the __Mutation Test__ as well (please note it may need some time to finish), execute this from the project root:
+### Test
+
+#### Unit Test and Coverage Test
+
+Run this from project root:
+
+```console
+mvn test
+``` 
+
+Check folder and open file `target/site/jacoco/index.html`, for Jacoco coverage test result.	
+
+#### Mutation Test
 	
-	```console
-	mvn org.pitest:pitest-maven:mutationCoverage
-	```
+Additionally after built the project you can run the mutation test as well (please note it may need some time to finish), run this from project root:
 	
-	- Check folder and open file `target/pit-reports/<YYYYMMDDHHMI>/index.html`, for PiTest mutation test result.
+```console
+mvn org.pitest:pitest-maven:mutationCoverage
+```
+
+Check folder and open file `target/pit-reports/<YYYYMMDDHHMI>/index.html`, for PiTest mutation test result.
+
+### Install in Local Maven Repository
+
+To install into local Maven repository for development testing purpose, run this from project root:
+
+```console
+mvn install
+```
 
 
 ## Documentation
@@ -102,7 +128,7 @@ _coming soon.._
 - [Maikel Chandika](https://github.com/mkdika)
 - [Reja](https://github.com/zigic88)
 
-Contributions are very welcome, please read [How to contribute](/CONTRIBUTING.md).
+Contributions are very welcome, please read [How to contribute](/documents/CONTRIBUTING.md).
 
 
 ## License
