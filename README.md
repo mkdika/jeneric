@@ -81,7 +81,7 @@ public class JenericTest {
 - [Install Maven3](https://maven.apache.org/install.html).
 
 ### Build
-To build from source and run the __Coverage Test__, execute this from the project root:
+To build from source, run this from project root:
 	
 ```console
 mvn clean package
