@@ -1,4 +1,4 @@
-## How to Contribute
+## How to Contribute to Jeneric
 
 
 ### Creating an issue
@@ -43,3 +43,5 @@ mvn org.pitest:pitest-maven:mutationCoverage
 ```console
 mvn install
 ```
+
+Thanks! :heart:
