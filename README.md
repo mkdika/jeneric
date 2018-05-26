@@ -73,8 +73,8 @@ import java.util.Date;
 public class JenericTest {
 
     public static void main(String[] args) {
-        Date d1 = DateFun.of(2018, 4, 28, 19, 35, 25);
-        Date d2 = DateFun.of(2018, 5, 23, 12, 30, 45);
+        Date d1 = DateFun.of(2018, 4, 28, 19, 35, 25); // 28 Apr 2018 19:35:25
+        Date d2 = DateFun.of(2018, 5, 23, 12, 30, 45); // 23 May 2018 12:30:45
         System.out.println(StringFun.elapsedTime(d1, d2));
 
         // print: 24 days 16 hours 55 minutes 20 seconds 0 milliseconds        
@@ -130,8 +130,8 @@ mvn install
 
 
 ## Documentation
-_coming soon.._
-
+- For online host most recent version javadoc, please visit [Javadoc](https://www.javadoc.io/doc/com.mkdika/jeneric/1.0.0).
+- For user guide, please visit [User Guide](/docs/user-guide.md).
 
 ## Maintainer
 - [Maikel Chandika](https://github.com/mkdika)
