@@ -23,8 +23,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.SocketException;
 import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
+
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -556,5 +556,53 @@ public class StringFunTest {
         System.out.println("test_StringFun_elapsedTime_exception");
 
         String a = StringFun.elapsedTime(null, null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test_maskify_illegalArgument_exception() {
+        System.out.println("test_maskify_illegalArgument_exception");
+        StringFun.maskify("testing", -1);
+    }
+
+    @Test
+    public void test_maskify_all_masked() {
+        String input = "testing";
+        String expected = "*******";
+        List<Integer> lengths = new ArrayList() {{
+            add(0);
+            add(input.length());
+            add(input.length()+1);
+        }};
+
+        System.out.println("test_maskify_all_masked");
+        lengths.forEach(n -> assertThat(StringFun.maskify(input, n), equalTo(expected)));
+    }
+
+    @Test
+    public void test_maskify_partial_masked() {
+        String input = "testing";
+        Map<Integer, String> expecteds = new HashMap() {{
+                put(3, "***ting");
+                put(6, "******g");
+                put(1, "*esting");
+        }};
+
+        System.out.println("test_maskify_partial_masked");
+        expecteds.forEach((n, s) ->
+            assertThat(StringFun.maskify(input, n), equalTo(s))
+        );
+    }
+
+    @Test
+    public void  test_maskify_empty_string() {
+        List<Integer> lengths = new ArrayList() {{
+            add(0);
+            add(100);
+        }};
+
+        System.out.println("test_maskify_empty_string");
+        lengths.forEach(n ->
+            assertThat(StringFun.maskify("", n), equalTo(""))
+        );
     }
 }
