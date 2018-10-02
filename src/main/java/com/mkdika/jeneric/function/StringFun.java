@@ -39,6 +39,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.xml.bind.DatatypeConverter;
 
 /**
@@ -606,5 +607,33 @@ public final class StringFun {
         sb.append(period.getSeconds()).append(" seconds ");
         sb.append(period.getMilliseconds()).append(" milliseconds");
         return sb.toString();
+    }
+
+    /**
+     * Maskify returns masked string (using '*')
+     * <p>
+     *     Example:<br>
+     *     Given:<br>
+     *     original = testing<br>
+     *     char = 0<br>
+     *     will return: *******
+     * </p>
+     *
+     * @param original original string to mask
+     * @param length number of character to mask (0 to mask all characters)
+     * @return {@link java.lang.String}
+     * @throws IllegalArgumentException when length negative
+     */
+    public static String maskify(String original, int length) {
+        if (length < 0) {
+            throw new IllegalArgumentException("length must be >= 0");
+        }
+
+        if (original.length() == 0) return original;
+
+        int end = length == 0 || length >= original.length() ? original.length() : length;
+        String prefix = Stream.of(original.substring(0, end).split("")).map(x -> "*").collect(Collectors.joining());
+        String suffix = original.substring(end);
+        return prefix + suffix;
     }
 }
